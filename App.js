@@ -1,23 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import HomePageComponent from './HomePage';
+import * as React from 'react';
+import { View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomePage from './screens/HomePage'
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>Icon</Text>
-    </SafeAreaView>
+    // <HomePageComponent/>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Welcome" component={HomePage} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start', // Align vertically at the top
-    alignItems: 'center', // Center horizontally
-    marginTop: '50%', // Optional: Add some top margin if needed
-  },
-  text: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-});
