@@ -1,29 +1,56 @@
-import { Text, TextInput, View } from "react-native";
+import { ScrollView, Text, TextInput, View } from "react-native";
 import React, { useState } from "react";
 import { StyleSheet, SafeAreaView, Button, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import GradientText from './src/styles/gradientText';
 import { AntDesign } from '@expo/vector-icons'; 
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native'
+import { backgroundColor } from "./src/styles/backgroundColors";
+import { homePageColors } from "./src/styles/colors";
+import { FontAwesome5 } from '@expo/vector-icons';
+import MovingIcon from "./src/components/movingIcon";
 
 export default function HomePage(){
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const navigation = useNavigation();
+  const handleLoginPress = () => {
+    navigation.navigate('Login');
+  };
+  const handleCreatePress = () => {
+    navigation.navigate('GetUserCredentials');
+  };
+  const handleAbout = () => {
+    navigation.navigate('AboutCampusCrush');
+  };
   return(
+
     <LinearGradient
-    colors={['#ef9d9d', '#ef78a8', '#9d5594']}
+    colors={backgroundColor}
     style={styles.container}
     start={{ x: 0, y: 0 }}
     end={{ x: 1, y: 1 }}>
-    <Text style={styles.firstText}>[Icon]</Text>
-    <View style={styles.icon} />
-    <Text style={styles.welcome}>Welcome to </Text>
+    <ScrollView>
+      <View style={styles.container}>
+    <Text style={styles.firstText}></Text>
+    {/* <View style={styles.icon}>
+    <FontAwesome5 name="hand-holding-heart" size={60} color="black" />
+    </View> */}
+    <MovingIcon/>
+    <Text style={styles.welcome}>Welcome to </Text> 
     <GradientText colors={['#cc2b5e', '#753a88']} style={styles.campusCrush}>
+    {/* <GradientText colors={['#5151e1', '#1e1e91']} style={styles.campusCrush}>  */}
       CampusCrush
     </GradientText>
     <Text style={styles.missionStatement}>
       The app that <Text style={styles.supercharge}>supercharges</Text> how you meet, chat, and interact with others!
     </Text>
+
+    {/* <Text>
+      Add self typing here... maybe?
+    </Text> */}
+
+
+
 
       {/* <TextInput
         style={styles.input}
@@ -42,19 +69,22 @@ export default function HomePage(){
       /> */}
 
 
-    <TouchableOpacity style={styles.login} onPress={() => console.log('login')}>
+    <TouchableOpacity style={styles.login} onPress={handleLoginPress}>
       <Text style={styles.buttonFont}>Login <AntDesign name="login" size={22} color="black" /></Text>
     </TouchableOpacity>
 
-    <TouchableOpacity style={styles.create} onPress={() => console.log('create')}>
+    <TouchableOpacity style={styles.create} onPress={handleCreatePress}>
       <Text style={styles.buttonFont}>Create Account <AntDesign name="adduser" size={22} color="black" /></Text>
     </TouchableOpacity>
 
-    <TouchableOpacity>
+    <TouchableOpacity onPress={handleAbout}>
       <Text style={styles.info}><Ionicons name="ios-information-circle-outline" size={20} color="black" /> Learn about CampusCrush</Text>
     </TouchableOpacity>
-
+    </View>
+    </ScrollView>
   </LinearGradient>
+
+
   );
 }
 
@@ -97,7 +127,7 @@ const styles = StyleSheet.create({
     width: 198
 },
   firstText: {
-    marginTop: '35%',
+    marginTop: '25%',
     fontSize: 20,
     fontWeight: 'bold',
     color: 'black',
@@ -110,26 +140,28 @@ const styles = StyleSheet.create({
   campusCrush: {
     fontSize: 40,
     fontWeight: 'bold',
-    color: 'black',
+    textShadowColor: 'rgba(0, 0, 0, 0.9)',
+    textShadowOffset: {width: -1, height: 1},
+    textShadowRadius: 3,
   },
   icon: {
-    width: 50,
-    height: 50,
-    backgroundColor: 'black',
+    // width: 50,
+    // height: 50,
+    // backgroundColor: 'black',
     marginBottom: '10%',
   },
   missionStatement: {
     marginTop: '5%',
-    fontSize: 24,
-    color: 'black',
+    fontSize: 26,
+    color: homePageColors.primary,
     marginHorizontal: '3%',
-    marginBottom: '40%',
+    marginBottom: '55%',
   },
   supercharge: {
     fontStyle: 'italic',
     textShadowColor: 'rgba(0, 0, 0, 0.5)',
     textShadowOffset: {width: -1, height: 1},
-    textShadowRadius: 3,
+    textShadowRadius: 1,
   },
   login: {
     justifyContent: 'center',
@@ -139,8 +171,8 @@ const styles = StyleSheet.create({
     padding: 5,
     height: 40,
     borderWidth: 2,
-    borderColor: 'rgba(0, 0, 0, 0.55)',
-    width: '70%',
+    borderColor: 'rgba(0, 0, 0, 0.6)',
+    width: '81%',
     marginBottom: '5%'
   },
   create: {
@@ -151,12 +183,13 @@ const styles = StyleSheet.create({
     padding: 5,
     height: 40,
     borderWidth: 2,
-    borderColor: 'rgba(0, 0, 0, 0.55)',
-    width: '70%',
+    borderColor: 'rgba(0, 0, 0, 0.6)',
+    width: '81%',
     marginBottom: '10%'
   },
   buttonFont: {
     fontSize: 22,
     fontWeight: '400',
+    color: 'rgba(0, 0, 0, 0.65)',
   }
 });

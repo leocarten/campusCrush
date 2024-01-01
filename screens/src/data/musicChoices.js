@@ -1,0 +1,36 @@
+const musicGenres = [
+    { label: 'Rock', value: 'rock' },
+    { label: 'Pop', value: 'pop' },
+    { label: 'Hip Hop', value: 'hip-hop' },
+    { label: 'Jazz', value: 'jazz' },
+    { label: 'Country', value: 'country' },
+    { label: 'Electronic', value: 'electronic' },
+    { label: 'Classical', value: 'classical' },
+    { label: 'R&B', value: 'rnb' },
+    { label: 'Reggae', value: 'reggae' },
+    { label: 'Blues', value: 'blues' },
+    { label: 'Metal', value: 'metal' },
+    { label: 'Indie', value: 'indie' },
+    { label: 'Folk', value: 'folk' },
+    { label: 'Soul', value: 'soul' },
+    { label: 'Funk', value: 'funk' },
+    { label: 'Punk', value: 'punk' },
+    { label: 'Alternative', value: 'alternative' },
+    { label: 'Latin', value: 'latin' },
+    { label: 'K-Pop', value: 'kpop' },
+    { label: 'Metalcore', value: 'metalcore' },
+    { label: 'Bluegrass', value: 'bluegrass' },
+    { label: 'Ska', value: 'ska' },
+    { label: 'EDM', value: 'edm' },
+    { label: 'Trap', value: 'trap' },
+    { label: 'Disco', value: 'disco' },
+    { label: 'Acoustic', value: 'acoustic' },
+    { label: 'Ambient', value: 'ambient' },
+    { label: 'Hard Rock', value: 'hard-rock' },
+    { label: 'Dubstep', value: 'dubstep' },
+    { label: 'Rap', value: 'rap' },
+
+  ];
+  
+  export default musicGenres;
+  
