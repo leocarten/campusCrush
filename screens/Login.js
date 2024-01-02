@@ -3,15 +3,19 @@ import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'rea
 import { LinearGradient } from 'expo-linear-gradient';
 import { AntDesign } from '@expo/vector-icons'; 
 import { backgroundColor } from './src/styles/backgroundColors';
+import { useNavigation } from '@react-navigation/native'
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigation = useNavigation();
+
 
   const handleLogin = () => {
-    console.log('Username:', username);
-    console.log('Password:', password);
+    navigation.navigate('Feed');
   };
+
+
 
   return (
     <LinearGradient
@@ -48,7 +52,7 @@ const Login = () => {
           onChangeText={(text) => setPassword(text)}
         />
     </View>
-     <TouchableOpacity style={styles.login} onPress={() => console.log("hi")}>
+     <TouchableOpacity style={styles.login} onPress={handleLogin}>
       <Text style={styles.loginText}>Login <AntDesign name="login" size={22} color="black" /></Text>
     </TouchableOpacity>
     </LinearGradient>

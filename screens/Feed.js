@@ -1,54 +1,51 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet } from 'react-native';
-import { Text, View, ScrollView, TextInput } from 'react-native';
+import { Text, View, ScrollView, SafeAreaView } from 'react-native';
 import React from 'react';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native'
-import { backgroundColor } from './src/styles/backgroundColors';
+import Header from './src/components/feedComponents/header';
+import { feedHeadingBackground } from './src/styles/feedStyles/feedColors';
+import Footer from './src/components/feedComponents/footer';
+import ItemInFeed from './src/components/feedComponents/itemInFeed';
+import { totalBackground } from './src/styles/feedStyles/feedColors';
+import { feedBackgroundColor } from './src/styles/feedStyles/feedColors';
 
 const Feed = () => {
   const navigation = useNavigation();
-  const lastPage = () => {
-    navigation.navigate('CreateAcc3');
-  };
-  const nextPage = () => {
-    navigation.navigate('Thankyou');
-  };
-
-  const [username, setUsername] = useState('');
-
+  navigation.canGoBack(false);
   return (
     <LinearGradient
-    colors={backgroundColor}
+    colors={feedBackgroundColor}
     style={styles.container}
     start={{ x: 0, y: 0 }}
     end={{ x: 1, y: 1 }}>
-    <Text style={styles.firstText}>[Icon]</Text>
-    <View style={styles.icon} />
+    <SafeAreaView style={{backgroundColor: feedHeadingBackground}}>
+      <Header onFeedPage={true}/>
+    </SafeAreaView>
     <ScrollView>
-    {/* <Steps count={5} directions={"Terms and Services"} style={{alignItems: 'left'}}/> */}
-    {/* <HorizontalIconLine count={5}  /> */}
 
-    <Text>Thank you for choosing CampusCrush. Let's begin this journey together.</Text>
-
-    {/* <View style={styles.buttonContainer}>
-      <TouchableOpacity style={styles.next} onPress={lastPage}>
-        <Text style={styles.buttonFont}><Entypo name="arrow-with-circle-left" size={26} color="black"/> Back</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.next} onPress={nextPage}>
-        <Text style={styles.buttonFont}>Accept and Finish <AntDesign name="checkcircleo" size={26} color="black" /></Text>
-      </TouchableOpacity>
-    </View> */}
+    <ItemInFeed/>
+    <ItemInFeed/>
+    <ItemInFeed/>
+    <ItemInFeed/>
+    <ItemInFeed/>
 
 
     </ScrollView>
+    
+    <View style={styles.footer}>
+      <Footer/>
+    </View>
 
     </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
+  footer: {
+    backgroundColor: feedHeadingBackground,
+  },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between', 

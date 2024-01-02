@@ -41,8 +41,8 @@ function CreateAcc() {
     <Text style={styles.firstText}>[Icon]</Text>
     <View style={styles.icon} />
     <ScrollView>
-    <Steps count={5} directions={"Terms and Services"} style={{alignItems: 'left'}}/>
-    <HorizontalIconLine count={5}  />
+    <Steps count={6} directions={"Terms and Services"} style={{alignItems: 'left'}}/>
+    <HorizontalIconLine count={6}  />
 
 
     <View style={styles.buttonContainer}>
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   },
   next: {
     backgroundColor: 'transparent',
-    padding: 6,
+    padding: 7,
     height: 40,
     alignSelf: 'center',
     borderColor: 'black',

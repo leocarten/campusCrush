@@ -21,17 +21,18 @@ import { useNavigation } from '@react-navigation/native'
 import UserInputAccCreation from './src/components/userInputAccountCreation';
 import { backgroundColor } from './src/styles/backgroundColors';
 
-function CreateAcc() {
+function CreateAcc1a() {
   const navigation = useNavigation();
+
   const lastPage = () => {
     navigation.navigate('CreateAcc');
   };
+
   const nextPage = () => {
-    navigation.navigate('CreateAcc3');
-  };
+    navigation.navigate('CreateAcc2');
+  }
 
-  const [username, setUsername] = useState('');
-
+  
   return (
     <LinearGradient
     colors={backgroundColor}
@@ -41,29 +42,33 @@ function CreateAcc() {
     <Text style={styles.firstText}>[Icon]</Text>
     <View style={styles.icon} />
     <ScrollView>
-    <Steps count={4} directions={"Design your Bitmoji"} style={{alignItems: 'left'}}/>
-    <HorizontalIconLine count={4}  />
-
+    <Steps count={3} directions={"Customize your feed"} style={{alignItems: 'left'}}/>
+    <HorizontalIconLine count={3}  />
     <View>
-      <Text style={styles.info}><Ionicons name="ios-information-circle-outline" size={20} color="black" /> Why do I need to create a Bitmoji?</Text>
+      <Text style={styles.info}><Ionicons name="ios-information-circle-outline" size={20} color="black" /> How does this impact my feed?</Text>
     </View>
+      {/* <Text style={styles.welcome}>Let's start by getting some basic information!</Text> */}
+
+      <DropdownComponent initMessage="I am using this app to ..." options={[{ label: 'Find a short-term partner', value: '1' },{ label: 'Find a long-term parter', value: '2' },{ label: "Meet new people", value: '3' },{ label: "Find new friends", value: '4' },{ label: "I'm not sure yet", value: '5' }]} icon={<FontAwesome5 name="user-friends" size={20} color="black" style={{ marginRight: 5 }}/>}/>
+      <DropdownComponent initMessage="I want to be shown ..." options={[{ label: 'Males only', value: '1' },{ label: 'Females only', value: '2' },{ label: "Everyone", value: '3' },]} icon={<Ionicons name="md-search-circle-sharp" size={22} color="black" style={{ marginRight: 4 }}/>}/>
+
+     
 
     <View style={styles.buttonContainer}>
-      <TouchableOpacity style={styles.next} onPress={lastPage}>
-        <Text style={styles.buttonFont}><Entypo name="arrow-with-circle-left" size={26} color="black"/> Back</Text>
-      </TouchableOpacity>
+      <Text style={styles.next} onPress={lastPage}>
+        <Text style={styles.buttonFont}><Entypo name="arrow-with-circle-left" size={26} color="black" /> Back </Text>
+      </Text>
 
       <TouchableOpacity style={styles.next} onPress={nextPage}>
         <Text style={styles.buttonFont}>Next <Entypo name="arrow-with-circle-right" size={26} color="black" /></Text>
       </TouchableOpacity>
     </View>
 
-
     </ScrollView>
 
     </LinearGradient>
   );
-}
+  }
 
 const styles = StyleSheet.create({
   info: {
@@ -151,4 +156,4 @@ const styles = StyleSheet.create({
       }
 })
 
-export default CreateAcc;
+export default CreateAcc1a;

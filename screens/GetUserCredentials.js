@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
   },
   next: {
     backgroundColor: 'transparent',
-    padding: 6,
+    padding: 7,
     height: 40,
     alignSelf: 'center',
     borderColor: 'black',

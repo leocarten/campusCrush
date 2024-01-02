@@ -6,6 +6,8 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { TouchableOpacity } from "react-native";
 import { Entypo } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
+import { LinearGradient } from "expo-linear-gradient";
+import { learnBackgroundColor } from "../src/styles/learnBackgroundColors";
 
 function AboutCampusCrush() {
     const navigation = useNavigation();
@@ -18,7 +20,13 @@ function AboutCampusCrush() {
         navigation.navigate('Welcome');
     }
     return(
+
         <ScrollView style={styles.all}>
+                    <LinearGradient
+        colors={learnBackgroundColor}
+        style={styles.container}
+        start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}>
             <SafeAreaView>
 
                 <View >
@@ -30,23 +38,23 @@ function AboutCampusCrush() {
                         <Text style={styles.body}>
                             Our app offers:
                         </Text>
-                        <Text style={styles.bulletPoint}> <Text style={{fontSize: 24}}>&#128140;</Text> Blind dates</Text>
-                        <Text style={styles.bulletPoint}> <Text style={{fontSize: 24}}>&#129668;</Text> Match-making games</Text>
-                        <Text style={styles.bulletPoint}> <Text style={{fontSize: 24}}>&#127919;</Text> A <Text style={{fontStyle: "italic"}}>for you</Text> page</Text>
+                        <Text style={styles.bulletPoint}> <Text style={{fontSize: 26}}>&#128140;</Text> Blind dates</Text>
+                        <Text style={styles.bulletPoint}> <Text style={{fontSize: 26}}>&#129668;</Text> Match-making games</Text>
+                        <Text style={styles.bulletPoint}> <Text style={{fontSize: 26}}>&#127919;</Text> A <Text style={{fontStyle: "italic"}}>for you</Text> page</Text>
                         <Text style={styles.bulletPoint}>... add more as i expand out</Text>
                     </View>
 
                     <View style={styles.section}>
                         <Text style={styles.sectionHeading}>How do I interact with CampusCrush?</Text>
                         <Text style={styles.body}>
-                            Discover a whole new way to connect with others using CampusCrush - our mobile app is your new go-to platform for meeting, chatting, and interacting with others. Whether you're searching for friends, partners, or more, CampusCrush has got you covered. Dive into our dynamic feed, spark conversations, and personalize your profile to showcase the real you. Elevate your experience with our unique points system – redeem perks from our in-app store to boost your odds of making meaningful connections.
+                            Talk about the limited messages and how to earn points / badges.
                         </Text>
                         <Text style={styles.body}>
                             Our app offers:
                         </Text>
-                        <Text style={styles.bulletPoint}> <Text style={{fontSize: 24}}>&#128140;</Text> Blind dates</Text>
-                        <Text style={styles.bulletPoint}> <Text style={{fontSize: 24}}>&#129668;</Text> Match-making games</Text>
-                        <Text style={styles.bulletPoint}> <Text style={{fontSize: 24}}>&#127919;</Text> A <Text style={{fontStyle: "italic"}}>for you</Text> page</Text>
+                        <Text style={styles.bulletPoint}> <Text style={{fontSize: 26}}>&#128140;</Text> Blind dates</Text>
+                        <Text style={styles.bulletPoint}> <Text style={{fontSize: 26}}>&#129668;</Text> Match-making games</Text>
+                        <Text style={styles.bulletPoint}> <Text style={{fontSize: 26}}>&#127919;</Text> A <Text style={{fontStyle: "italic"}}>for you</Text> page</Text>
                         <Text style={styles.bulletPoint}>... add more as i expand out</Text>
                     </View>
 
@@ -58,21 +66,21 @@ function AboutCampusCrush() {
                         <Text style={styles.body}>
                             Our app offers:
                         </Text>
-                        <Text style={styles.bulletPoint}> <Text style={{fontSize: 24}}>&#128140;</Text> Blind dates</Text>
-                        <Text style={styles.bulletPoint}> <Text style={{fontSize: 24}}>&#129668;</Text> Match-making games</Text>
-                        <Text style={styles.bulletPoint}> <Text style={{fontSize: 24}}>&#127919;</Text> A <Text style={{fontStyle: "italic"}}>for you</Text> page</Text>
+                        <Text style={styles.bulletPoint}> <Text style={{fontSize: 26}}>&#128140;</Text> Blind dates</Text>
+                        <Text style={styles.bulletPoint}> <Text style={{fontSize: 26}}>&#129668;</Text> Match-making games</Text>
+                        <Text style={styles.bulletPoint}> <Text style={{fontSize: 26}}>&#127919;</Text> A <Text style={{fontStyle: "italic"}}>for you</Text> page</Text>
                         <Text style={styles.bulletPoint}>... add more as i expand out</Text>
                     </View>
 
                     <View style={styles.buttonContainer}>
                         <TouchableOpacity style={styles.next} onPress={lastPage}>
-                            <Text style={styles.buttonFont}><Entypo name="arrow-with-circle-left" size={26} color="black" /> Back </Text>
+                            <Text style={styles.buttonFont}><Entypo name="arrow-with-circle-left" size={26} color="white" /> Back </Text>
                         </TouchableOpacity>
                     </View>
 
                 </View>
                 </SafeAreaView>
-
+                </LinearGradient>
             </ScrollView>
 
     );
@@ -80,7 +88,7 @@ function AboutCampusCrush() {
 
 const styles = StyleSheet.create({
     all: {
-        backgroundColor: '#F6E0E0',
+        backgroundColor: '#282828',
 
     },
     section:{
@@ -91,16 +99,20 @@ const styles = StyleSheet.create({
     body:{
         fontSize: 20,
         marginBottom: '1%',
+        color:'white'
     },
     bulletPoint: {
         marginLeft: '5%',
         fontSize: 20,
-        marginBottom: '1%'
+        marginBottom: '1%',
+        color:'white'
     },
     sectionHeading:{
         fontSize: 25,
-        marginBottom: '1%',
-        fontWeight: 'bold'
+        marginBottom: '3%',
+        fontWeight: 'bold',
+        color:'white',
+        fontFamily: 'Arial Rounded MT Bold'
     },
     buttonContainer: {
         flexDirection: 'row',
@@ -112,17 +124,17 @@ const styles = StyleSheet.create({
       },
       next: {
         backgroundColor: 'transparent',
-        padding: 6,
+        padding: 7,
         height: 40,
         alignSelf: 'center',
-        borderColor: 'black',
+        borderColor: 'white',
         borderWidth: 0.5,
         borderRadius: 10,
       },
       buttonFont: {
         fontSize: 22,
         fontWeight: '600',
-        color: 'rgba(0, 0, 0, 0.8)',
+        color: 'white',
       }
 })
 

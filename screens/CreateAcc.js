@@ -29,7 +29,7 @@ function CreateAcc() {
   };
 
   const nextPage = () => {
-    navigation.navigate('CreateAcc2');
+    navigation.navigate('CreateAcc1a');
   }
 
   
@@ -45,15 +45,13 @@ function CreateAcc() {
     <Steps count={2} directions={"Build your profile"} style={{alignItems: 'left'}}/>
     <HorizontalIconLine count={2}  />
     <View>
-      <Text style={styles.info}><Ionicons name="ios-information-circle-outline" size={20} color="black" /> Only the Name field is required</Text>
+      <Text style={styles.info}><Ionicons name="ios-information-circle-outline" size={20} color="black" /> Only the Name and Birthday field is required, the rest will just help others get to know you better!</Text>
     </View>
       {/* <Text style={styles.welcome}>Let's start by getting some basic information!</Text> */}
       <UserInputAccCreation initMessage={"My first name is ..."} icon="person" />
-      <UserInputAccCreation initMessage={"Describe yourself in a sentence ..."} icon="person" />
-
+      <UserInputAccCreation initMessage={"My birthday is ..."} icon="person" />
+      <UserInputAccCreation initMessage={"Create a short bio ..."} icon="person" />
       <DropdownComponent initMessage="I am a ..." options={[{ label: 'Male', value: '1' },{ label: 'Female', value: '2' },{ label: 'Other', value: '3' },]} icon={<Ionicons name="person" size={20} color="black" style={{ marginRight: 5 }}/>} />
-      <DropdownComponent initMessage="I am using this app to ..." options={[{ label: 'Find a short-term partner', value: '1' },{ label: 'Find a long-term parter', value: '2' },{ label: "Meet new people", value: '3' },{ label: "Find new friends", value: '4' },{ label: "I'm not sure yet", value: '5' }]} icon={<FontAwesome5 name="user-friends" size={20} color="black" style={{ marginRight: 5 }}/>}/>
-      <DropdownComponent initMessage="I want to be shown ..." options={[{ label: 'Males only', value: '1' },{ label: 'Females only', value: '2' },{ label: "Everyone", value: '3' },]} icon={<Ionicons name="md-search-circle-sharp" size={22} color="black" style={{ marginRight: 4 }}/>}/>
       <UserInputAccCreation initMessage={"One thing on my bucket-list ..."} icon="bucket"/>
 
       <MultiSelectComponent initMessage={"My interests and hobbies are ..."} options={interestAndHobbies} icon={<MaterialIcons name="lightbulb" size={20} color="black" style={{ marginRight: 9 }}/>} />
@@ -94,7 +92,7 @@ const styles = StyleSheet.create({
   },
   next: {
     backgroundColor: 'transparent',
-    padding: 6,
+    padding: 7,
     height: 40,
     alignSelf: 'center',
     borderColor: 'black',
