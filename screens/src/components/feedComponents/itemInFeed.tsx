@@ -1,10 +1,18 @@
 import { Text, View, StyleSheet } from "react-native"
 import {Dimensions} from 'react-native';
 const windowHeight = Dimensions.get('window').height;
-const windowHeightPercentage = ( (1-(.3)) * windowHeight);
-console.log(windowHeightPercentage);
-const pictureHeightPercentage = ( (1-(.6)) * windowHeight);
-console.log(pictureHeightPercentage)
+let windowHeightPercentage;
+if(windowHeight < 700){
+    windowHeightPercentage = ( (1-(.2)) * windowHeight);
+}
+else{
+    windowHeightPercentage = ( (1-(.3)) * windowHeight);
+}
+console.log(windowHeight)
+const pictureHeightPercentage = ( (1-(.59)) * windowHeight);
+
+
+
 import { lineColor } from "../../styles/feedStyles/feedColors";
 import { iconColors } from "../../styles/feedStyles/feedColors";
 import { nameColor } from "../../styles/feedStyles/feedColors";
@@ -15,8 +23,22 @@ import { feedHeadingBackground } from "../../styles/feedStyles/feedColors";
 import { removeUser } from "../../styles/feedStyles/feedColors";
 import GradientText from "../../styles/gradientText";
 
+import { Platform } from "react-native";
+
+const isTablet = Platform.isPad.toString();
+let containerWidth;
+let pictureWidth;
+if(isTablet === 'true'){
+    containerWidth = '68%';
+    pictureWidth = '68%';
+}
+else{
+    containerWidth = '88%';
+    pictureWidth = '85%';
+}
 
 const ItemInFeed = (Name, Age, Bio, Pictures, Interests, BucketList) => {
+
     return(
         <View style={styles.height}>
             <View style={styles.container}>
@@ -162,7 +184,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'transparent',
-        width: '88%',
+        width: containerWidth,
         alignSelf: 'center', // Center horizontally
         marginTop: '3%',
         marginBottom: '3%',
@@ -175,7 +197,7 @@ const styles = StyleSheet.create({
       },
       pictureContainer: {
         backgroundColor: lineColor,
-        width: '85%',
+        width: pictureWidth,
         height: pictureHeightPercentage,
         alignSelf: 'center', // Center horizontally
         marginTop: 10,
