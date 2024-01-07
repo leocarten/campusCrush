@@ -14,6 +14,7 @@ import { feedBackgroundColor } from './src/styles/feedStyles/feedColors';
 const Feed = () => {
   const navigation = useNavigation();
   navigation.canGoBack(false);
+
   return (
     <LinearGradient
     colors={feedBackgroundColor}
@@ -21,7 +22,7 @@ const Feed = () => {
     start={{ x: 0, y: 0 }}
     end={{ x: 1, y: 1 }}>
     <SafeAreaView style={{backgroundColor: feedHeadingBackground}}>
-      <Header onFeedPage={true}/>
+      <Header onFeedPage={1}/>
     </SafeAreaView>
     <ScrollView>
 

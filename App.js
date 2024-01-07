@@ -12,6 +12,9 @@ import AboutCampusCrush from './screens/Learn/AboutCampusCrush';
 import Thankyou from './screens/Thankyou';
 import Feed from './screens/Feed';
 import CreateAcc1a from './screens/CreateAcc1a';
+import FilterPage from './screens/FilterPage';
+import Messages from './screens/Messages'
+import Store from './screens/Store'
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -21,7 +24,7 @@ export default function App() {
       <Stack.Navigator screenOptions={{headerShown: false}}>
       {/* <Stack.Screen name="Feed" component={Feed} /> */}
       <Stack.Screen name="Welcome" component={HomePage} />
-      <Stack.Screen name="Feed" component={Feed} />
+      <Stack.Screen name="Feed" component={Feed} options={{ gestureEnabled: false }}/>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="GetUserCredentials" component={GetUserCredentials} />
         <Stack.Screen name="AboutCampusCrush" component={AboutCampusCrush} />
@@ -31,6 +34,9 @@ export default function App() {
         <Stack.Screen name="CreateAcc3" component={CreateAcc3} />
         <Stack.Screen name="CreateAcc4" component={CreateAcc4} />
         <Stack.Screen name="Thankyou" component={Thankyou} />
+        <Stack.Screen name="FilterPage" component={FilterPage} />
+        <Stack.Screen name="Messages" component={Messages} />
+        <Stack.Screen name="Store" component={Store} />
 
       </Stack.Navigator>
     </NavigationContainer>

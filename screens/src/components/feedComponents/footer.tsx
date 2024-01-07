@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         marginBottom: '10%',
         flexDirection: 'row',
         justifyContent: 'space-between', 
-        borderTopWidth: 1.5,
+        // borderTopWidth: 1.5,
         borderColor: lineColor,
         paddingTop: '3%',
     },

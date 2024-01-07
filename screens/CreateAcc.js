@@ -45,7 +45,7 @@ function CreateAcc() {
     <Steps count={2} directions={"Build your profile"} style={{alignItems: 'left'}}/>
     <HorizontalIconLine count={2}  />
     <View>
-      <Text style={styles.info}><Ionicons name="ios-information-circle-outline" size={20} color="black" /> Only the Name and Birthday field is required, the rest will just help others get to know you better!</Text>
+      <Text style={styles.info}><Ionicons name="ios-information-circle-outline" size={20} color="black" /> Only the Name and Birthday field is required, the rest will help others get to know you better!</Text>
     </View>
       {/* <Text style={styles.welcome}>Let's start by getting some basic information!</Text> */}
       <UserInputAccCreation initMessage={"My first name is ..."} icon="person" />
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between', 
-    marginTop: 20, 
+    marginTop: 30, 
     marginBottom: 60, 
     marginLeft: '10%',
     marginRight: '10%'

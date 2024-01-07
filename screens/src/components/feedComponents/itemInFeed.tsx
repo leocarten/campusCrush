@@ -11,7 +11,7 @@ else{
 console.log(windowHeight)
 const pictureHeightPercentage = ( (1-(.59)) * windowHeight);
 
-
+import { Foundation } from '@expo/vector-icons';
 
 import { lineColor } from "../../styles/feedStyles/feedColors";
 import { iconColors } from "../../styles/feedStyles/feedColors";
@@ -46,6 +46,9 @@ const ItemInFeed = (Name, Age, Bio, Pictures, Interests, BucketList) => {
                 {/* Name, age */}
                 <View style={styles.nameContainer}>
                     <Text style={styles.name}><Text style={{fontWeight: '700'}}>Alessandra</Text>, <Text style={styles.age}>20</Text></Text>
+                    <Text style={styles.compatibility}>Compatibility: 90% &#128150;</Text>
+                    {/* <Text style={styles.compatibility}>Compatibility: 60% &#128064;</Text> */}
+
                 </View>
 
                 {/* Pictures */}
@@ -80,7 +83,7 @@ const ItemInFeed = (Name, Age, Bio, Pictures, Interests, BucketList) => {
 
                     <View style={styles.bioContainer}>
                         <Text style={styles.bio} numberOfLines={2}>
-                            Hey there! I'm Alessandra, a passionate individual who believes in making the most out of life. By day, I'm a Janitor, but when the workday is done, you'll find me exploring new coffee shops, indulging in my love for photography, or simply getting lost in a good book.
+                        <FontAwesome name="quote-left" size={16} color={iconColors} /> Hey there! I'm Alessandra, a passionate individual who believes in making the most out of life. By day, I'm a Janitor, but when the workday is done, you'll find me exploring new coffee shops, indulging in my love for photography, or simply getting lost in a good book. <FontAwesome name="quote-right" size={16} color={iconColors} />
                         </Text>
                     </View>
 
@@ -171,6 +174,14 @@ const styles = StyleSheet.create({
         marginTop: '2%',
         marginLeft: '4%',
         flexDirection: 'row', 
+        justifyContent: 'space-between',
+
+    },
+    compatibility: {
+        fontSize: 17,
+        color: nameColor,
+        alignSelf: "center",
+        marginRight: "1%"
     },
     name: {
         fontSize: 24,

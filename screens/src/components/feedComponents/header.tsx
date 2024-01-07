@@ -7,13 +7,34 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { lineColor } from "../../styles/feedStyles/feedColors";
 import { TouchableOpacity } from "react-native";
 import { FontAwesome5 } from '@expo/vector-icons';
+import { useNavigation } from "@react-navigation/native";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 interface HeaderProps {
-  onFeedPage: boolean;
+  onFeedPage: int;
 }
 
 const Header: React.FC<HeaderProps> = ({ onFeedPage }) => {
-  if(onFeedPage === true){
+  const navigation = useNavigation();
+
+  const goToFilter = () => {
+    navigation.navigate("FilterPage");
+  };
+
+  const goToMessages = () => {
+    navigation.navigate("Messages");
+  }
+
+  const backToFeed = () => {
+    navigation.navigate("Feed");
+  }
+
+  const goToStore = () => {
+    navigation.navigate("Store");
+  }
+
+  if(onFeedPage === 1){ // on the feed
     return (
       <View style={styles.headerView}>
       <View style={styles.leftContainer}>
@@ -24,7 +45,7 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage }) => {
       </View>
 
       <View style={styles.iconStyle}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={goToFilter}>
           <Text>
             <FontAwesome name="filter" size={30} color={iconColors} style={{borderColor: 'black', borderWidth: 4}}/>
           </Text>
@@ -38,13 +59,13 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage }) => {
       </View> */}
 
       <View style={styles.iconStyle}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={goToMessages}>
           <Text><Ionicons name="chatbubble-ellipses-sharp" size={28} color={iconColors} /></Text>
           </TouchableOpacity>
       </View>
 
       <View style={styles.iconStyle}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={goToStore}>
           <Text>
             <FontAwesome5 name="coins" size={30} color={iconColors} />
             </Text>
@@ -54,34 +75,64 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage }) => {
     </View>
     );
   }
-  return (
-    <View style={styles.headerView}>
-      <View style={styles.leftContainer}>
-        {/* <Text>CampusCrush</Text> */}
-        <GradientText colors={['#cc2b5e', '#753a88']} style={styles.campusCrush}>
-          CampusCrush
-        </GradientText>
-      </View>
-
-      <View style={styles.iconStyle}>
-        <TouchableOpacity>
-          <Text><Ionicons name="people" size={30} color={iconColors}/></Text>
+  else if (onFeedPage === 2){ // on the filtering page
+    return (
+      <View style={styles.headerView}>
+        <View style={styles.leftContainer}>
+          {/* <Text>CampusCrush</Text> */}
+          <TouchableOpacity onPress={backToFeed}>
+            <GradientText colors={['#cc2b5e', '#753a88']} style={styles.campusCrush}>
+              <Text>
+              <Ionicons name="chevron-back" size={30} color="black" />
+              </Text>
+            </GradientText>
           </TouchableOpacity>
-      </View>
+        </View>
 
-      <View style={styles.iconStyle}>
-        <TouchableOpacity>
-          <Text><Ionicons name="chatbubble-ellipses-sharp" size={28} color={iconColors} /></Text>
-          </TouchableOpacity>
-      </View>
+        <View style={styles.iconStyle}>
+          <TouchableOpacity>
+            <Text><MaterialCommunityIcons name="restart" size={30} color={iconColors} /></Text>
+            </TouchableOpacity>
+        </View>
 
-      <View style={styles.iconStyle}>
-        <TouchableOpacity>
-          <Text><MaterialIcons name="shopping-cart" size={30} color={iconColors} /></Text>
+        <View style={styles.iconStyle}>
+          <TouchableOpacity>
+            <Text><AntDesign name="checkcircle" size={28} color='#29900B' /></Text>
+            </TouchableOpacity>
+        </View>
+        
+    </View>
+    );
+  }
+  else if (onFeedPage === 3){ // on the messaging page
+    return (
+      <View style={styles.headerView}>
+        <View style={styles.leftContainer}>
+          {/* <Text>CampusCrush</Text> */}
+          <TouchableOpacity onPress={backToFeed}>
+            <GradientText colors={['#cc2b5e', '#753a88']} style={styles.campusCrush}>
+              <Text>
+              <Ionicons name="chevron-back" size={30} color="black" />
+              </Text>
+            </GradientText>
           </TouchableOpacity>
-      </View>
-  </View>
-  );
+        </View>
+
+        {/* <View style={styles.iconStyle}>
+          <TouchableOpacity>
+            <Text><MaterialCommunityIcons name="restart" size={30} color={iconColors} /></Text>
+            </TouchableOpacity>
+        </View>
+
+        <View style={styles.iconStyle}>
+          <TouchableOpacity>
+            <Text><AntDesign name="checkcircle" size={28} color='#29900B' /></Text>
+            </TouchableOpacity>
+        </View> */}
+        
+    </View>
+    );
+  }
 };
   
 const styles = StyleSheet.create({
@@ -94,7 +145,7 @@ const styles = StyleSheet.create({
         marginRight: '2%',
         flexDirection: 'row',
         justifyContent: 'space-between', 
-        borderBottomWidth: 1.5,
+        // borderBottomWidth: 1.5,
         borderColor: lineColor,
         paddingBottom: '3%',
     },
