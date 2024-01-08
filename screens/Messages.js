@@ -19,20 +19,20 @@ const FilterPage = () => {
     <SafeAreaView style={{backgroundColor: feedHeadingBackground}}>
       <Header onFeedPage={3}/>
     </SafeAreaView>
-    <Text>
+    {/* <Text>
         Make a message from a bot that says thank you and introduce them to the app!!
     </Text>
+    <Text>
+      TELL THE USER HOW THE APP WORKS, HOW MESSAGING WORKS (LIMITS), AND HOW POINTS ARE USED!!
+    </Text> */}
 
     
-    <ScrollView>
-        <MessagesComponent/>
-        <MessagesComponent/>
-        <MessagesComponent/>
-        <MessagesComponent/>
-        <MessagesComponent/>
-        <MessagesComponent/>
-        <MessagesComponent/>
-        <MessagesComponent/>
+    <ScrollView style={{marginBottom: '10%'}}>
+        <MessagesComponent name={"Abigail"} hasBeenOpened={false} messageContent={"How was your day?"} wasRecieved={true}/>
+        <MessagesComponent name={"Allison"} hasBeenOpened={true} messageContent={"I like your shirt in the 5th picture you have!"} wasRecieved={true}/>
+        <MessagesComponent name={"Bailey"} hasBeenOpened={true} messageContent={"Hi Bailey, how was your day today?"} wasRecieved={false}/>
+        <MessagesComponent name={"Marissa"} hasBeenOpened={false} messageContent={"We have a lot in common! Do you want to meetup sometime?"} wasRecieved={true}/>
+
     </ScrollView>
 
 

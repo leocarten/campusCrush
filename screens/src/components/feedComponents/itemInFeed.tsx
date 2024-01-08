@@ -1,6 +1,7 @@
 import { Text, View, StyleSheet } from "react-native"
 import {Dimensions} from 'react-native';
 const windowHeight = Dimensions.get('window').height;
+const windowWidth = Dimensions.get('window').width;
 let windowHeightPercentage;
 if(windowHeight < 700){
     windowHeightPercentage = ( (1-(.2)) * windowHeight);
@@ -10,20 +11,15 @@ else{
 }
 console.log(windowHeight)
 const pictureHeightPercentage = ( (1-(.59)) * windowHeight);
-
-import { Foundation } from '@expo/vector-icons';
-
 import { lineColor } from "../../styles/feedStyles/feedColors";
 import { iconColors } from "../../styles/feedStyles/feedColors";
 import { nameColor } from "../../styles/feedStyles/feedColors";
 import { FontAwesome } from '@expo/vector-icons';
 import { TouchableOpacity } from "react-native";
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { feedHeadingBackground } from "../../styles/feedStyles/feedColors";
-import { removeUser } from "../../styles/feedStyles/feedColors";
 import GradientText from "../../styles/gradientText";
-
 import { Platform } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const isTablet = Platform.isPad.toString();
 let containerWidth;
@@ -36,19 +32,62 @@ else{
     containerWidth = '88%';
     pictureWidth = '85%';
 }
+var totalConsumedWidth = 0;
+function renderInterestText(interest, index) {
+    // simple conversion: 390 = 41, so we need about 10 per letter
+    totalConsumedWidth += interest.length
+    console.log(totalConsumedWidth)
+    if( (windowWidth/10) >= totalConsumedWidth ){
+        return <Text key={index} style={styles.interest}>{interest}</Text>
+    }
+    else{
+        return null;
+    }
+}
 
-const ItemInFeed = (Name, Age, Bio, Pictures, Interests, BucketList) => {
+const ItemInFeed = ({Name, Age, Comp, Bio, Pictures, AppReason, Interests}) => {
+    totalConsumedWidth = 0;
+    let userWants;
+    let comp;
+
+    if(AppReason === 1){
+        userWants = <Text>A long-term partner &#10084;</Text>;
+    }
+    else if(AppReason === 2){
+        userWants = <Text>A short-term partner &#128520;</Text>;
+    }
+    else if(AppReason === 3){
+        userWants = <Text>To meet new people &#127760;</Text>;
+    }
+    else if(AppReason === 4){
+        userWants = <Text>I'm not sure &#129304;</Text>;
+    }
+    else{
+        userWants = <Text>I DON'T KNOW</Text>;
+    }
+
+    if(Comp >= 80){
+        comp = <Text style={styles.compatibility}>Compatibility: {Comp}% &#128150;</Text>;
+    }
+    else{
+        comp = "";
+    }
+
+
+    const navigation = useNavigation();
+
+    const handleExpandPress = () => {
+        console.log("Expanded profile for:", Name);
+        navigation.navigate("PersonsProfile", { personName: Name, personAge: Age, personGoals: userWants, personBio: Bio });
+    };
 
     return(
         <View style={styles.height}>
             <View style={styles.container}>
 
-                {/* Name, age */}
                 <View style={styles.nameContainer}>
-                    <Text style={styles.name}><Text style={{fontWeight: '700'}}>Alessandra</Text>, <Text style={styles.age}>20</Text></Text>
-                    <Text style={styles.compatibility}>Compatibility: 90% &#128150;</Text>
-                    {/* <Text style={styles.compatibility}>Compatibility: 60% &#128064;</Text> */}
-
+                    <Text style={styles.name}><Text style={{fontWeight: '700'}}>{Name}</Text>, <Text style={styles.age}>{Age}</Text></Text>
+                    {comp}
                 </View>
 
                 {/* Pictures */}
@@ -58,9 +97,9 @@ const ItemInFeed = (Name, Age, Bio, Pictures, Interests, BucketList) => {
 
                 {/* Expand */}
                 <View style={styles.expandIconContainer}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={handleExpandPress}>
                         <Text>
-                            <FontAwesome name="expand" size={24} color={iconColors} />
+                            <FontAwesome name="expand" size={24} color='gray' />
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -69,10 +108,7 @@ const ItemInFeed = (Name, Age, Bio, Pictures, Interests, BucketList) => {
                 <View style={styles.profileContainer}>
                     <View style={styles.sendMessageContainer}>
                         <Text style={styles.bio} numberOfLines={1}>
-                            {/* <Text style={{fontWeight: '500'}}>I want:</Text> Meet new people &#127760; */}
-                            <Text style={{fontWeight: '500'}}>I want:</Text> Long-term partner &#10084; 
-                            {/* <Text style={{fontWeight: '500'}}>I want:</Text> Short-term partner &#128520; */}
-                            {/* <Text style={{fontWeight: '500'}}>I want:</Text> I'm not sure &#129304; */}
+                            <Text style={{fontWeight: '500'}}>I want:</Text> {userWants}
                         </Text>
                         <TouchableOpacity>
                             <GradientText colors={['#cc2b5e', '#753a88']}>
@@ -83,32 +119,16 @@ const ItemInFeed = (Name, Age, Bio, Pictures, Interests, BucketList) => {
 
                     <View style={styles.bioContainer}>
                         <Text style={styles.bio} numberOfLines={2}>
-                        <FontAwesome name="quote-left" size={16} color={iconColors} /> Hey there! I'm Alessandra, a passionate individual who believes in making the most out of life. By day, I'm a Janitor, but when the workday is done, you'll find me exploring new coffee shops, indulging in my love for photography, or simply getting lost in a good book. <FontAwesome name="quote-right" size={16} color={iconColors} />
+                        <FontAwesome name="quote-left" size={16} color={iconColors} /> {Bio} <FontAwesome name="quote-right" size={16} color={iconColors} />
                         </Text>
                     </View>
-
                     <View style={styles.interestsContainer}>
-                        <Text style={styles.interest}>
-                            Sports
-                        </Text>
-                        <Text style={styles.interest}>
-                            Swimming
-                        </Text>
-                        <Text style={styles.interest}>
-                            Dancing
-                        </Text>
-                        <Text style={styles.interest}>
-                            Photography
-                        </Text>
+                        {Interests.map((interest, index) => (
+                            renderInterestText(interest, index)
+                        ))}
                     </View>
 
                 </View>
-
-
-                {/* Bio, Interests, Bucket List sentence */}
-
-
-
             </View>
         </View>
     );

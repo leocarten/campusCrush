@@ -133,9 +133,54 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage }) => {
     </View>
     );
   }
+  else if (onFeedPage === 4){ // on the store page
+    return (
+      <View style={styles.headerView}>
+        <View style={styles.leftContainer}>
+          {/* <Text>CampusCrush</Text> */}
+          <TouchableOpacity onPress={backToFeed}>
+            <GradientText colors={['#cc2b5e', '#753a88']} style={styles.campusCrush}>
+              <Text>
+              <Ionicons name="chevron-back" size={30} color="black" />
+              </Text>
+            </GradientText>
+          </TouchableOpacity>
+        </View>
+
+        <View>
+          <Text style={styles.points}>
+            <Ionicons name="person-sharp" size={24} color={iconColors} />
+            <Text> 500 pts </Text>
+          </Text>
+        </View>
+        
+    </View>
+    );
+  }
+  else if (onFeedPage === 5){ // expanded a persons profile
+    return (
+      <View style={styles.headerView}>
+        <View style={styles.leftContainer}>
+          {/* <Text>CampusCrush</Text> */}
+          <TouchableOpacity onPress={backToFeed}>
+            <GradientText colors={['#cc2b5e', '#753a88']} style={styles.campusCrush}>
+              <Text>
+              <Ionicons name="chevron-back" size={30} color="black" />
+              </Text>
+            </GradientText>
+          </TouchableOpacity>
+        </View>        
+    </View>
+    );
+  }
 };
   
 const styles = StyleSheet.create({
+  points: {
+    color: iconColors,
+    alignSelf: "center",
+    fontSize: 17
+  },
     iconStyle: {
       marginRight: '3.5%',
     },

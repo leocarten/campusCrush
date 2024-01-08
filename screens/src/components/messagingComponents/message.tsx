@@ -8,13 +8,29 @@ import { FontAwesome } from '@expo/vector-icons';
 import GradientText from "../../styles/gradientText";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-const MessagesComponent = () => {
-    return(
+const MessagesComponent = ({ name, hasBeenOpened, messageContent, wasRecieved }) => {
+    let circle;
+    let messageIcon;
+    if(hasBeenOpened === false){
+        circle = <FontAwesome name="circle" size={20} />;
+    }
+    else{
+        circle = <FontAwesome name="circle" size={20} color='transparent'/>;
+    }
 
+    if(wasRecieved === true){
+        messageIcon = <Ionicons name="return-down-back" size={24} color={iconColors} />;
+    }
+    else{
+        // messageIcon = <MaterialCommunityIcons name="send-check" size={24} color={iconColors} />;
+        messageIcon = <FontAwesome name="send" size={22} color={iconColors} />;
+    }
+
+    return(
         <TouchableOpacity>
             <View style={styles.container}>
                 <Text style={styles.name}>
-                    Madison
+                    {name}
                 </Text>
 
                 <View style={styles.messageContainer}>
@@ -22,7 +38,7 @@ const MessagesComponent = () => {
                     <View style={styles.notificationIcon}>
                         <GradientText colors={['#cc2b5e', '#753a88']}>
                             <Text>
-                                <FontAwesome name="circle" size={20} />
+                                {circle}
                             </Text>
                         </GradientText>
                     </View>
@@ -32,10 +48,11 @@ const MessagesComponent = () => {
 
                     <View style={styles.center}>
                         <Text style={styles.messageContent} numberOfLines={1}>
-                                Hello. I want to get to know you better, how are you doing?
+                                {messageContent}
                         </Text>
                         <Text style={styles.iconState}>
-                            <Ionicons name="return-down-back" size={24} color={iconColors} />
+                            {messageIcon}
+                            {/* <Ionicons name="return-down-back" size={24} color={iconColors} /> */}
                             {/* <MaterialCommunityIcons name="send-check" size={24} color={iconColors} /> */}
                         </Text>
                     </View>
@@ -50,7 +67,7 @@ const MessagesComponent = () => {
 const styles = StyleSheet.create({
     notificationIcon: {
         alignSelf: "center",
-        marginRight: '2%'
+        marginRight: '1%'
     },
     iconState: {
         fontWeight: '600',
@@ -63,7 +80,7 @@ const styles = StyleSheet.create({
         justifyContent: "flex-start", 
     },
     messageContent: {
-        fontSize: 18,
+        fontSize: 19,
         width: '80%',
         fontWeight: '500'
     },
@@ -77,7 +94,7 @@ const styles = StyleSheet.create({
         marginTop:'3%',
         marginBottom:'1%',
         borderColor: iconColors,
-        paddingBottom: '2%',
+        paddingBottom: '3%',
         borderBottomWidth: 1
     },
     icon: {
@@ -89,8 +106,8 @@ const styles = StyleSheet.create({
     },
     name: {
         marginBottom: '1%',
-        fontSize: 21,
-        fontWeight: '600'
+        fontSize: 22,
+        fontWeight: '600',
     }
     
 });

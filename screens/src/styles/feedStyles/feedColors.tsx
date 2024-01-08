@@ -7,6 +7,7 @@
 // export const feedBackgroundColor = [
 //     '#F8F8F8', '#E4E4E4',
 // ];
+// export const aboutPersonBackground = '#DADADA';
 
 export const feedHeadingBackground = '#121212';
 export const iconColors = '#A7A7A7';
@@ -17,3 +18,6 @@ export const totalBackground = '#E7E7E7'
 export const feedBackgroundColor = [
     '#E4E4E4', '#D1D1D1',
 ];
+export const aboutPersonBackground = '#272727';
+export const textColor = '#C4C4C4'
+export const expandedIconColor = '#6D6D6D';
