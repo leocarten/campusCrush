@@ -11,7 +11,7 @@
 
 export const feedHeadingBackground = '#121212';
 export const iconColors = '#A7A7A7';
-export const lineColor = '#939393';
+export const lineColor = '#A7A7A7';
 export const nameColor = '#2A2A2A';
 export const removeUser = '#a50727';
 export const totalBackground = '#E7E7E7'

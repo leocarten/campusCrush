@@ -20,6 +20,7 @@ import { feedHeadingBackground } from "../../styles/feedStyles/feedColors";
 import GradientText from "../../styles/gradientText";
 import { Platform } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { MaterialIcons } from '@expo/vector-icons';
 
 const isTablet = Platform.isPad.toString();
 let containerWidth;
@@ -45,10 +46,15 @@ function renderInterestText(interest, index) {
     }
 }
 
-const ItemInFeed = ({Name, Age, Comp, Bio, Pictures, AppReason, Interests}) => {
+const ItemInFeed = ({isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Interests}) => {
     totalConsumedWidth = 0;
     let userWants;
     let comp;
+    let verifiedIcon;
+
+    if(isVerified === true){
+        verifiedIcon = <Text><MaterialIcons name="verified" size={22} color="#30ADA7"/></Text>
+    }
 
     if(AppReason === 1){
         userWants = <Text>A long-term partner &#10084;</Text>;
@@ -86,8 +92,8 @@ const ItemInFeed = ({Name, Age, Comp, Bio, Pictures, AppReason, Interests}) => {
             <View style={styles.container}>
 
                 <View style={styles.nameContainer}>
-                    <Text style={styles.name}><Text style={{fontWeight: '700'}}>{Name}</Text>, <Text style={styles.age}>{Age}</Text></Text>
-                    {comp}
+                    <Text style={styles.name}> {verifiedIcon} <Text style={{fontWeight: '700'}}>{Name}</Text>, <Text style={styles.age}>{Age}</Text></Text>
+                    {comp} 
                 </View>
 
                 {/* Pictures */}
@@ -192,14 +198,14 @@ const styles = StyleSheet.create({
     },
     nameContainer: {
         marginTop: '2%',
-        marginLeft: '4%',
+        marginLeft: '2%',
         flexDirection: 'row', 
         justifyContent: 'space-between',
 
     },
     compatibility: {
         fontSize: 17,
-        color: nameColor,
+        color: '#444444',
         alignSelf: "center",
         marginRight: "1%"
     },

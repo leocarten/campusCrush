@@ -16,6 +16,7 @@ import FilterPage from './screens/FilterPage';
 import Messages from './screens/Messages'
 import Store from './screens/Store'
 import PersonsProfile from './screens/PersonsProfile'
+import ErrorPage from './screens/errorFiles/Error';
 
 
 const Stack = createNativeStackNavigator();
@@ -40,7 +41,7 @@ export default function App() {
         <Stack.Screen name="Messages" component={Messages} />
         <Stack.Screen name="Store" component={Store} />
         <Stack.Screen name="PersonsProfile" component={PersonsProfile} />
-
+        <Stack.Screen name="ErrorPage" component={ErrorPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );

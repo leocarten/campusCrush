@@ -4,6 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { AntDesign } from '@expo/vector-icons'; 
 import { backgroundColor } from './src/styles/backgroundColors';
 import { useNavigation } from '@react-navigation/native'
+import { handleLogin } from '../endpoints/LoginUser';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -11,11 +12,16 @@ const Login = () => {
   const navigation = useNavigation();
 
 
-  const handleLogin = () => {
-    navigation.navigate('Feed');
+  const onLoginPress = async () => {
+    // handleLogin(username, password);
+    const loginResult = await handleLogin(username, password);
+    if(loginResult === true){
+      navigation.navigate("Feed");
+    }
+    else {
+      navigation.navigate("ErrorPage",{message: "We could not locate your account in our records, did you use the correct username and password?"});
+    }
   };
-
-
 
   return (
     <LinearGradient
@@ -52,9 +58,15 @@ const Login = () => {
           onChangeText={(text) => setPassword(text)}
         />
     </View>
-     <TouchableOpacity style={styles.login} onPress={handleLogin}>
+
+
+     <TouchableOpacity style={styles.login} onPress={onLoginPress}>
       <Text style={styles.loginText}>Login <AntDesign name="login" size={22} color="black" /></Text>
     </TouchableOpacity>
+
+
+    {/* <GetLoginEndpoint username={username} password={password}/> */}
+
     </LinearGradient>
   );
 };
