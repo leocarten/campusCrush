@@ -17,7 +17,7 @@ const handleLogin = async (usernameInput, passwordInput) => {
       if (response.ok) {
         const data = await response.json();
         // console.log('Login successful:', data);
-        if (data == 'Successful!!'){
+        if (data == 'true'){
             return true;
         }
       } else {

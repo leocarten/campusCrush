@@ -48,9 +48,9 @@ function CreateAcc() {
       <Text style={styles.info}><Ionicons name="ios-information-circle-outline" size={20} color="black" /> Only the Name and Birthday field is required, the rest will help others get to know you better!</Text>
     </View>
       {/* <Text style={styles.welcome}>Let's start by getting some basic information!</Text> */}
-      <UserInputAccCreation initMessage={"My first name is ..."} icon="person" />
+      {/* <UserInputAccCreation initMessage={"My first name is ..."} icon="person" />
       <UserInputAccCreation initMessage={"My birthday is ..."} icon="person" />
-      <UserInputAccCreation initMessage={"Create a short bio ..."} icon="person" />
+      <UserInputAccCreation initMessage={"Create a short bio ..."} icon="person" /> */}
       <DropdownComponent initMessage="I am a ..." options={[{ label: 'Male', value: '1' },{ label: 'Female', value: '2' },{ label: 'Other', value: '3' },]} icon={<Ionicons name="person" size={20} color="black" style={{ marginRight: 5 }}/>} />
       <UserInputAccCreation initMessage={"One thing on my bucket-list ..."} icon="bucket"/>
 

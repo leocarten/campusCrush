@@ -20,8 +20,11 @@ import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 import UserInputAccCreation from './src/components/userInputAccountCreation';
 import { backgroundColor } from './src/styles/backgroundColors';
+// import updateGlobalVariables from './globalVariables/GlobalVariables';
+// import { getVariables } from './globalVariables/GlobalVariables';
 
 function GetUserCredentials() {
+
   const navigation = useNavigation();
 
   const [username, setUsername] = useState('');
@@ -32,8 +35,13 @@ function GetUserCredentials() {
   };
 
   const nextPage = () => {
+    // updateGlobalVariables("username", username);
+    // updateGlobalVariables("password", password);
+    // console.log(getVariables());
+
     navigation.navigate('CreateAcc');
   }
+
 
   
   return (

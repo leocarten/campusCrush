@@ -14,13 +14,13 @@ const Login = () => {
 
   const onLoginPress = async () => {
     // handleLogin(username, password);
-    const loginResult = await handleLogin(username, password);
-    if(loginResult === true){
+    // const loginResult = await handleLogin(username, password);
+    // if(loginResult === true){
       navigation.navigate("Feed");
-    }
-    else {
-      navigation.navigate("ErrorPage",{message: "We could not locate your account in our records, did you use the correct username and password?"});
-    }
+    // }
+    // else {
+      // navigation.navigate("ErrorPage",{message: "We could not locate your account in our records, did you use the correct username and password?"});
+    // }
   };
 
   return (
