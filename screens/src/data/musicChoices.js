@@ -29,6 +29,7 @@ const musicGenres = [
     { label: 'Hard Rock', value: 'hard-rock' },
     { label: 'Dubstep', value: 'dubstep' },
     { label: 'Rap', value: 'rap' },
+    { label: 'Soft rock', value: 'soft-rock' },
 
   ];
   

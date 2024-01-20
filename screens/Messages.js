@@ -28,7 +28,7 @@ const FilterPage = () => {
 
     
     <ScrollView style={{marginBottom: '10%'}}>
-        <MessagesComponent name={"Abigail"} hasBeenOpened={false} messageContent={"How was your day?"} wasRecieved={true}/>
+        <MessagesComponent name={"Owen"} hasBeenOpened={false} messageContent={"Sup"} wasRecieved={true}/>
         <MessagesComponent name={"Allison"} hasBeenOpened={true} messageContent={"I like your shirt in the 5th picture you have!"} wasRecieved={true}/>
         <MessagesComponent name={"Bailey"} hasBeenOpened={true} messageContent={"Hi Bailey, how was your day today?"} wasRecieved={false}/>
         <MessagesComponent name={"Marissa"} hasBeenOpened={false} messageContent={"We have a lot in common! Do you want to meetup sometime?"} wasRecieved={true}/>

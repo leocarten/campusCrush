@@ -20,8 +20,9 @@ import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 import UserInputAccCreation from './src/components/userInputAccountCreation';
 import { backgroundColor } from './src/styles/backgroundColors';
-// import updateGlobalVariables from './globalVariables/GlobalVariables';
-// import { getVariables } from './globalVariables/GlobalVariables';
+import {updateGlobalVariables} from './globalVariables/GlobalVariables';
+import {getVariables} from './globalVariables/GlobalVariables';
+import { Alert } from 'react-native';
 
 function GetUserCredentials() {
 
@@ -35,14 +36,22 @@ function GetUserCredentials() {
   };
 
   const nextPage = () => {
-    // updateGlobalVariables("username", username);
-    // updateGlobalVariables("password", password);
-    // console.log(getVariables());
-
-    navigation.navigate('CreateAcc');
+    const regex = /[!@#$%^&*()\-+={}[\]:;"'<>,.?\/|\\]/;
+    const regex2 = /[A-Z]/;
+    if(password.length >= 10 && (regex.test(password)) && (regex2.test(password)) ){
+      updateGlobalVariables("username", username);
+      updateGlobalVariables("password", password);
+      navigation.navigate('CreateAcc');
+    }
+    else{
+      Alert.alert('Password Requirement not satisfied', 'CampusCrush cares about your security. We require passwords to be at least 10 characters long, contain at least one capital letter, and contain a special character.', [
+        {
+          text: 'Ok',
+          style: 'cancel',
+        },
+      ]);
+    }
   }
-
-
   
   return (
     <LinearGradient
@@ -56,7 +65,7 @@ function GetUserCredentials() {
     <Steps count={1} directions={"User Credentials"} style={{alignItems: 'left'}}/>
     <HorizontalIconLine count={1}  />
     <View>
-      <Text style={styles.info}><Ionicons name="ios-information-circle-outline" size={20} color="black" /> Password must be 10 or more characters</Text>
+      <Text style={styles.info}><Ionicons name="ios-information-circle-outline" size={20} color="black" /> Password must be 10 or more characters, contain a special character, and a capital letter</Text>
     </View>
 
 <View style={styles.inputContainer}>

@@ -1,18 +1,15 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Text, View, ScrollView, TextInput } from 'react-native';
 import React from 'react';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native'
 import { backgroundColor } from './src/styles/backgroundColors';
-
+import { Ionicons } from '@expo/vector-icons';
 const Thankyou = () => {
   const navigation = useNavigation();
-  const lastPage = () => {
-    navigation.navigate('CreateAcc3');
-  };
   const nextPage = () => {
-    navigation.navigate('Thankyou');
+    navigation.navigate('Feed');
   };
 
   const [username, setUsername] = useState('');
@@ -29,50 +26,41 @@ const Thankyou = () => {
     {/* <Steps count={5} directions={"Terms and Services"} style={{alignItems: 'left'}}/> */}
     {/* <HorizontalIconLine count={5}  /> */}
 
-    <Text>Thank you for choosing CampusCrush. Let's begin this journey together.</Text>
+    <View style={styles.viewContainer}>
+      <Text style={styles.text}><Text style={{fontWeight:'bold'}}>Thank you</Text> for choosing CampusCrush. CampusCrush has very cool and distinct features, we are excited to begin this journey with you.</Text>
+      <Text style={styles.text}>As you interact with CampusCrush, please feel free to leave us feedback. We are always happy to hear back from our users!</Text>
+    </View>
 
-    {/* <View style={styles.buttonContainer}>
-      <TouchableOpacity style={styles.next} onPress={lastPage}>
-        <Text style={styles.buttonFont}><Entypo name="arrow-with-circle-left" size={26} color="black"/> Back</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.next} onPress={nextPage}>
-        <Text style={styles.buttonFont}>Accept and Finish <AntDesign name="checkcircleo" size={26} color="black" /></Text>
-      </TouchableOpacity>
-    </View> */}
-
-
+    <TouchableOpacity style={styles.showMeFeed} onPress={nextPage}>
+      <Text style={{fontSize: 20, fontWeight: 'bold'}}>Go to feed <Ionicons name="arrow-forward" size={20} color="black" /></Text>
+    </TouchableOpacity>
     </ScrollView>
-
     </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between', 
-    marginTop: 20, 
-    marginBottom: 60, 
-    marginLeft: '10%',
-    marginRight: '10%'
-  },
-  next: {
-    backgroundColor: 'transparent',
-    padding: 6,
-    height: 40,
-    alignSelf: 'center',
+  showMeFeed:{
+    alignSelf:'center',
+    borderWidth: 1,
     borderColor: 'black',
-    borderWidth: 0.5,
-    borderRadius: 10,
+    borderRadius: 6,
+    padding: 5
   },
-    center: {
-        alignContent: 'center',
-    },
+  text:{
+    fontSize:18,
+    marginBottom: '3%'
+  },
+  viewContainer:{
+    marginBottom: '3%',
+    marginTop:'3%',
+    marginLeft:'3%',
+    marginRight: '3%',
+
+  },
     container: {
       flex: 1,
       justifyContent: 'flex-start', 
-    //   alignItems: 'center', 
     },
     firstText: {
         marginTop: '25%',
@@ -88,11 +76,6 @@ const styles = StyleSheet.create({
         alignSelf: 'left',
         marginLeft: '2%',
       },
-      campusCrush: {
-        fontSize: 40,
-        fontWeight: 'bold',
-        color: 'black',
-      },
       icon: {
         width: 50,
         height: 50,
@@ -100,16 +83,7 @@ const styles = StyleSheet.create({
         marginBottom: '10%',
         alignSelf: 'center'
       },
-      inputBox: {
-        height: 40,
-        paddingHorizontal: 10,
-        color: 'black',
-        borderWidth: 0,
-        borderColor: 'black',
-        paddingVertical: 10,
-        width: '75%',
-        fontSize: 20,
-      },
+
       inputContainer: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -122,11 +96,6 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         paddingRight: 5,
       },
-      buttonFont: {
-        fontSize: 22,
-        fontWeight: '600',
-        color: 'rgba(0, 0, 0, 0.8)',
-      }
 })
 
 export default Thankyou;

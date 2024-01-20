@@ -20,15 +20,51 @@ import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 import UserInputAccCreation from './src/components/userInputAccountCreation';
 import { backgroundColor } from './src/styles/backgroundColors';
+import { getVariables } from './globalVariables/GlobalVariables';
+import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
+import AcceptTOS_Button from './endpointStuff/CreateUser';
 
 function CreateAcc() {
   const navigation = useNavigation();
+
+  const [isLoading, setIsLoading] = useState(false);
+
   const lastPage = () => {
     navigation.navigate('CreateAcc3');
   };
-  const nextPage = () => {
-    navigation.navigate('Thankyou');
-  };
+
+  // const nextPage = async () => {
+  //   setIsLoading(true);
+
+  // }
+
+  // const nextPage = () => {
+  //   // navigation.navigate('Thankyou');
+  //   // console.log(getVariables());
+  //   const [loading, setLoading] = useState(false);
+  //   setLoading(true);
+
+  //   fetch('http://18.188.112.190:5001/createUser', {
+  //     method: 'POST',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify(getVariables()),
+  //     })
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       // Handle the response data
+  //       console.log(data);
+  //     })
+  //     .catch(error => {
+  //       // Handle errors
+  //       console.error('Error:', error);
+  //     })
+  //     .finally( () => {
+  //       setLoading(false);
+  //     });
+  // };
 
   const [username, setUsername] = useState('');
 
@@ -50,9 +86,14 @@ function CreateAcc() {
         <Text style={styles.buttonFont}><Entypo name="arrow-with-circle-left" size={26} color="black"/> Back</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.next} onPress={nextPage}>
+      {/* <TouchableOpacity style={styles.next} onPress={nextPage}>
         <Text style={styles.buttonFont}>Accept <AntDesign name="checkcircleo" size={26} color="black" /></Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
+
+      <AcceptTOS_Button/>
+
+
+
     </View>
 
 

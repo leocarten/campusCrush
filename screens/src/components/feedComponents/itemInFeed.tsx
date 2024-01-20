@@ -7,7 +7,7 @@ if(windowHeight < 700){
     windowHeightPercentage = ( (1-(.2)) * windowHeight);
 }
 else{
-    windowHeightPercentage = ( (1-(.3)) * windowHeight);
+    windowHeightPercentage = ( (1-(.29)) * windowHeight);
 }
 console.log(windowHeight)
 const pictureHeightPercentage = ( (1-(.59)) * windowHeight);
@@ -73,7 +73,7 @@ const ItemInFeed = ({isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Inte
     }
 
     if(Comp >= 80){
-        comp = <Text style={styles.compatibility}>Compatibility: {Comp}% &#128150;</Text>;
+        comp = <Text style={styles.compatibility}>Match: {Comp}% &#128150;</Text>;
     }
     else{
         comp = "";

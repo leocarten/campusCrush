@@ -20,6 +20,9 @@ import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 import UserInputAccCreation from './src/components/userInputAccountCreation';
 import { backgroundColor } from './src/styles/backgroundColors';
+import { getVariables } from './globalVariables/GlobalVariables';
+import CustomDatePicker from './src/components/CustomDatePicker';
+import { Alert } from 'react-native';
 
 function CreateAcc() {
   const navigation = useNavigation();
@@ -29,7 +32,21 @@ function CreateAcc() {
   };
 
   const nextPage = () => {
-    navigation.navigate('CreateAcc1a');
+    // console.log(getVariables());
+    const attributes = getVariables();
+    if(attributes.firstname != '' && attributes.birthday != '' ){
+      navigation.navigate('CreateAcc1a');
+      console.log(getVariables())
+    }
+    else{
+      Alert.alert('Required fields not filled in', 'CampusCrush requires the first name and birthday field to be filled in.', [
+        {
+          text: 'Ok',
+          style: 'cancel',
+        },
+      ]);
+    }
+    
   }
 
   
@@ -45,21 +62,20 @@ function CreateAcc() {
     <Steps count={2} directions={"Build your profile"} style={{alignItems: 'left'}}/>
     <HorizontalIconLine count={2}  />
     <View>
-      <Text style={styles.info}><Ionicons name="ios-information-circle-outline" size={20} color="black" /> Only the Name and Birthday field is required, the rest will help others get to know you better!</Text>
+      <Text style={styles.info}><Ionicons name="ios-information-circle-outline" size={20} color="black" /> Only the Name and Birthday field is <Text style={{fontWeight:'bold'}}>required</Text>, the rest will help other users get to know you better!</Text>
     </View>
       {/* <Text style={styles.welcome}>Let's start by getting some basic information!</Text> */}
-      {/* <UserInputAccCreation initMessage={"My first name is ..."} icon="person" />
-      <UserInputAccCreation initMessage={"My birthday is ..."} icon="person" />
-      <UserInputAccCreation initMessage={"Create a short bio ..."} icon="person" /> */}
-      <DropdownComponent initMessage="I am a ..." options={[{ label: 'Male', value: '1' },{ label: 'Female', value: '2' },{ label: 'Other', value: '3' },]} icon={<Ionicons name="person" size={20} color="black" style={{ marginRight: 5 }}/>} />
-      <UserInputAccCreation initMessage={"One thing on my bucket-list ..."} icon="bucket"/>
+      <UserInputAccCreation initMessage={"My first name is ..."} icon="eye" field={"firstname"}/>
 
-      <MultiSelectComponent initMessage={"My interests and hobbies are ..."} options={interestAndHobbies} icon={<MaterialIcons name="lightbulb" size={20} color="black" style={{ marginRight: 9 }}/>} />
+      {/* <UserInputAccCreation initMessage={"My birthday is ..."} icon="calendar" field={"birthday"}/> */}
+      <CustomDatePicker/>
 
-      <MultiSelectComponent initMessage={"I listen to ..."} options={musicChoices} icon={<Entypo name="folder-music" size={22} color="black" style={{ marginRight: 9 }}/>} />
-      <DropdownComponent initMessage="I'd rather have a ..." options={[{ label: 'Dog', value: '1' },{ label: 'Cat', value: '2' },{ label: "Fish", value: '3' },{ label: "Lizard", value: '4' },{ label: "Other", value: '5' }]} icon={<MaterialIcons name="pets" size={20} color="black" style={{ marginRight: 4 }}/>}/>
-
-
+      <UserInputAccCreation initMessage={"Create a short bio ..."} icon="quote" field={"bio"}/>
+      <DropdownComponent initMessage="I am a ..." options={[{ label: 'Male', value: '1' },{ label: 'Female', value: '2' },{ label: 'Other', value: '3' },]} icon={<Ionicons name="person" size={20} color="black" style={{ marginRight: 5 }}/>} field={"gender"}/>
+      <UserInputAccCreation initMessage={"One thing on my bucket-list ..."} icon="bucket" field={"bucket_list"}/>
+      <MultiSelectComponent initMessage={"My interests and hobbies are ..."} options={interestAndHobbies} icon={<MaterialIcons name="lightbulb" size={20} color="black" style={{ marginRight: 9 }}/>} field={"interests_hobbies"}/>
+      <MultiSelectComponent initMessage={"I listen to ..."} options={musicChoices} icon={<Entypo name="folder-music" size={22} color="black" style={{ marginRight: 9 }}/>} field={"music_preference"}/>
+      <DropdownComponent initMessage="I'd rather have a ..." options={[{ label: 'Dog', value: '1' },{ label: 'Cat', value: '2' },{ label: "Fish", value: '3' },{ label: "Lizard", value: '4' },{ label: "Other", value: '5' }]} icon={<MaterialIcons name="pets" size={20} color="black" style={{ marginRight: 4 }} /> } field={"pet_preference"}/>
     <View style={styles.buttonContainer}>
       <Text style={styles.next} onPress={lastPage}>
         <Text style={styles.buttonFont}><Entypo name="arrow-with-circle-left" size={26} color="black" /> Back </Text>
@@ -159,6 +175,9 @@ const styles = StyleSheet.create({
         fontSize: 22,
         fontWeight: '600',
         color: 'rgba(0, 0, 0, 0.8)',
+      },
+      datePicker: {
+        textAlign:'left',
       }
 })
 

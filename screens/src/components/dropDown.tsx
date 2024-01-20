@@ -6,8 +6,10 @@ import { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { View } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
+import { updateGlobalVariables } from '../../globalVariables/GlobalVariables';
+import { getVariables } from '../../globalVariables/GlobalVariables';
 
-const DropdownComponent = ({ initMessage, options, icon }) => {
+const DropdownComponent = ({ initMessage, options, icon, field }) => {
     const [value, setValue] = useState(null);
     return (
       <Dropdown
@@ -24,6 +26,7 @@ const DropdownComponent = ({ initMessage, options, icon }) => {
         value={value}
         onChange={(item) => {
           setValue(item.value);
+          updateGlobalVariables(field, item.value)
         }}
         renderLeftIcon={() => (
           icon
