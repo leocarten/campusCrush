@@ -26,7 +26,7 @@ const DropdownComponent = ({ initMessage, options, icon, field }) => {
         value={value}
         onChange={(item) => {
           setValue(item.value);
-          updateGlobalVariables(field, item.value)
+          updateGlobalVariables(field, parseInt(item.value, 10));
         }}
         renderLeftIcon={() => (
           icon

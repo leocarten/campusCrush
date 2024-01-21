@@ -27,7 +27,7 @@ const Thankyou = () => {
     {/* <HorizontalIconLine count={5}  /> */}
 
     <View style={styles.viewContainer}>
-      <Text style={styles.text}><Text style={{fontWeight:'bold'}}>Thank you</Text> for choosing CampusCrush. CampusCrush has very cool and distinct features, we are excited to begin this journey with you.</Text>
+      <Text style={styles.text}><Text style={{fontWeight:'bold'}}>Thank you</Text> for choosing CampusCrush. CampusCrush has very cool and distinct features, and we are excited to begin this journey with you.</Text>
       <Text style={styles.text}>As you interact with CampusCrush, please feel free to leave us feedback. We are always happy to hear back from our users!</Text>
     </View>
 

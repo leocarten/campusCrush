@@ -65,7 +65,7 @@ function CreateAcc() {
       <Text style={styles.info}><Ionicons name="ios-information-circle-outline" size={20} color="black" /> Only the Name and Birthday field is <Text style={{fontWeight:'bold'}}>required</Text>, the rest will help other users get to know you better!</Text>
     </View>
       {/* <Text style={styles.welcome}>Let's start by getting some basic information!</Text> */}
-      <UserInputAccCreation initMessage={"My first name is ..."} icon="eye" field={"firstname"}/>
+      <UserInputAccCreation initMessage={"My first name is ..."} icon="new-message" field={"firstname"}/>
 
       {/* <UserInputAccCreation initMessage={"My birthday is ..."} icon="calendar" field={"birthday"}/> */}
       <CustomDatePicker/>
@@ -96,7 +96,8 @@ const styles = StyleSheet.create({
   info: {
     fontSize: 16,
     marginLeft: '3%',
-    marginBottom: '2%'
+    marginBottom: '2%',
+    marginRight: '3%'
   },
   buttonContainer: {
     flexDirection: 'row',

@@ -12,8 +12,8 @@ export default function CustomDatePicker() {
 
   const handleChange = (change) => {
     setValue(change);
-    console.log(change);
-    updateGlobalVariables("birthday",change);
+    console.log(change.split(' ')[0]);
+    updateGlobalVariables("birthday",change.split(' ')[0]);
   }
 
   
@@ -22,20 +22,42 @@ export default function CustomDatePicker() {
     <View style={styles.container}>
         <Text style={styles.heading}><AntDesign name="calendar" size={20} color="black" /> Please select your date of birth:</Text>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <View style={{ width: '70%' }}>
-                <DateTimePicker
-                value={value}
-                onValueChange={(date) => handleChange(date)}
-                selectedItemColor='black'
-                style={{ marginBottom: 0 }}
-                mode='date'
-                />
+            <View style={{ width: '75%', borderColor: 'black', borderWidth: 1, borderRadius: 5, marginBottom: 0, paddingBottom: 5, paddingLeft: 5, paddingRight: 5}}>
+            <DateTimePicker
+              value={value}
+              onValueChange={(date) => handleChange(date)}
+              selectedItemColor='black'
+              mode='date'
+              displayFullDays={true}
+              headerTextContainerStyle={{
+                fontSize: 18,
+                fontWeight: 'bold',
+                color: 'darkblue',
+                borderColor: 'black',
+                borderWidth: 0.5,
+              }}
+              weekDaysContainerStyle={{
+                padding: 5,
+                borderBottomColor: 'black', // Change this to the desired color for the line under the days
+                borderBottomWidth: 1, //
+              }}
+              weekDaysTextStyle={{
+                color: 'black',
+                fontWeight: 'bold',
+                fontSize: 16,
+              }}
+              dayContainerStyle={{
+                backgroundColor: 'transparent', // Change this to the desired background color for each day
+                borderRadius: 10,
+                borderColor: 'black',
+                borderWidth: 1
+              }}
+            />
             </View>
         </View>
     </View>
   )
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
