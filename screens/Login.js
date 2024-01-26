@@ -28,7 +28,8 @@ const Login = () => {
       // console.log("In storage: ",refreshToken);
     }
     else {
-      navigation.navigate("ErrorPage",{message: "We could not locate your account in our records, did you use the correct username and password?"});
+      navigation.navigate("Feed");
+      // navigation.navigate("ErrorPage",{message: "We could not locate your account in our records, did you use the correct username and password?"});
     }
   };
 

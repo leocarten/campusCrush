@@ -47,7 +47,7 @@ const FilterPage = () => {
         
           <DropdownComponent initMessage="Has at least 1 common interest" options={[{ label: 'True', value: '1' },{ label: 'False', value: '2' },]} icon={<FontAwesome5 name="people-arrows" size={20} color="black" style={{ marginRight: 5 }}/>} />
 
-          <DropdownComponent initMessage="Has a high compatibility rate" options={[{ label: 'True', value: '1' },{ label: 'False', value: '2' },]} icon={<MaterialCommunityIcons name="handshake" size={24} color="black" style={{ marginRight: 5 }} />}/>
+          <DropdownComponent initMessage="Has a high match rate" options={[{ label: 'True', value: '1' },{ label: 'False', value: '2' },]} icon={<MaterialCommunityIcons name="handshake" size={24} color="black" style={{ marginRight: 5 }} />}/>
 
           <UserInputSlider/>
 
