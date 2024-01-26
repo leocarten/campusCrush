@@ -19,7 +19,7 @@ const ErrorPage = ({ route }) => {
     start={{ x: 0, y: 0 }}
     end={{ x: 1, y: 1 }}>
     <SafeAreaView style={{backgroundColor: feedHeadingBackground}}>
-      <Header onFeedPage={3}/>
+      <Header onFeedPage={6}/>
     </SafeAreaView>
 
     <ScrollView>

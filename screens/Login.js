@@ -5,6 +5,9 @@ import { AntDesign } from '@expo/vector-icons';
 import { backgroundColor } from './src/styles/backgroundColors';
 import { useNavigation } from '@react-navigation/native'
 import { handleLogin } from '../endpoints/LoginUser';
+import { getSecureValues } from '../authentication/getValue';
+import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
+import { deleteKey } from '../authentication/deleteValue';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -13,14 +16,20 @@ const Login = () => {
 
 
   const onLoginPress = async () => {
-    // handleLogin(username, password);
-    // const loginResult = await handleLogin(username, password);
-    // if(loginResult === true){
+    handleLogin(username, password);
+    const loginResult = await handleLogin(username, password);
+    if(loginResult === true){
       navigation.navigate("Feed");
-    // }
-    // else {
-      // navigation.navigate("ErrorPage",{message: "We could not locate your account in our records, did you use the correct username and password?"});
-    // }
+      // console.log("Logging the person in now!");
+      // console.log("I am testing ....");
+      // const accessToken = await getSecureValues('access');
+      // const refreshToken = await getSecureValues('refresh');
+      // console.log("In storage: ",accessToken);
+      // console.log("In storage: ",refreshToken);
+    }
+    else {
+      navigation.navigate("ErrorPage",{message: "We could not locate your account in our records, did you use the correct username and password?"});
+    }
   };
 
   return (

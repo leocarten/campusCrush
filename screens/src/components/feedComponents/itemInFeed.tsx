@@ -73,7 +73,12 @@ const ItemInFeed = ({isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Inte
     }
 
     if(Comp >= 80){
-        comp = <Text style={styles.compatibility}>Match: {Comp}% &#128150;</Text>;
+        if(AppReason === 3 || AppReason === 4){
+            comp = <Text style={styles.compatibility}>Match: {Comp}% &#129309; </Text>;
+        }
+        else{
+            comp = <Text style={styles.compatibility}>Match: {Comp}% &#128150;</Text>;
+        }
     }
     else{
         comp = "";

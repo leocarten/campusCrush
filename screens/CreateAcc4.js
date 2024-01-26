@@ -91,9 +91,6 @@ function CreateAcc() {
       </TouchableOpacity> */}
 
       <AcceptTOS_Button/>
-
-
-
     </View>
 
 

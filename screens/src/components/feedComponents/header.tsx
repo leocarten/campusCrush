@@ -34,6 +34,10 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage }) => {
     navigation.navigate("Store");
   }
 
+  const goToLogin = () => {
+    navigation.navigate("Login");
+  }
+
   if(onFeedPage === 1){ // on the feed
     return (
       <View style={styles.headerView}>
@@ -163,6 +167,22 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage }) => {
         <View style={styles.leftContainer}>
           {/* <Text>CampusCrush</Text> */}
           <TouchableOpacity onPress={backToFeed}>
+            <GradientText colors={['#cc2b5e', '#753a88']} style={styles.campusCrush}>
+              <Text>
+              <Ionicons name="chevron-back" size={30} color="black" />
+              </Text>
+            </GradientText>
+          </TouchableOpacity>
+        </View>        
+    </View>
+    );
+  }
+  else if (onFeedPage === 6){ // bad credentials
+    return (
+      <View style={styles.headerView}>
+        <View style={styles.leftContainer}>
+          {/* <Text>CampusCrush</Text> */}
+          <TouchableOpacity onPress={goToLogin}>
             <GradientText colors={['#cc2b5e', '#753a88']} style={styles.campusCrush}>
               <Text>
               <Ionicons name="chevron-back" size={30} color="black" />

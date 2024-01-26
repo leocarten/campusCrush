@@ -33,7 +33,6 @@ const AcceptTOS_Button = () => {
         console.log('Data:', data);
       } else {
         console.error('Internal server error.');
-        // Handle the error
       }
 
     } catch (error) {

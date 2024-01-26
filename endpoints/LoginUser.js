@@ -1,3 +1,7 @@
+// import EncryptedStorage from 'react-native-encrypted-storage';
+import * as SecureStore from 'expo-secure-store';
+import { saveSecureValue } from '../authentication/saveValue';
+
 const handleLogin = async (usernameInput, passwordInput) => {
     try {
       const apiUrl = 'http://18.188.112.190:5001/login';
@@ -17,8 +21,14 @@ const handleLogin = async (usernameInput, passwordInput) => {
       if (response.ok) {
         const data = await response.json();
         // console.log('Login successful:', data);
-        if (data == 'true'){
+        if (data['success'] === true){
+            // secure the tokens returned from the server!
+            await saveSecureValue('access', data['access']);
+            await saveSecureValue('refresh', data['refresh']);
             return true;
+        }
+        else{
+          return false;
         }
       } else {
         console.error('Login failed:', response.status, await response.text());
