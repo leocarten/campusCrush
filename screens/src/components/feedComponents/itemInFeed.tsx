@@ -2,12 +2,13 @@ import { Text, View, StyleSheet } from "react-native"
 import {Dimensions} from 'react-native';
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
+import { Fontisto } from '@expo/vector-icons';
 let windowHeightPercentage;
 if(windowHeight < 700){
     windowHeightPercentage = ( (1-(.2)) * windowHeight);
 }
 else{
-    windowHeightPercentage = ( (1-(.29)) * windowHeight);
+    windowHeightPercentage = ( (1-(.28)) * windowHeight);
 }
 console.log(windowHeight)
 const pictureHeightPercentage = ( (1-(.59)) * windowHeight);
@@ -38,11 +39,13 @@ function renderInterestText(interest, index) {
     // simple conversion: 390 = 41, so we need about 10 per letter
     totalConsumedWidth += interest.length
     console.log(totalConsumedWidth)
-    if( (windowWidth/10) >= totalConsumedWidth ){
-        return <Text key={index} style={styles.interest}>{interest}</Text>
-    }
-    else{
-        return null;
+    if(interest != ""){
+        if( (windowWidth/10) >= totalConsumedWidth ){
+            return <Text key={index} style={styles.interest}>{interest}</Text>
+        }
+        else{
+            return null;
+        }
     }
 }
 
@@ -52,7 +55,7 @@ const ItemInFeed = ({isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Inte
     let comp;
     let verifiedIcon;
 
-    if(isVerified === true){
+    if(isVerified === 1){
         verifiedIcon = <Text><MaterialIcons name="verified" size={22} color="#30ADA7"/></Text>
     }
 
@@ -84,12 +87,20 @@ const ItemInFeed = ({isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Inte
         comp = "";
     }
 
+    let bioSpace;
+    if(Bio === ""){
+        bioSpace = ""
+    }
+    else{
+        bioSpace = <View style={styles.bioContainer}><Text style={styles.bio} numberOfLines={1}><FontAwesome name="quote-left" size={16} color={iconColors} /> {Bio} <FontAwesome name="quote-right" size={16} color={iconColors} /></Text></View>
+    }
+
 
     const navigation = useNavigation();
 
     const handleExpandPress = () => {
         console.log("Expanded profile for:", Name);
-        navigation.navigate("PersonsProfile", { personName: Name, personAge: Age, personGoals: userWants, personBio: Bio });
+        navigation.navigate("PersonsProfile", { personName: Name, personAge: Age, personGoals: userWants, personBio: Bio, verified: isVerified });
     };
 
     return(
@@ -128,15 +139,19 @@ const ItemInFeed = ({isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Inte
                         </TouchableOpacity>                    
                     </View>
 
-                    <View style={styles.bioContainer}>
-                        <Text style={styles.bio} numberOfLines={2}>
-                        <FontAwesome name="quote-left" size={16} color={iconColors} /> {Bio} <FontAwesome name="quote-right" size={16} color={iconColors} />
-                        </Text>
+                    <View>
+                        {bioSpace}
                     </View>
+
+
                     <View style={styles.interestsContainer}>
                         {Interests.map((interest, index) => (
                             renderInterestText(interest, index)
                         ))}
+                    </View>
+
+                    <View style={styles.musicContainer}>
+                        <Text style={styles.music}><Fontisto name="applemusic" size={19} color={iconColors} /> Rap, Rock, Alternative</Text>
                     </View>
 
                 </View>
@@ -158,7 +173,21 @@ const styles = StyleSheet.create({
         color: iconColors,
         marginLeft: '1%'
     },
+    music:{
+        fontSize: 18,
+        backgroundColor: 'transparent',
+        alignSelf: "flex-start",
+        color: iconColors,
+        marginLeft: '1%'
+    },
     interestsContainer: {
+        marginTop: '2%',
+        marginLeft: '2%',
+        marginRight: '2%',
+        flexDirection: 'row',
+        justifyContent: "flex-start",
+    },
+    musicContainer: {
         marginTop: '2%',
         marginLeft: '2%',
         marginRight: '2%',

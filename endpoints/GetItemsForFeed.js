@@ -1,12 +1,14 @@
 import * as SecureStore from 'expo-secure-store';
 import { saveSecureValue } from '../authentication/saveValue';
+import { getSecureValues } from '../authentication/getValue';
 
-const handleLogin = async (usernameInput, passwordInput) => {
+const getItemsInFeed = async () => {
     try {
-      const apiUrl = 'http://18.188.112.190:5001/login';
+      const apiUrl = 'http://18.188.112.190:5001/showItemsInFeed';
+      const accessToken = await getSecureValues('access');
       const credentials = {
-        username: usernameInput,
-        password: passwordInput,
+        type: 'access',
+        tokenFromUser: accessToken,
       };
   
       const response = await fetch(apiUrl, {
@@ -19,22 +21,20 @@ const handleLogin = async (usernameInput, passwordInput) => {
   
       if (response.ok) {
         const data = await response.json();
-        // console.log('Login successful:', data);
         if (data['success'] === true){
             // secure the tokens returned from the server!
-            await saveSecureValue('access', data['access']);
-            await saveSecureValue('refresh', data['refresh']);
-            return true;
+            return data['results'];
         }
         else{
+          console.log("Fail")
           return false;
         }
       } else {
-        console.error('Login failed:', response.status, await response.text());
+        console.error('Items failed:', response.status, await response.text());
       }
     } catch (error) {
-      console.error('Error during login:', error);
+      console.error('Error during item retrieval:', error);
     }
   };
   
-  export { handleLogin };  
+  export { getItemsInFeed };  

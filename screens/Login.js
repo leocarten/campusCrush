@@ -8,6 +8,8 @@ import { handleLogin } from '../endpoints/LoginUser';
 import { getSecureValues } from '../authentication/getValue';
 import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 import { deleteKey } from '../authentication/deleteValue';
+import { saveSecureValue } from '../authentication/saveValue';
+import { getItemsInFeed } from '../endpoints/GetItemsForFeed';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -19,17 +21,17 @@ const Login = () => {
     handleLogin(username, password);
     const loginResult = await handleLogin(username, password);
     if(loginResult === true){
-      navigation.navigate("Feed");
+      // navigation.navigate("Feed");
       // console.log("Logging the person in now!");
       // console.log("I am testing ....");
-      // const accessToken = await getSecureValues('access');
-      // const refreshToken = await getSecureValues('refresh');
-      // console.log("In storage: ",accessToken);
-      // console.log("In storage: ",refreshToken);
+      // await saveSecureValue()
+      console.log(await getSecureValues('access'));
+      // getItemsInFeed()
+      navigation.navigate("Feed");
     }
     else {
-      navigation.navigate("Feed");
-      // navigation.navigate("ErrorPage",{message: "We could not locate your account in our records, did you use the correct username and password?"});
+      // navigation.navigate("Feed");
+      navigation.navigate("ErrorPage",{message: "We could not locate your account in our records, did you use the correct username and password?"});
     }
   };
 

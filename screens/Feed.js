@@ -10,10 +10,20 @@ import Footer from './src/components/feedComponents/footer';
 import ItemInFeed from './src/components/feedComponents/itemInFeed';
 import { totalBackground } from './src/styles/feedStyles/feedColors';
 import { feedBackgroundColor } from './src/styles/feedStyles/feedColors';
+import { getSecureValues } from '../authentication/getValue';
+import { getItemsInFeed } from '../endpoints/GetItemsForFeed';
+import DisplayItems from './DisplayItems';
+
 
 const Feed = () => {
   const navigation = useNavigation();
   navigation.canGoBack(false);
+
+  getItemsInFeed().then(result => {
+    for(var i = 0; i < result.length; i++){
+      console.log(result[i]);
+    }
+  });
 
   return (
     <LinearGradient
@@ -27,11 +37,15 @@ const Feed = () => {
     <ScrollView>
       <View style={{marginTop: '2%'}}></View>
 
-      <ItemInFeed isVerified={true} Name={"Alessandra"} Age={"20"} Comp={"83"} Bio={"Hey! I'm looking to have a good time and meet new people!"} AppReason={3} Interests={["Model-building", "Piano playing", "Drawing"]}/>
+
+      <DisplayItems/>
+
+
+      {/* <ItemInFeed isVerified={true} Name={"Alessandra"} Age={"20"} Comp={"83"} Bio={"Hey! I'm looking to have a good time and meet new people!"} AppReason={3} Interests={["Model-building", "Piano playing", "Drawing"]}/>
       <ItemInFeed isVerified={false} Name={"Molly"} Age={"18"} Comp={"74"} Bio={"Hi there! I'm a spontaneous adventurer with a passion for trying new things. Whether it's exploring hidden gems in the city or embarking on last-minute road trips, I'm always up for a good time and making connections. Let's create some unforgettable memories together!"} AppReason={3} Interests={["Model-building", "Piano playing", "Sports"]}/>
       <ItemInFeed isVerified={false} Name={"Madison"} Age={"23"} Comp={"85"} Bio={"Hey, I'm a laid-back soul who finds joy in the simple pleasures of life. From cozy movie nights to impromptu picnics in the park, I believe in making every moment count. If you're someone who enjoys laughter, good conversation, and a carefree vibe, we might just hit it off!"} AppReason={1} Interests={["Sports", "Food", "Cooking"]}/>
       <ItemInFeed isVerified={true} Name={"Hailey"} Age={"22"} Comp={"87"} Bio={"Greetings! I'm a music enthusiast with a knack for finding the best local gigs in town. Whether it's indie rock or jazz, I'm always down for a night of great tunes and even better company. If you share a love for live music and a good laugh, swipe right and let's make some concert memories!"} AppReason={2} Interests={["Chess", "Reading", "Music", "Theater"]}/>
-      <ItemInFeed isVerified={true} Name={"Maria"} Age={"19"} Comp={"79"} Bio={"Hello! I'm a foodie at heart, constantly on the lookout for the next culinary adventure. Whether it's exploring trendy food trucks or experimenting in the kitchen, my taste buds are always ready for a flavor-packed experience. If you're into discovering new cuisines and appreciate good company, let's spice up each other's lives!"} AppReason={3} Interests={["Working out", "Concerts", "Tennis", "Softball"]}/>
+      <ItemInFeed isVerified={true} Name={"Maria"} Age={"19"} Comp={"79"} Bio={"Hello! I'm a foodie at heart, constantly on the lookout for the next culinary adventure. Whether it's exploring trendy food trucks or experimenting in the kitchen, my taste buds are always ready for a flavor-packed experience. If you're into discovering new cuisines and appreciate good company, let's spice up each other's lives!"} AppReason={3} Interests={["Working out", "Concerts", "Tennis", "Softball"]}/> */}
 
 
 

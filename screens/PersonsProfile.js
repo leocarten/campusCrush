@@ -15,6 +15,7 @@ import { Entypo } from '@expo/vector-icons';
 import { Foundation } from '@expo/vector-icons';
 import { aboutPersonBackground } from './src/styles/feedStyles/feedColors';
 import { textColor } from './src/styles/feedStyles/feedColors';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const windowHeight = Dimensions.get('window').height;
 
@@ -23,8 +24,22 @@ const pictureHeight = (windowHeight / 2);
 const PersonsProfile = () => {
   const navigation = useNavigation();
   const route = useRoute();
-  const { personName, personAge, personGoals, personBio, personJob } = route.params;
-  console.log(personGoals)
+  const { personName, personAge, personGoals, personBio, personJob, verified} = route.params;
+  console.log(personGoals);
+  let verifiedIcon;
+  let bioSpace;
+  if(verified === 1){
+      verifiedIcon = <Text><MaterialIcons name="verified" size={21} color="#30ADA7"/></Text>
+  }
+  else{
+    verifiedIcon = ""
+  }
+  if(personBio != ""){
+    bioSpace = <View style={styles.additionalInfoBio}><View style={styles.iconContainer}><Foundation name="quote" size={22} color={expandedIconColor} /></View><View style={styles.textContainer}><Text style={styles.otherInfo}>{personBio}</Text></View></View>
+  }
+  else{
+    bioSpace = ""
+  }
   return (
     <LinearGradient
     colors={feedBackgroundColor}
@@ -47,7 +62,7 @@ const PersonsProfile = () => {
                 <View style={styles.moreInformationContainer}>
                     <View style={styles.title}>
                         <Text style={styles.getToKnow}>
-                            <Text>Get to know <Text style={{ fontWeight: '600' }}>{personName}</Text>!</Text>
+                            <Text>Get to know <Text style={{ fontWeight: '600' }}>{personName}</Text>! <Text>{verifiedIcon}</Text> </Text>
                         </Text>
                     </View>
 
@@ -76,14 +91,17 @@ const PersonsProfile = () => {
 
 
                     {/* BIO */}
-                    <View style={styles.additionalInfoBio}>
+                    <View>
+                        {bioSpace}
+                    </View>
+                    {/* <View style={styles.additionalInfoBio}>
                         <View style={styles.iconContainer}>
                             <Foundation name="quote" size={22} color={expandedIconColor} />
                         </View>
                         <View style={styles.textContainer}>
                             <Text style={styles.otherInfo}>{personBio}</Text>
                         </View>
-                    </View>
+                    </View> */}
 
 
                     {/* REST */}
