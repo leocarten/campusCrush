@@ -52,17 +52,17 @@ function CreateAcc1a() {
       {/* <Text style={styles.welcome}>Let's start by getting some basic information!</Text> */}
 
       <DropdownComponent initMessage="I am using this app to ..." options={[{ label: 'Find a short-term partner', value: '1' },{ label: 'Find a long-term parter', value: '2' },{ label: "Meet new people", value: '3' },{ label: "Find new friends", value: '4' },{ label: "I'm not sure yet", value: '5' }]} icon={<FontAwesome5 name="user-friends" size={20} color="black" style={{ marginRight: 5 }}/>} field={"app_purpose"}/>
-      <DropdownComponent initMessage="I want to be shown ..." options={[{ label: 'Males only', value: '1' },{ label: 'Females only', value: '2' },{ label: "Everyone", value: '3' },]} icon={<Ionicons name="md-search-circle-sharp" size={22} color="black" style={{ marginRight: 4 }}/>} field={"wants_to_be_shown"}/>
+      <DropdownComponent initMessage="I want to be shown ..." options={[{ label: 'Males only', value: '1' },{ label: 'Females only', value: '2' },{ label: "Everyone", value: '3' },]} icon={<MaterialIcons name="person-search" size={28} color="black" style={{ marginRight: 4 }}/>} field={"wants_to_be_shown"}/>
 
      
 
     <View style={styles.buttonContainer}>
       <Text style={styles.next} onPress={lastPage}>
-        <Text style={styles.buttonFont}><Entypo name="arrow-with-circle-left" size={26} color="black" /> Back </Text>
+        <Text style={styles.buttonFont}><Entypo name="arrow-with-circle-left" size={24} color="black" /> Back </Text>
       </Text>
 
       <TouchableOpacity style={styles.next} onPress={nextPage}>
-        <Text style={styles.buttonFont}>Next <Entypo name="arrow-with-circle-right" size={26} color="black" /></Text>
+        <Text style={styles.buttonFont}>Next <Entypo name="arrow-with-circle-right" size={24} color="black" /></Text>
       </TouchableOpacity>
     </View>
 

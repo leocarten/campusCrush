@@ -16,18 +16,74 @@ import { Foundation } from '@expo/vector-icons';
 import { aboutPersonBackground } from './src/styles/feedStyles/feedColors';
 import { textColor } from './src/styles/feedStyles/feedColors';
 import { MaterialIcons } from '@expo/vector-icons';
+import { iconColors } from './src/styles/feedStyles/feedColors';
+import { Fontisto } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 
+const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-
 const pictureHeight = (windowHeight / 2);
+
+var totalConsumedWidth = 0;
+function renderInterestText(interest, index) {
+    // simple conversion: 390 = 41, so we need about 10 per letter
+    totalConsumedWidth += interest.length
+    if(interest.length != 0){
+        var interestCap = interest.charAt(0).toUpperCase() + interest.slice(1);
+        return <Text key={index} style={styles.interest}>{interestCap}</Text>
+    }
+    totalConsumedWidth = 0;
+}
+
+var totalConsumedWidth = 0;
+function renderMusicText(music, index) {
+    // simple conversion: 390 = 41, so we need about 10 per letter
+    totalConsumedWidth += music.length
+    if(music.length != 0){
+        var musicCap = music.charAt(0).toUpperCase() + music.slice(1);
+        return <Text key={index} style={styles.music}>{musicCap}</Text>
+    }
+    totalConsumedWidth = 0;
+}
 
 const PersonsProfile = () => {
   const navigation = useNavigation();
   const route = useRoute();
-  const { personName, personAge, personGoals, personBio, personJob, verified} = route.params;
-  console.log(personGoals);
+  const { personName, personAge, personGoals, personBio, personJob, verified, interests, music, job} = route.params;
   let verifiedIcon;
   let bioSpace;
+  let userWants;
+  let interestsIcon;
+  let jobIcon;
+  let jobText;
+
+  if(job == ""){
+    jobIcon = "";
+    jobText = "";
+  }
+  else{
+    jobIcon = <FontAwesome name="briefcase" size={22} color={expandedIconColor} />;
+    jobText = <Text style={styles.music}>{job}</Text>;
+  }
+
+  if(interests[0] == ""){
+    interestsIcon = "";
+  }
+  else{
+    interestsIcon = <MaterialCommunityIcons name="clover" size={22} color={expandedIconColor} />;
+  }
+
+  if(music[0] == ""){
+    musicIcon = "";
+  }
+  else{
+    musicIcon = <Fontisto name="applemusic" size={22} color={expandedIconColor} />;
+  }
+
+  for(var i = 0; i < interests.length; i++){
+    console.log(interests[i])
+  }
+
   if(verified === 1){
       verifiedIcon = <Text><MaterialIcons name="verified" size={21} color="#30ADA7"/></Text>
   }
@@ -40,6 +96,23 @@ const PersonsProfile = () => {
   else{
     bioSpace = ""
   }
+
+  if(personGoals === 1){
+    userWants = <Text>A long-term partner &#10084;</Text>;
+    }
+    else if(personGoals === 2){
+        userWants = <Text>A short-term partner &#128520;</Text>;
+    }
+    else if(personGoals === 3){
+        userWants = <Text>To meet new people &#127760;</Text>;
+    }
+    else if(personGoals === 4){
+        userWants = <Text>I'm not sure &#129304;</Text>;
+    }
+    else{
+        userWants = <Text>I DON'T KNOW</Text>;
+    }
+
   return (
     <LinearGradient
     colors={feedBackgroundColor}
@@ -85,7 +158,7 @@ const PersonsProfile = () => {
                             <MaterialCommunityIcons name="magnify" size={22} color={expandedIconColor} />
                         </View>
                         <View style={styles.textContainer}>
-                            <Text style={styles.otherInfo}>{personGoals}</Text>
+                            <Text style={styles.otherInfo}>{userWants}</Text>
                         </View>
                     </View>
 
@@ -104,13 +177,40 @@ const PersonsProfile = () => {
                     </View> */}
 
 
-                    {/* REST */}
+                    {/* INTERESTS */}
                     <View style={styles.additionalInfo}>
                         <View style={styles.iconContainer}>
-                            <MaterialCommunityIcons name="magnify" size={22} color={expandedIconColor} />
+                            {interestsIcon}
                         </View>
-                        <View style={styles.textContainer}>
-                            <Text style={styles.otherInfo}>The rest I need to control for!</Text>
+                        <View style={styles.interestsContainer}>
+                            {/* <Text style={styles.otherInfo}>{interests}</Text> */}
+                            {interests.map((interest, index) => (
+                                renderInterestText(interest, index)
+                            ))}
+                        </View>
+                    </View>
+
+                    {/* MUSIC */}
+                    <View style={styles.additionalInfo}>
+                        <View style={styles.iconContainer}>
+                            {musicIcon}
+                        </View>
+                        <View style={styles.interestsContainer}>
+                            {/* <Text style={styles.otherInfo}>{interests}</Text> */}
+                            {music.map((Music, index) => (
+                                renderMusicText(Music, index)
+                            ))}
+                        </View>
+                    </View>
+
+
+                    {/* JOB */}
+                    <View style={styles.additionalInfo}>
+                        <View style={styles.iconContainer}>
+                            {jobIcon}
+                        </View>
+                        <View style={styles.interestsContainer}>
+                            {jobText}
                         </View>
                     </View>
 
@@ -129,6 +229,28 @@ const PersonsProfile = () => {
 }
 
 const styles = StyleSheet.create({
+    music: {
+        fontSize: 18,
+        backgroundColor: 'transparent',
+        padding: 4,
+        height: 30,
+        alignSelf: "flex-start",
+        color: iconColors,
+        marginRight: '1.75%'
+    },
+    interest:{
+        fontSize: 18,
+        backgroundColor: 'transparent',
+        padding: 4,
+        height: 30,
+        alignSelf: "flex-start",
+        borderColor: iconColors,
+        borderWidth: 0.5,
+        borderRadius: 10,
+        color: iconColors,
+        marginBottom: '2%',
+        marginRight: '2%'
+    },
     textContainer: {
         alignItems: 'center', 
     },
@@ -160,13 +282,20 @@ const styles = StyleSheet.create({
         fontWeight: '400',
         color: textColor,
         // color: feedHeadingBackground,
-
     },
     moreInformationContainer: {
         // backgroundColor: 'transparent',
         backgroundColor: feedHeadingBackground,
         padding: 10,
         borderRadius: 5
+    },
+    interestsContainer:{
+        marginTop: '1%',
+        // marginLeft: '2%',
+        marginRight: '2%',
+        flexDirection: 'row',
+        justifyContent: "flex-start",
+        flexWrap: 'wrap'
     },
     heading: {
         marginTop: '3%',

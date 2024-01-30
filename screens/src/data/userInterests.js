@@ -31,6 +31,7 @@ const interestAndHobbies = [
   { label: 'Skydiving', value: 'skydiving' },
   { label: 'Motorcycling', value: 'motorcycling' },
   { label: 'Skiing', value: 'skiing' },
+  { label: 'Snowboarding', value: 'snowboarding' },
   { label: 'Model-building', value: 'model-building' },
   { label: 'Walking', value: 'walking' },
   { label: 'Shopping', value: 'shopping' },

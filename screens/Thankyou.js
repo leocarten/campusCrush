@@ -27,8 +27,11 @@ const Thankyou = () => {
     {/* <HorizontalIconLine count={5}  /> */}
 
     <View style={styles.viewContainer}>
-      <Text style={styles.text}><Text style={{fontWeight:'bold'}}>Thank you</Text> for choosing CampusCrush. CampusCrush has very cool and distinct features, and we are excited to begin this journey with you.</Text>
+      <Text style={styles.text}>Welcome aboard! Thank you for choosing CampusCrush. Explore the unique features, connect with others, and make the most of your CampusCrush experience. We are excited to start this journey with you!</Text>
       <Text style={styles.text}>As you interact with CampusCrush, please feel free to leave us feedback. We are always happy to hear back from our users!</Text>
+      <Text style={styles.sincerely}>Sincerely,</Text>
+      <Text style={styles.signature}>The CampusCrush Team</Text>
+
     </View>
 
     <TouchableOpacity style={styles.showMeFeed} onPress={nextPage}>
@@ -40,16 +43,26 @@ const Thankyou = () => {
 }
 
 const styles = StyleSheet.create({
+  signature: {
+    fontSize: 20,
+  },
+
   showMeFeed:{
     alignSelf:'center',
     borderWidth: 1,
     borderColor: 'black',
     borderRadius: 6,
-    padding: 5
+    padding: 5,
+    marginTop: '60%'
   },
   text:{
     fontSize:18,
     marginBottom: '3%'
+  },
+  sincerely:{
+    fontSize:18,
+    marginBottom: '3%',
+    marginTop: '6%'
   },
   viewContainer:{
     marginBottom: '3%',

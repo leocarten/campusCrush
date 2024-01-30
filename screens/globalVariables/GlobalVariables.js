@@ -12,6 +12,11 @@ const variables = {
   "pet_preference":"",
   "app_purpose":"",
   "wants_to_be_shown":"",
+  "has_tattoos":"",
+  "sleep_schedule":"",
+  "win_my_heart":"",
+  "job":"",
+  "workout":""
 }
 
 export function updateGlobalVariables(field, newValue){

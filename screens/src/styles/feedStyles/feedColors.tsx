@@ -8,6 +8,8 @@
 //     '#F8F8F8', '#E4E4E4',
 // ];
 // export const aboutPersonBackground = '#DADADA';
+// export const textColor = '#C4C4C4'
+// export const expandedIconColor = '#6D6D6D';
 
 export const feedHeadingBackground = '#121212';
 export const iconColors = '#A7A7A7';

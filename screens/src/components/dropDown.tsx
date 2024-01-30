@@ -23,6 +23,7 @@ const DropdownComponent = ({ initMessage, options, icon, field }) => {
         labelField="label"
         valueField="value"
         placeholder={initMessage}
+        activeColor='#D1D1D1'
         value={value}
         onChange={(item) => {
           setValue(item.value);
@@ -52,12 +53,12 @@ const DropdownComponent = ({ initMessage, options, icon, field }) => {
       marginRight: 5,
     },
     placeholderStyle: {
-      fontSize: 20,
+      fontSize: 18,
       marginLeft: 5,
-      color: 'black'
+      color: 'rgba(0,0,0,0.5)'
     },
     selectedTextStyle: {
-      fontSize: 16,
+      fontSize: 18,
     },
     iconStyle: {
       width: 20,

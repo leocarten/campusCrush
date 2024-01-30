@@ -41,20 +41,20 @@ function CreateAcc() {
     <Text style={styles.firstText}>[Icon]</Text>
     <View style={styles.icon} />
     <ScrollView>
-    <Steps count={4} directions={"Design your Bitmoji"} style={{alignItems: 'left'}}/>
+    <Steps count={4} directions={"Choose your Bitmoji"} style={{alignItems: 'left'}}/>
     <HorizontalIconLine count={4}  />
 
     <View>
-      <Text style={styles.info}><Ionicons name="ios-information-circle-outline" size={20} color="black" /> Why do I need to create a Bitmoji?</Text>
+      <Text style={styles.info}><Ionicons name="ios-information-circle-outline" size={20} color="black" /> Why do I need to choose a Bitmoji?</Text>
     </View>
 
     <View style={styles.buttonContainer}>
       <TouchableOpacity style={styles.next} onPress={lastPage}>
-        <Text style={styles.buttonFont}><Entypo name="arrow-with-circle-left" size={26} color="black"/> Back</Text>
+        <Text style={styles.buttonFont}><Entypo name="arrow-with-circle-left" size={24} color="black"/> Back</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.next} onPress={nextPage}>
-        <Text style={styles.buttonFont}>Next <Entypo name="arrow-with-circle-right" size={26} color="black" /></Text>
+        <Text style={styles.buttonFont}>Next <Entypo name="arrow-with-circle-right" size={24} color="black" /></Text>
       </TouchableOpacity>
     </View>
 

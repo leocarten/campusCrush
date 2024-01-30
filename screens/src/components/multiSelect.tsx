@@ -55,6 +55,7 @@ import { updateGlobalVariables } from '../../globalVariables/GlobalVariables';
           data={options}
           labelField="label"
           valueField="value"
+          activeColor='#D1D1D1'
           placeholder={initMessage}
           searchPlaceholder="Search..."
           value={selected}
@@ -86,7 +87,8 @@ import { updateGlobalVariables } from '../../globalVariables/GlobalVariables';
       borderBottomWidth: 1,
     },
     placeholderStyle: {
-      fontSize: 20,
+      fontSize: 18,
+      color: 'rgba(0,0,0,0.5)'
     },
     selectedTextStyle: {
       fontSize: 18,

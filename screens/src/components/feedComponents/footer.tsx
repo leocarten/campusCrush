@@ -6,6 +6,7 @@ import { lineColor } from "../../styles/feedStyles/feedColors";
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { TouchableOpacity } from "react-native";
+import { useRef } from "react";
 
 const Footer = () => {
     return (

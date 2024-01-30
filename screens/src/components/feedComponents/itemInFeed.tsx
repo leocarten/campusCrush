@@ -8,9 +8,9 @@ if(windowHeight < 700){
     windowHeightPercentage = ( (1-(.2)) * windowHeight);
 }
 else{
-    windowHeightPercentage = ( (1-(.28)) * windowHeight);
+    windowHeightPercentage = ( (1-(.27)) * windowHeight);
 }
-console.log(windowHeight)
+// console.log(windowHeight)
 const pictureHeightPercentage = ( (1-(.59)) * windowHeight);
 import { lineColor } from "../../styles/feedStyles/feedColors";
 import { iconColors } from "../../styles/feedStyles/feedColors";
@@ -22,6 +22,7 @@ import GradientText from "../../styles/gradientText";
 import { Platform } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialIcons } from '@expo/vector-icons';
+import musicGenres from "../../data/musicChoices";
 
 const isTablet = Platform.isPad.toString();
 let containerWidth;
@@ -38,22 +39,51 @@ var totalConsumedWidth = 0;
 function renderInterestText(interest, index) {
     // simple conversion: 390 = 41, so we need about 10 per letter
     totalConsumedWidth += interest.length
-    console.log(totalConsumedWidth)
-    if(interest != ""){
-        if( (windowWidth/10) >= totalConsumedWidth ){
-            return <Text key={index} style={styles.interest}>{interest}</Text>
+    if(interest.length != 0){
+        if( (windowWidth/12) >= totalConsumedWidth ){
+            var interestCap = interest.charAt(0).toUpperCase() + interest.slice(1);
+            return <Text key={index} style={styles.interest}>{interestCap}</Text>
         }
         else{
-            return null;
+            return;
         }
     }
+    totalConsumedWidth = 0;
 }
 
-const ItemInFeed = ({isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Interests}) => {
+var totalConsumedWidthMusic = 0;
+function renderMusicText(music, index) {
+    // simple conversion: 390 = 41, so we need about 10 per letter
+    // console.log('music: ',music);
+    totalConsumedWidthMusic += music.length
+    // console.log(totalConsumedWidthMusic)
+    if(music.length != 0){
+        if( (windowWidth/12) >= totalConsumedWidthMusic ){
+            // console.log("Adding ",music)
+            var musicCap = music.charAt(0).toUpperCase() + music.slice(1);
+            return <Text key={index} style={styles.music}>{musicCap} </Text>
+        }
+        else{
+            totalConsumedWidthMusic = 0;
+        }
+    }
+    // totalConsumedWidthMusic = 0;
+}
+
+const ItemInFeed = ({isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Interests, Music, Job}) => {
     totalConsumedWidth = 0;
     let userWants;
     let comp;
     let verifiedIcon;
+    let musicIcon;
+    console.log("Interests:",Interests)
+    if(Music[0] != ""){
+        musicIcon = <Text style={styles.music}><Fontisto name="applemusic" size={22} color={iconColors}/> </Text>;
+    }
+    else{
+        musicIcon = ""
+    }
+    // console.log("testing: ",Name,Music)
 
     if(isVerified === 1){
         verifiedIcon = <Text><MaterialIcons name="verified" size={22} color="#30ADA7"/></Text>
@@ -99,8 +129,7 @@ const ItemInFeed = ({isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Inte
     const navigation = useNavigation();
 
     const handleExpandPress = () => {
-        console.log("Expanded profile for:", Name);
-        navigation.navigate("PersonsProfile", { personName: Name, personAge: Age, personGoals: userWants, personBio: Bio, verified: isVerified });
+        navigation.navigate("PersonsProfile", { personName: Name, personAge: Age, personGoals: AppReason, personBio: Bio, verified: isVerified, interests: Interests, music: Music, job: Job });
     };
 
     return(
@@ -151,7 +180,10 @@ const ItemInFeed = ({isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Inte
                     </View>
 
                     <View style={styles.musicContainer}>
-                        <Text style={styles.music}><Fontisto name="applemusic" size={19} color={iconColors} /> Rap, Rock, Alternative</Text>
+                        {musicIcon}
+                        {Music.map((music, index) => (
+                            renderMusicText(music, index)
+                        ))}
                     </View>
 
                 </View>
@@ -178,7 +210,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         alignSelf: "flex-start",
         color: iconColors,
-        marginLeft: '1%'
+        marginLeft: '1%',
+        textAlignVertical:"center"
     },
     interestsContainer: {
         marginTop: '2%',
@@ -188,11 +221,12 @@ const styles = StyleSheet.create({
         justifyContent: "flex-start",
     },
     musicContainer: {
-        marginTop: '2%',
+        marginTop: '3%',
         marginLeft: '2%',
         marginRight: '2%',
         flexDirection: 'row',
         justifyContent: "flex-start",
+        alignItems:"center"
     },
     sendMessageIcon: {
         textShadowColor: 'blue',

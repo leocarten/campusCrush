@@ -46,18 +46,39 @@ const DisplayItems = () => {
     );
   }
 
-  console.log(feedItems)
-
   // going to have to clean the data here i guess
   for(var i = 0; i < feedItems.length; i++){
+    // AGE
     if(feedItems[i]['dob'] != null && feedItems[i]['dob'].length > 10){
         feedItems[i]['dob'] = calculateAge(feedItems[i]['dob'].slice(0, 10));
     }
-//     if(feedItems[i]['interests'] == null){
-//         feedItems[i]['interests'] = [""]
-//     }
-  }
 
+    // INTERESTS
+    if(feedItems[i]['interests'] == null || feedItems[i]['interests'].length == 0){
+      feedItems[i]['interests'] = [""];
+    }
+    else{
+      if(typeof feedItems[i]['interests'] === 'string'){
+        feedItems[i]['interests'] = feedItems[i]['interests'].split(',') 
+      }
+    }
+
+    // MUSIC
+    if(feedItems[i]['music_preference'] == null || feedItems[i]['music_preference'].length == 0){
+      feedItems[i]['music_preference'] = [""];
+    }
+    else{
+      if(typeof feedItems[i]['music_preference'] === 'string'){
+        feedItems[i]['music_preference'] = feedItems[i]['music_preference'].split(',') 
+      }
+    }
+
+    // JOB
+    if(feedItems[i]['job'] == null || feedItems[i]['job'].length == 0){
+      feedItems[i]['job'] = [""];
+    }
+  } 
+  
   return (
     <View>
       {feedItems.map((item, index) => ( 
@@ -68,8 +89,10 @@ const DisplayItems = () => {
           Age={item.dob}
           Comp={81}
           Bio={item.bio}
-          AppReason={1}
-          Interests={["Reading","Coding","Lifting"]}
+          AppReason={item.app_purpose}
+          Interests={item.interests}
+          Music={item.music_preference}
+          Job={item.job}
         />
       ))}
     </View>

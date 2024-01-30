@@ -6,6 +6,7 @@ import { View } from 'react-native';
 import { Text } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { updateGlobalVariables } from '../../globalVariables/GlobalVariables';
+import { backgroundColor } from '../styles/backgroundColors';
 
 export default function CustomDatePicker() {
   const [value, setValue] = useState(dayjs());
@@ -26,15 +27,17 @@ export default function CustomDatePicker() {
             <DateTimePicker
               value={value}
               onValueChange={(date) => handleChange(date)}
-              selectedItemColor='black'
+              selectedItemColor='rgba(0,0,0,0.85)'
               mode='date'
               displayFullDays={true}
+              headerButtonStyle={{backgroundColor:'rgba(193,193,193,0.4)', borderRadius: 5,borderColor: 'black',borderWidth: 0.5,}}
               headerTextContainerStyle={{
                 fontSize: 18,
                 fontWeight: 'bold',
                 color: 'darkblue',
                 borderColor: 'black',
                 borderWidth: 0.5,
+                backgroundColor: 'rgba(193,193,193,0.2)'
               }}
               weekDaysContainerStyle={{
                 padding: 5,
@@ -51,6 +54,10 @@ export default function CustomDatePicker() {
                 borderRadius: 10,
                 borderColor: 'black',
                 borderWidth: 1
+              }}
+              monthContainerStyle={{
+                backgroundColor: 'rgba(193,193,193,0.3)',
+                borderColor: 'rgba(193,193,193,0.3)'
               }}
             />
             </View>

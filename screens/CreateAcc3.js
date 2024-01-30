@@ -52,11 +52,11 @@ function CreateAcc() {
 
     <View style={styles.buttonContainer}>
       <TouchableOpacity style={styles.next} onPress={lastPage}>
-        <Text style={styles.buttonFont}><Entypo name="arrow-with-circle-left" size={26} color="black"/> Back</Text>
+        <Text style={styles.buttonFont}><Entypo name="arrow-with-circle-left" size={24} color="black"/> Back</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.next} onPress={nextPage}>
-        <Text style={styles.buttonFont}>Next <Entypo name="arrow-with-circle-right" size={26} color="black" /></Text>
+        <Text style={styles.buttonFont}>Next <Entypo name="arrow-with-circle-right" size={24} color="black" /></Text>
       </TouchableOpacity>
     </View>
 

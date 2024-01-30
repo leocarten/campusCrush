@@ -23,6 +23,7 @@ import { backgroundColor } from './src/styles/backgroundColors';
 import { getVariables } from './globalVariables/GlobalVariables';
 import CustomDatePicker from './src/components/CustomDatePicker';
 import { Alert } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 function CreateAcc() {
   const navigation = useNavigation();
@@ -62,7 +63,7 @@ function CreateAcc() {
     <Steps count={2} directions={"Build your profile"} style={{alignItems: 'left'}}/>
     <HorizontalIconLine count={2}  />
     <View>
-      <Text style={styles.info}><Ionicons name="ios-information-circle-outline" size={20} color="black" /> Only the Name and Birthday field is <Text style={{fontWeight:'bold'}}>required</Text>, the rest will help other users get to know you better!</Text>
+      <Text style={styles.info}><Ionicons name="ios-information-circle-outline" size={20} color="black" /> Only the Name and Birthday fields are <Text style={{fontWeight:'bold'}}>required</Text>, the rest will help other users get to know you better!</Text>
     </View>
       {/* <Text style={styles.welcome}>Let's start by getting some basic information!</Text> */}
       <UserInputAccCreation initMessage={"My first name is ..."} icon="new-message" field={"firstname"}/>
@@ -71,18 +72,25 @@ function CreateAcc() {
       <CustomDatePicker/>
 
       <UserInputAccCreation initMessage={"Create a short bio ..."} icon="quote" field={"bio"}/>
-      <DropdownComponent initMessage="I am a ..." options={[{ label: 'Male', value: '1' },{ label: 'Female', value: '2' },{ label: 'Other', value: '3' },]} icon={<Ionicons name="person" size={20} color="black" style={{ marginRight: 5 }}/>} field={"gender"}/>
+      <DropdownComponent initMessage="I identify as a ..." options={[{ label: 'Male', value: '1' },{ label: 'Female', value: '2' },{ label: 'Other', value: '3' },]} icon={<Ionicons name="person" size={20} color="black" style={{ marginRight: 5 }}/>} field={"gender"}/>
       <UserInputAccCreation initMessage={"One thing on my bucket-list ..."} icon="bucket" field={"bucket_list"}/>
+      <UserInputAccCreation initMessage={"**To win my heart, you need ..."} icon="key" field={"win_my_heart"}/>
       <MultiSelectComponent initMessage={"My interests and hobbies are ..."} options={interestAndHobbies} icon={<MaterialIcons name="lightbulb" size={20} color="black" style={{ marginRight: 9 }}/>} field={"interests_hobbies"}/>
       <MultiSelectComponent initMessage={"I listen to ..."} options={musicChoices} icon={<Entypo name="folder-music" size={22} color="black" style={{ marginRight: 9 }}/>} field={"music_preference"}/>
-      <DropdownComponent initMessage="I'd rather have a ..." options={[{ label: 'Dog', value: '1' },{ label: 'Cat', value: '2' },{ label: "Fish", value: '3' },{ label: "Lizard", value: '4' },{ label: "Other", value: '5' }]} icon={<MaterialIcons name="pets" size={20} color="black" style={{ marginRight: 4 }} /> } field={"pet_preference"}/>
+      <UserInputAccCreation initMessage={"**My job title is ..."} icon="briefcase" field={"job"}/>
+
+      <DropdownComponent initMessage="**I have tattoos ..." options={[{ label: 'Yes', value: '1' },{ label: 'No, but I want some in the future', value: '2' }, { label: 'No', value: '3' }]} icon={<MaterialCommunityIcons name="needle" size={22} color="black" style={{ marginRight: 6 }}/> } field={"has_tattoos"}/>
+      <DropdownComponent initMessage="**I am a ..." options={[{ label: 'Morning person', value: '1' },{ label: 'Night owl', value: '2' }, { label: 'Both', value: '3' }, { label: 'Neither', value: '9' }]} icon={<MaterialCommunityIcons name="sleep" size={22} color="black" style={{ marginRight: 6 }}/> } field={"sleep_schedule"}/>
+      <DropdownComponent initMessage="**I exercise ..." options={[{ label: 'Daily', value: '1' },{ label: 'Every other day', value: '2' }, { label: 'Weekly', value: '3' }, { label: "I don't exercise", value: '9' }]} icon={<MaterialCommunityIcons name="dumbbell" size={22} color="black" style={{ marginRight: 6 }}/> } field={"workout"}/>
+
+      <DropdownComponent initMessage="I'd prefer a ..." options={[{ label: 'Dog', value: '1' },{ label: 'Cat', value: '2' },{ label: "Fish", value: '3' },{ label: "Lizard", value: '4' },{ label: "Other", value: '5' }]} icon={<MaterialIcons name="pets" size={20} color="black" style={{ marginRight: 6 }} /> } field={"pet_preference"}/>
     <View style={styles.buttonContainer}>
       <Text style={styles.next} onPress={lastPage}>
-        <Text style={styles.buttonFont}><Entypo name="arrow-with-circle-left" size={26} color="black" /> Back </Text>
+        <Text style={styles.buttonFont}><Entypo name="arrow-with-circle-left" size={24} color="black" /> Back </Text>
       </Text>
 
       <TouchableOpacity style={styles.next} onPress={nextPage}>
-        <Text style={styles.buttonFont}>Next <Entypo name="arrow-with-circle-right" size={26} color="black" /></Text>
+        <Text style={styles.buttonFont}>Next <Entypo name="arrow-with-circle-right" size={24} color="black" /></Text>
       </TouchableOpacity>
     </View>
 
@@ -102,8 +110,8 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between', 
-    marginTop: 30, 
-    marginBottom: 60, 
+    marginTop: '10%', 
+    marginBottom: '20%', 
     marginLeft: '10%',
     marginRight: '10%'
   },

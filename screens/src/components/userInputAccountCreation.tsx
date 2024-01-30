@@ -42,6 +42,15 @@ const MultiSelectComponent = ({ initMessage, icon, onUserInput, field }) => {
     else if(field === "bucket_list"){
       updateGlobalVariables(field, userInput);
     }
+    else if(field === "win_my_heart"){
+      updateGlobalVariables(field, userInput);
+    }
+    else if(field === "job"){
+      updateGlobalVariables(field, userInput);
+    }
+    else if(field === "workout"){
+      updateGlobalVariables(field, userInput);
+    }
   };
   return (
     <View style={styles.container}>
