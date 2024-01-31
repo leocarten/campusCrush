@@ -70,7 +70,7 @@ function renderMusicText(music, index) {
     // totalConsumedWidthMusic = 0;
 }
 
-const ItemInFeed = ({isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Interests, Music, Job}) => {
+const ItemInFeed = ({isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Interests, Music, Job, KeyToHeart, BucketList, has_tattoos, workout, sleep_schedule, personalityType}) => {
     totalConsumedWidth = 0;
     let userWants;
     let comp;
@@ -129,7 +129,7 @@ const ItemInFeed = ({isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Inte
     const navigation = useNavigation();
 
     const handleExpandPress = () => {
-        navigation.navigate("PersonsProfile", { personName: Name, personAge: Age, personGoals: AppReason, personBio: Bio, verified: isVerified, interests: Interests, music: Music, job: Job });
+        navigation.navigate("PersonsProfile", { personName: Name, personAge: Age, personGoals: AppReason, personBio: Bio, verified: isVerified, interests: Interests, music: Music, job: Job, KeyToHeart: KeyToHeart, BucketList: BucketList, has_tattoos: has_tattoos, workout: workout, sleep_schedule: sleep_schedule, personalityType: personalityType });
     };
 
     return(

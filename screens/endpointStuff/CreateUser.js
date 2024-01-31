@@ -11,41 +11,41 @@ const AcceptTOS_Button = () => {
   const [isLoading, setIsLoading] = useState(false);
   console.log(getVariables())
 
-  // const fetchData = async () => {
-  //   // Set isLoading to true before making the fetch request
-  //   setIsLoading(true);
+  const fetchData = async () => {
+    // Set isLoading to true before making the fetch request
+    setIsLoading(true);
 
-  //   try {
-  //     const apiUrl = 'http://18.188.112.190:5001/createUser';
+    try {
+      const apiUrl = 'http://18.188.112.190:5001/createUser';
 
-  //     const response = await fetch(apiUrl, {
-  //       method: 'POST',
-  //       headers: {
-  //         Accept: 'application/json',
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(getVariables()),
-  //     });
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(getVariables()),
+      });
 
-  //     // Check if the response status is okay (status code 200-299)
-  //     if (response.ok) {
-  //       const data = await response.json();
-  //       // Handle the fetched data
-  //       console.log('Data:', data);
-  //     } else {
-  //       console.error('Internal server error.');
-  //     }
+      // Check if the response status is okay (status code 200-299)
+      if (response.ok) {
+        const data = await response.json();
+        // Handle the fetched data
+        console.log('Data:', data);
+      } else {
+        console.error('Internal server error.');
+      }
 
-  //   } catch (error) {
-  //     console.error('Error fetching data');
-  //     // Handle other errors
+    } catch (error) {
+      console.error('Error fetching data');
+      // Handle other errors
 
-  //   } finally {
-  //     // Set isLoading to false after the fetch is complete (either success or error)
-  //     setIsLoading(false);
-  //     navigation.navigate('Thankyou');
-  //   }
-  // };
+    } finally {
+      // Set isLoading to false after the fetch is complete (either success or error)
+      setIsLoading(false);
+      navigation.navigate('Thankyou');
+    }
+  };
 
   return (
     <View style={[styles.container, styles.horizontal]}>
@@ -53,8 +53,7 @@ const AcceptTOS_Button = () => {
         <ActivityIndicator size="large" color="black" style={{justifyContent: 'center', alignContent: 'center'}}/>
       ) : (
         // <Button title="Accept" onPress={fetchData} />
-        // <TouchableOpacity style={styles.next} onPress={fetchData}>
-        <TouchableOpacity style={styles.next}>
+        <TouchableOpacity style={styles.next} onPress={fetchData}>
             <Text style={styles.buttonFont}>Accept <AntDesign name="checkcircleo" size={24} color="black" /></Text>
         </TouchableOpacity> 
       )}

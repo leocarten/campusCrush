@@ -19,6 +19,11 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { iconColors } from './src/styles/feedStyles/feedColors';
 import { Fontisto } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
+import { sectionInExpandedProfile } from './src/styles/feedStyles/feedColors';
+import { AntDesign } from '@expo/vector-icons';
+import SectionInProfile from './src/components/personsProfile/ProfileSection';
+import { FontAwesome5 } from '@expo/vector-icons';
+import Section3 from './src/components/personsProfile/Section3';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -49,14 +54,36 @@ function renderMusicText(music, index) {
 const PersonsProfile = () => {
   const navigation = useNavigation();
   const route = useRoute();
-  const { personName, personAge, personGoals, personBio, personJob, verified, interests, music, job} = route.params;
+  const { personName, personAge, personGoals, personBio, personJob, verified, interests, music, job, KeyToHeart, BucketList} = route.params;
   let verifiedIcon;
   let bioSpace;
   let userWants;
   let interestsIcon;
   let jobIcon;
   let jobText;
+  let bioMargin;
+  let unloockHeartSection;
+  let bucketListSection;
 
+
+// BUCKET LIST
+  if(BucketList == "" || BucketList == null){
+    bucketListSection = "";
+  }
+  else{
+    bucketListSection = <SectionInProfile icon={<FontAwesome name="list-ol" size={38} color={expandedIconColor}/>} title={"One thing on my bucket list is..."} body={BucketList}/>;
+  }
+
+//   KEY TO HEART
+  if(KeyToHeart == "" || KeyToHeart == null){
+    unloockHeartSection = "";
+  }
+  else{
+    unloockHeartSection = <SectionInProfile icon={<AntDesign name="unlock" size={40} color={expandedIconColor}/>} title={"You can unlock my heart by..."} body={KeyToHeart}/>;
+  }
+
+
+//   JOB
   if(job == ""){
     jobIcon = "";
     jobText = "";
@@ -66,6 +93,7 @@ const PersonsProfile = () => {
     jobText = <Text style={styles.music}>{job}</Text>;
   }
 
+//   INTERESTS
   if(interests[0] == ""){
     interestsIcon = "";
   }
@@ -73,6 +101,7 @@ const PersonsProfile = () => {
     interestsIcon = <MaterialCommunityIcons name="clover" size={22} color={expandedIconColor} />;
   }
 
+//   MUSIC
   if(music[0] == ""){
     musicIcon = "";
   }
@@ -80,23 +109,25 @@ const PersonsProfile = () => {
     musicIcon = <Fontisto name="applemusic" size={22} color={expandedIconColor} />;
   }
 
-  for(var i = 0; i < interests.length; i++){
-    console.log(interests[i])
-  }
-
+// VERIFIED
   if(verified === 1){
       verifiedIcon = <Text><MaterialIcons name="verified" size={21} color="#30ADA7"/></Text>
   }
   else{
     verifiedIcon = ""
   }
+
+//   BIO
   if(personBio != ""){
     bioSpace = <View style={styles.additionalInfoBio}><View style={styles.iconContainer}><Foundation name="quote" size={22} color={expandedIconColor} /></View><View style={styles.textContainer}><Text style={styles.otherInfo}>{personBio}</Text></View></View>
-  }
+    bioMargin = <View style={{marginTop:'1%'}}></View> ;
+}
   else{
     bioSpace = ""
+    bioMargin = ""
   }
 
+//   APP PURPOSE AND GOALS
   if(personGoals === 1){
     userWants = <Text>A long-term partner &#10084;</Text>;
     }
@@ -127,7 +158,6 @@ const PersonsProfile = () => {
 
             <View style={styles.profileContainer}>
 
-
                 <View style={styles.pictureContainer}>
                     <Text></Text>
                 </View>
@@ -139,79 +169,79 @@ const PersonsProfile = () => {
                         </Text>
                     </View>
 
-                    {/* AGE */}
-                    <View style={{paddingTop: '3%'}}></View>
+                    <View style={styles.section}>
 
-                    <View style={styles.additionalInfo}>
-                        <View style={styles.iconContainer}>
-                            <Entypo name="calendar" size={22} color={expandedIconColor} />
+                        {/* AGE */}
+                        <View style={{paddingTop: '3%'}}></View>
+
+                        <View style={styles.additionalInfo}>
+                            <View style={styles.iconContainer}>
+                                <Entypo name="calendar" size={22} color={expandedIconColor} />
+                            </View>
+                            <View style={styles.textContainer}>
+                                <Text style={styles.otherInfo}>{personAge} y/o</Text>
+                            </View>
                         </View>
-                        <View style={styles.textContainer}>
-                            <Text style={styles.otherInfo}>{personAge} y/o</Text>
+
+
+                        {/* GOALS */}
+                        <View style={{marginTop:'1%'}}></View>
+                        <View style={styles.additionalInfo}>
+                            <View style={styles.iconContainer}>
+                                <MaterialCommunityIcons name="magnify" size={22} color={expandedIconColor} />
+                            </View>
+                            <View style={styles.textContainer}>
+                                <Text style={styles.otherInfo}>{userWants}</Text>
+                            </View>
                         </View>
+
+
+
+                        {bioMargin}
+                        {/* BIO */}
+                        <View>
+                            {bioSpace}
+                        </View>
+
+
+                        {/* INTERESTS */}
+                        <View style={styles.additionalInfoMusic}>
+                            <View style={styles.iconContainer}>
+                                {interestsIcon}
+                            </View>
+                            <View style={styles.interestsContainer}>
+                                {/* <Text style={styles.otherInfo}>{interests}</Text> */}
+                                {interests.map((interest, index) => (
+                                    renderInterestText(interest, index)
+                                ))}
+                            </View>
+                        </View>
+
+                        {/* MUSIC */}
+                        <View style={styles.additionalInfoMusic}>
+                            <View style={styles.iconContainer}>
+                                {musicIcon}
+                            </View>
+                            <View style={styles.interestsContainer}>
+                                {/* <Text style={styles.otherInfo}>{interests}</Text> */}
+                                {music.map((Music, index) => (
+                                    renderMusicText(Music, index)
+                                ))}
+                            </View>
+                        </View>
+
+
                     </View>
 
+                    {/* UNLOCK MY HEART! */}
+                    {unloockHeartSection}
 
-                    {/* GOALS */}
-                    <View style={styles.additionalInfo}>
-                        <View style={styles.iconContainer}>
-                            <MaterialCommunityIcons name="magnify" size={22} color={expandedIconColor} />
-                        </View>
-                        <View style={styles.textContainer}>
-                            <Text style={styles.otherInfo}>{userWants}</Text>
-                        </View>
-                    </View>
+                    {/* BUCKET LIST */}
+                    {bucketListSection}
 
-
-                    {/* BIO */}
-                    <View>
-                        {bioSpace}
-                    </View>
-                    {/* <View style={styles.additionalInfoBio}>
-                        <View style={styles.iconContainer}>
-                            <Foundation name="quote" size={22} color={expandedIconColor} />
-                        </View>
-                        <View style={styles.textContainer}>
-                            <Text style={styles.otherInfo}>{personBio}</Text>
-                        </View>
-                    </View> */}
-
-
-                    {/* INTERESTS */}
-                    <View style={styles.additionalInfo}>
-                        <View style={styles.iconContainer}>
-                            {interestsIcon}
-                        </View>
-                        <View style={styles.interestsContainer}>
-                            {/* <Text style={styles.otherInfo}>{interests}</Text> */}
-                            {interests.map((interest, index) => (
-                                renderInterestText(interest, index)
-                            ))}
-                        </View>
-                    </View>
-
-                    {/* MUSIC */}
-                    <View style={styles.additionalInfo}>
-                        <View style={styles.iconContainer}>
-                            {musicIcon}
-                        </View>
-                        <View style={styles.interestsContainer}>
-                            {/* <Text style={styles.otherInfo}>{interests}</Text> */}
-                            {music.map((Music, index) => (
-                                renderMusicText(Music, index)
-                            ))}
-                        </View>
-                    </View>
-
-
-                    {/* JOB */}
-                    <View style={styles.additionalInfo}>
-                        <View style={styles.iconContainer}>
-                            {jobIcon}
-                        </View>
-                        <View style={styles.interestsContainer}>
-                            {jobText}
-                        </View>
+                    {/* THE EXTRAS SECTION */}
+                    <View style={styles.section3}>
+                        <Section3 jobIcon={jobIcon} jobText={jobText}  />
                     </View>
 
 
@@ -229,6 +259,30 @@ const PersonsProfile = () => {
 }
 
 const styles = StyleSheet.create({
+    sectionIcon: {
+        textAlign: 'center',
+        fontSize: 40,
+        marginTop: '2%',
+        marginBottom: '2%'
+    },
+    section3: {
+        marginTop: '4%',
+        padding: 2,
+        backgroundColor: sectionInExpandedProfile,
+        borderRadius: 5
+    },
+    section: {
+        marginTop: '2%',
+        padding: 2,
+        backgroundColor: sectionInExpandedProfile,
+        borderRadius: 5
+    },
+    section2: {
+        marginTop: '4%',
+        padding: 2,
+        backgroundColor: sectionInExpandedProfile,
+        borderRadius: 5
+    },
     music: {
         fontSize: 18,
         backgroundColor: 'transparent',
@@ -262,10 +316,29 @@ const styles = StyleSheet.create({
         // color: feedHeadingBackground,
         fontSize: 20,
     },
+    sectionText: {
+        color: textColor,
+        // color: feedHeadingBackground,
+        fontSize: 18,
+        marginLeft: '2%'
+    },
+    sectionTextCenter: {
+        color: textColor,
+        // color: feedHeadingBackground,
+        fontSize: 18,
+        marginLeft: '2%',
+        textAlign: 'center',
+        marginBottom: '2%'
+    },
     additionalInfo: {
         flexDirection: 'row', 
         alignItems: 'center', 
         marginBottom: '2%'
+    },
+    additionalInfoMusic: {
+        flexDirection: 'row', 
+        alignItems: 'center', 
+        marginBottom: '0%'
     },
     additionalInfoBio: {
         flexDirection: 'row', 
@@ -275,7 +348,7 @@ const styles = StyleSheet.create({
     title: {
         borderBottomWidth: 0.5,
         borderColor: lineColor,
-        paddingBottom: '3%',
+        paddingBottom: '2%',
     },
     getToKnow: {
         fontSize: 22,

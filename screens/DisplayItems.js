@@ -53,6 +53,11 @@ const DisplayItems = () => {
         feedItems[i]['dob'] = calculateAge(feedItems[i]['dob'].slice(0, 10));
     }
 
+    // IS_VERIFIED
+    if(feedItems[i]['is_verified'] == null){
+      feedItems[i]['is_verified'] = 0;
+  }
+
     // INTERESTS
     if(feedItems[i]['interests'] == null || feedItems[i]['interests'].length == 0){
       feedItems[i]['interests'] = [""];

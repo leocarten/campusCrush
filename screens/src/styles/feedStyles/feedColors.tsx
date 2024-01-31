@@ -12,6 +12,7 @@
 // export const expandedIconColor = '#6D6D6D';
 
 export const feedHeadingBackground = '#121212';
+export const sectionInExpandedProfile = '#1E1E1E';
 export const iconColors = '#A7A7A7';
 export const lineColor = '#A7A7A7';
 export const nameColor = '#2A2A2A';
