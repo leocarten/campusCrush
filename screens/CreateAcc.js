@@ -74,14 +74,14 @@ function CreateAcc() {
       <UserInputAccCreation initMessage={"Create a short bio ..."} icon="quote" field={"bio"}/>
       <DropdownComponent initMessage="I identify as a ..." options={[{ label: 'Male', value: '1' },{ label: 'Female', value: '2' },{ label: 'Other', value: '3' },]} icon={<Ionicons name="person" size={20} color="black" style={{ marginRight: 5 }}/>} field={"gender"}/>
       <UserInputAccCreation initMessage={"One thing on my bucket-list ..."} icon="bucket" field={"bucket_list"}/>
-      <UserInputAccCreation initMessage={"**To win my heart, you need ..."} icon="key" field={"win_my_heart"}/>
+      <UserInputAccCreation initMessage={"To unlock my heart, you need ..."} icon="lock-open" field={"win_my_heart"}/>
       <MultiSelectComponent initMessage={"My interests and hobbies are ..."} options={interestAndHobbies} icon={<MaterialIcons name="lightbulb" size={20} color="black" style={{ marginRight: 9 }}/>} field={"interests_hobbies"}/>
       <MultiSelectComponent initMessage={"I listen to ..."} options={musicChoices} icon={<Entypo name="folder-music" size={22} color="black" style={{ marginRight: 9 }}/>} field={"music_preference"}/>
-      <UserInputAccCreation initMessage={"**My job title is ..."} icon="briefcase" field={"job"}/>
+      <UserInputAccCreation initMessage={"My job title is ..."} icon="briefcase" field={"job"}/>
 
-      <DropdownComponent initMessage="**I have tattoos ..." options={[{ label: 'Yes', value: '1' },{ label: 'No, but I want some in the future', value: '2' }, { label: 'No', value: '3' }]} icon={<MaterialCommunityIcons name="needle" size={22} color="black" style={{ marginRight: 6 }}/> } field={"has_tattoos"}/>
-      <DropdownComponent initMessage="**I am a ..." options={[{ label: 'Morning person', value: '1' },{ label: 'Night owl', value: '2' }, { label: 'Both', value: '3' }, { label: 'Neither', value: '9' }]} icon={<MaterialCommunityIcons name="sleep" size={22} color="black" style={{ marginRight: 6 }}/> } field={"sleep_schedule"}/>
-      <DropdownComponent initMessage="**I exercise ..." options={[{ label: 'Daily', value: '1' },{ label: 'Every other day', value: '2' }, { label: 'Weekly', value: '3' }, { label: "I don't exercise", value: '9' }]} icon={<MaterialCommunityIcons name="dumbbell" size={22} color="black" style={{ marginRight: 6 }}/> } field={"workout"}/>
+      <DropdownComponent initMessage="I have tattoos ..." options={[{ label: 'Yes', value: '1' },{ label: 'No, but I want some in the future', value: '2' }, { label: 'No', value: '3' }]} icon={<MaterialCommunityIcons name="needle" size={22} color="black" style={{ marginRight: 6 }}/> } field={"has_tattoos"}/>
+      <DropdownComponent initMessage="I am a ..." options={[{ label: 'Morning person', value: '1' },{ label: 'Night owl', value: '2' }, { label: 'Both', value: '3' }, { label: 'Neither', value: '9' }]} icon={<MaterialCommunityIcons name="sleep" size={22} color="black" style={{ marginRight: 6 }}/> } field={"sleep_schedule"}/>
+      <DropdownComponent initMessage="I exercise ..." options={[{ label: 'Daily', value: '1' },{ label: 'Every other day', value: '2' }, { label: 'Weekly', value: '3' }, { label: "I don't exercise", value: '9' }]} icon={<MaterialCommunityIcons name="dumbbell" size={22} color="black" style={{ marginRight: 6 }}/> } field={"workout"}/>
 
       <DropdownComponent initMessage="I'd prefer a ..." options={[{ label: 'Dog', value: '1' },{ label: 'Cat', value: '2' },{ label: "Fish", value: '3' },{ label: "Lizard", value: '4' },{ label: "Other", value: '5' }]} icon={<MaterialIcons name="pets" size={20} color="black" style={{ marginRight: 6 }} /> } field={"pet_preference"}/>
     <View style={styles.buttonContainer}>

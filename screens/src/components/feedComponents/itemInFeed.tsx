@@ -3,6 +3,8 @@ import {Dimensions} from 'react-native';
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 import { Fontisto } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
+import { expandedIconColor } from "../../styles/feedStyles/feedColors";
 let windowHeightPercentage;
 if(windowHeight < 700){
     windowHeightPercentage = ( (1-(.2)) * windowHeight);
@@ -40,7 +42,7 @@ function renderInterestText(interest, index) {
     // simple conversion: 390 = 41, so we need about 10 per letter
     totalConsumedWidth += interest.length
     if(interest.length != 0){
-        if( (windowWidth/12) >= totalConsumedWidth ){
+        if( (windowWidth/13) >= totalConsumedWidth ){
             var interestCap = interest.charAt(0).toUpperCase() + interest.slice(1);
             return <Text key={index} style={styles.interest}>{interestCap}</Text>
         }
@@ -51,21 +53,27 @@ function renderInterestText(interest, index) {
     totalConsumedWidth = 0;
 }
 
-var totalConsumedWidthMusic = 0;
-function renderMusicText(music, index) {
+function renderMusicText(music, index, lengthOfArray) {
     // simple conversion: 390 = 41, so we need about 10 per letter
     // console.log('music: ',music);
-    totalConsumedWidthMusic += music.length
     // console.log(totalConsumedWidthMusic)
+    console.log("music:",lengthOfArray);
+    console.log("index:",index);
     if(music.length != 0){
-        if( (windowWidth/12) >= totalConsumedWidthMusic ){
-            // console.log("Adding ",music)
-            var musicCap = music.charAt(0).toUpperCase() + music.slice(1);
-            return <Text key={index} style={styles.music}>{musicCap} </Text>
-        }
-        else{
-            totalConsumedWidthMusic = 0;
-        }
+        // if( (windowWidth/12) >= totalConsumedWidthMusic ){
+        //     // console.log("Adding ",music)
+            if(index == lengthOfArray-1){
+                var musicCap = music.charAt(0).toUpperCase() + music.slice(1);
+                return <Text key={index} style={styles.music}>{musicCap}</Text>
+            }
+            else{
+                var musicCap = music.charAt(0).toUpperCase() + music.slice(1);
+                return <Text key={index} style={styles.music}>{musicCap}<Entypo name="dot-single" size={17} color={expandedIconColor} /></Text>
+            }
+        // }
+        // else{
+        //     totalConsumedWidthMusic = 0;
+        // }
     }
     // totalConsumedWidthMusic = 0;
 }
@@ -182,11 +190,11 @@ const ItemInFeed = ({isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Inte
                     <View style={styles.musicContainer}>
                         {musicIcon}
                         {Music.map((music, index) => (
-                            renderMusicText(music, index)
+                            renderMusicText(music, index, Music.length)
                         ))}
                     </View>
-
                 </View>
+
             </View>
         </View>
     );
@@ -211,7 +219,8 @@ const styles = StyleSheet.create({
         alignSelf: "flex-start",
         color: iconColors,
         marginLeft: '1%',
-        textAlignVertical:"center"
+        textAlignVertical:"center",
+        flexWrap: "wrap"
     },
     interestsContainer: {
         marginTop: '2%',

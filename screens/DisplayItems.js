@@ -98,6 +98,8 @@ const DisplayItems = () => {
           Interests={item.interests}
           Music={item.music_preference}
           Job={item.job}
+          KeyToHeart={item.win_my_heart}
+          BucketList={item.bucket_list}
         />
       ))}
     </View>

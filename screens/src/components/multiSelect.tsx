@@ -7,6 +7,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { Alert } from 'react-native';
 import { updateGlobalVariables } from '../../globalVariables/GlobalVariables';
 
+
   const MultiSelectComponent = ({initMessage, options, icon, field}) => {
     const [selected, setSelected] = useState([]);
 
@@ -26,6 +27,7 @@ import { updateGlobalVariables } from '../../globalVariables/GlobalVariables';
           updateGlobalVariables(field, array);
         }
       }
+      
       else if(field === "music_preference"){
         if(array.length > 5){
           Alert.alert('Maximum Reached', 'CampusCrush understand that you may have diverse music taste, but we allow a maximum of 5 music choices per person.\n\nPick the ones that best represent yourself!', [
@@ -79,7 +81,9 @@ import { updateGlobalVariables } from '../../globalVariables/GlobalVariables';
   export default MultiSelectComponent;
 
   const styles = StyleSheet.create({
-    container: { padding: 16 },
+    container: { 
+      padding: 16, 
+    },
     dropdown: {
       height: 50,
       backgroundColor: 'transparent',

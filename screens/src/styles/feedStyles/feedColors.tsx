@@ -9,10 +9,13 @@
 // ];
 // export const aboutPersonBackground = '#DADADA';
 // export const textColor = '#C4C4C4'
-// export const expandedIconColor = '#6D6D6D';
+// export const expandedIconColor = '#5D5D5D';
+// export const bigIconInSectionColor = '#555555';
+// export const sectionInExpandedProfile = '#B3B3B3';
+
 
 export const feedHeadingBackground = '#121212';
-export const sectionInExpandedProfile = '#1E1E1E';
+export const sectionInExpandedProfile = '#1C1C1C';
 export const iconColors = '#A7A7A7';
 export const lineColor = '#A7A7A7';
 export const nameColor = '#2A2A2A';
@@ -24,3 +27,4 @@ export const feedBackgroundColor = [
 export const aboutPersonBackground = '#272727';
 export const textColor = '#C4C4C4'
 export const expandedIconColor = '#6D6D6D';
+export const bigIconInSectionColor = '#555555';

@@ -24,6 +24,7 @@ import { AntDesign } from '@expo/vector-icons';
 import SectionInProfile from './src/components/personsProfile/ProfileSection';
 import { FontAwesome5 } from '@expo/vector-icons';
 import Section3 from './src/components/personsProfile/Section3';
+import { bigIconInSectionColor } from './src/styles/feedStyles/feedColors';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -40,15 +41,18 @@ function renderInterestText(interest, index) {
     totalConsumedWidth = 0;
 }
 
-var totalConsumedWidth = 0;
-function renderMusicText(music, index) {
+function renderMusicText(music, index, lengthOfArray) {
     // simple conversion: 390 = 41, so we need about 10 per letter
-    totalConsumedWidth += music.length
     if(music.length != 0){
-        var musicCap = music.charAt(0).toUpperCase() + music.slice(1);
-        return <Text key={index} style={styles.music}>{musicCap}</Text>
+        if(index == lengthOfArray-1){
+            var musicCap = music.charAt(0).toUpperCase() + music.slice(1);
+            return <Text key={index} style={styles.music}>{musicCap}</Text>
+        }
+        else{
+            var musicCap = music.charAt(0).toUpperCase() + music.slice(1);
+            return <Text key={index} style={styles.music}>{musicCap}<Entypo name="dot-single" size={17} color={expandedIconColor} /></Text>
+        }
     }
-    totalConsumedWidth = 0;
 }
 
 const PersonsProfile = () => {
@@ -65,13 +69,15 @@ const PersonsProfile = () => {
   let unloockHeartSection;
   let bucketListSection;
 
+  console.log(KeyToHeart);
+
 
 // BUCKET LIST
   if(BucketList == "" || BucketList == null){
     bucketListSection = "";
   }
   else{
-    bucketListSection = <SectionInProfile icon={<FontAwesome name="list-ol" size={38} color={expandedIconColor}/>} title={"One thing on my bucket list is..."} body={BucketList}/>;
+    bucketListSection = <SectionInProfile icon={<FontAwesome name="list-ol" size={38} color={bigIconInSectionColor}/>} title={"One thing on my bucket list is..."} body={BucketList}/>;
   }
 
 //   KEY TO HEART
@@ -79,7 +85,7 @@ const PersonsProfile = () => {
     unloockHeartSection = "";
   }
   else{
-    unloockHeartSection = <SectionInProfile icon={<AntDesign name="unlock" size={40} color={expandedIconColor}/>} title={"You can unlock my heart by..."} body={KeyToHeart}/>;
+    unloockHeartSection = <SectionInProfile icon={<AntDesign name="unlock" size={40} color={bigIconInSectionColor}/>} title={"To unlock my heart, you need..."} body={KeyToHeart}/>;
   }
 
 
@@ -225,7 +231,7 @@ const PersonsProfile = () => {
                             <View style={styles.interestsContainer}>
                                 {/* <Text style={styles.otherInfo}>{interests}</Text> */}
                                 {music.map((Music, index) => (
-                                    renderMusicText(Music, index)
+                                    renderMusicText(Music, index, Music.length)
                                 ))}
                             </View>
                         </View>
@@ -269,13 +275,23 @@ const styles = StyleSheet.create({
         marginTop: '4%',
         padding: 2,
         backgroundColor: sectionInExpandedProfile,
-        borderRadius: 5
+        borderRadius: 5,
+        shadowColor: 'white',
+        shadowRadius: 2.5,
+        shadowOpacity: 0.5,
+        shadowOffset: 10,
+        paddingLeft: '2%'
     },
     section: {
         marginTop: '2%',
         padding: 2,
         backgroundColor: sectionInExpandedProfile,
-        borderRadius: 5
+        borderRadius: 5,
+        shadowColor: 'white',
+        shadowRadius: 2.5,
+        shadowOpacity: 0.5,
+        shadowOffset: 10,
+        paddingLeft: '2%'
     },
     section2: {
         marginTop: '4%',
@@ -290,7 +306,7 @@ const styles = StyleSheet.create({
         height: 30,
         alignSelf: "flex-start",
         color: iconColors,
-        marginRight: '1.75%'
+        // marginRight: '1.75%'
     },
     interest:{
         fontSize: 18,
@@ -346,9 +362,9 @@ const styles = StyleSheet.create({
         width: '90%'
     },
     title: {
-        borderBottomWidth: 0.5,
-        borderColor: lineColor,
-        paddingBottom: '2%',
+        // borderBottomWidth: 0.5,
+        // borderColor: lineColor,
+        paddingBottom: '1%',
     },
     getToKnow: {
         fontSize: 22,
@@ -360,12 +376,12 @@ const styles = StyleSheet.create({
         // backgroundColor: 'transparent',
         backgroundColor: feedHeadingBackground,
         padding: 10,
-        borderRadius: 5
+        borderRadius: 5,
     },
     interestsContainer:{
         marginTop: '1%',
         // marginLeft: '2%',
-        marginRight: '2%',
+        marginRight: '7%',
         flexDirection: 'row',
         justifyContent: "flex-start",
         flexWrap: 'wrap'

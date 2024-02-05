@@ -30,14 +30,14 @@ export default function CustomDatePicker() {
               selectedItemColor='rgba(0,0,0,0.85)'
               mode='date'
               displayFullDays={true}
-              headerButtonStyle={{backgroundColor:'rgba(193,193,193,0.4)', borderRadius: 5,borderColor: 'black',borderWidth: 0.5,}}
+              headerButtonStyle={{backgroundColor:'rgba(193,193,193,0.1)', borderRadius: 5,borderColor: 'black',borderWidth: 0.5,}}
               headerTextContainerStyle={{
                 fontSize: 18,
                 fontWeight: 'bold',
                 color: 'darkblue',
                 borderColor: 'black',
                 borderWidth: 0.5,
-                backgroundColor: 'rgba(193,193,193,0.2)'
+                backgroundColor: 'rgba(193,193,193,0.05)'
               }}
               weekDaysContainerStyle={{
                 padding: 5,
@@ -58,6 +58,10 @@ export default function CustomDatePicker() {
               monthContainerStyle={{
                 backgroundColor: 'rgba(193,193,193,0.3)',
                 borderColor: 'rgba(193,193,193,0.3)'
+              }}
+              yearContainerStyle={{
+                backgroundColor: 'rgba(193,193,193,0.3)',
+                borderColor: 'rgba(193,193,193,0.3)'              
               }}
             />
             </View>

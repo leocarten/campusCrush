@@ -5,6 +5,7 @@ import { getVariables } from '../globalVariables/GlobalVariables';
 import { Text } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native'
+import { saveSecureValue } from '../../authentication/saveValue';
 
 const AcceptTOS_Button = () => {
   const navigation = useNavigation();
@@ -32,6 +33,8 @@ const AcceptTOS_Button = () => {
         const data = await response.json();
         // Handle the fetched data
         console.log('Data:', data);
+        await saveSecureValue('access', data['access']);
+        await saveSecureValue('refresh', data['refresh']);
       } else {
         console.error('Internal server error.');
       }
@@ -43,6 +46,7 @@ const AcceptTOS_Button = () => {
     } finally {
       // Set isLoading to false after the fetch is complete (either success or error)
       setIsLoading(false);
+
       navigation.navigate('Thankyou');
     }
   };

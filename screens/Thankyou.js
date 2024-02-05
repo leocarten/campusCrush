@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native'
 import { backgroundColor } from './src/styles/backgroundColors';
 import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 const Thankyou = () => {
   const navigation = useNavigation();
   const nextPage = () => {
@@ -27,11 +28,11 @@ const Thankyou = () => {
     {/* <HorizontalIconLine count={5}  /> */}
 
     <View style={styles.viewContainer}>
-      <Text style={styles.text}>Welcome aboard! Thank you for choosing CampusCrush. Explore the unique features, connect with others, and make the most of your CampusCrush experience. We are excited to start this journey with you!</Text>
+      <Text style={styles.heading}>Your account has been created <AntDesign name="check" size={22} color="black" /></Text>
+      <Text style={styles.text}>Welcome aboard, and thank you for choosing CampusCrush! Explore the unique features, connect with others, and make the most of your CampusCrush experience. We are excited to start this journey with you!</Text>
       <Text style={styles.text}>As you interact with CampusCrush, please feel free to leave us feedback. We are always happy to hear back from our users!</Text>
       <Text style={styles.sincerely}>Sincerely,</Text>
       <Text style={styles.signature}>The CampusCrush Team</Text>
-
     </View>
 
     <TouchableOpacity style={styles.showMeFeed} onPress={nextPage}>
@@ -43,21 +44,25 @@ const Thankyou = () => {
 }
 
 const styles = StyleSheet.create({
-  signature: {
-    fontSize: 20,
+  heading:{
+    textAlign: 'center',
+    fontSize: 22,
+    marginBottom: '5%'
   },
-
+  signature: {
+    fontSize: 18,
+  },
   showMeFeed:{
     alignSelf:'center',
     borderWidth: 1,
     borderColor: 'black',
     borderRadius: 6,
     padding: 5,
-    marginTop: '60%'
+    marginTop: '50%'
   },
   text:{
     fontSize:18,
-    marginBottom: '3%'
+    marginBottom: '3%',
   },
   sincerely:{
     fontSize:18,

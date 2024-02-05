@@ -28,7 +28,11 @@ const styles = StyleSheet.create({
         marginTop: '4%',
         padding: 2,
         backgroundColor: sectionInExpandedProfile,
-        borderRadius: 5
+        borderRadius: 5,
+        shadowColor: 'white',
+        shadowRadius: 2.5,
+        shadowOpacity: 0.5,
+        shadowOffset: 10
     },
     sectionTextCenter: {
         color: textColor,
