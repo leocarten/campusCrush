@@ -57,8 +57,8 @@ function renderMusicText(music, index, lengthOfArray) {
     // simple conversion: 390 = 41, so we need about 10 per letter
     // console.log('music: ',music);
     // console.log(totalConsumedWidthMusic)
-    console.log("music:",lengthOfArray);
-    console.log("index:",index);
+    // console.log("music:",lengthOfArray);
+    // console.log("index:",index);
     if(music.length != 0){
         // if( (windowWidth/12) >= totalConsumedWidthMusic ){
         //     // console.log("Adding ",music)
@@ -78,13 +78,13 @@ function renderMusicText(music, index, lengthOfArray) {
     // totalConsumedWidthMusic = 0;
 }
 
-const ItemInFeed = ({isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Interests, Music, Job, KeyToHeart, BucketList, has_tattoos, workout, sleep_schedule, personalityType}) => {
+const ItemInFeed = ({isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Interests, Music, Job, KeyToHeart, BucketList, has_tattoos, workout, sleep_schedule}) => {
     totalConsumedWidth = 0;
     let userWants;
     let comp;
     let verifiedIcon;
     let musicIcon;
-    console.log("Interests:",Interests)
+    // console.log("Interests:",Interests)
     if(Music[0] != ""){
         musicIcon = <Text style={styles.music}><Fontisto name="applemusic" size={22} color={iconColors}/> </Text>;
     }
@@ -137,7 +137,7 @@ const ItemInFeed = ({isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Inte
     const navigation = useNavigation();
 
     const handleExpandPress = () => {
-        navigation.navigate("PersonsProfile", { personName: Name, personAge: Age, personGoals: AppReason, personBio: Bio, verified: isVerified, interests: Interests, music: Music, job: Job, KeyToHeart: KeyToHeart, BucketList: BucketList, has_tattoos: has_tattoos, workout: workout, sleep_schedule: sleep_schedule, personalityType: personalityType });
+        navigation.navigate("PersonsProfile", { personName: Name, personAge: Age, personGoals: AppReason, personBio: Bio, verified: isVerified, interests: Interests, music: Music, job: Job, KeyToHeart: KeyToHeart, BucketList: BucketList, has_tattoos: has_tattoos, workout: workout, sleep_schedule: sleep_schedule});
     };
 
     return(

@@ -16,7 +16,6 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
 
-
   const onLoginPress = async () => {
     handleLogin(username, password);
     const loginResult = await handleLogin(username, password);

@@ -25,6 +25,8 @@ import SectionInProfile from './src/components/personsProfile/ProfileSection';
 import { FontAwesome5 } from '@expo/vector-icons';
 import Section3 from './src/components/personsProfile/Section3';
 import { bigIconInSectionColor } from './src/styles/feedStyles/feedColors';
+import { Feather } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -42,7 +44,6 @@ function renderInterestText(interest, index) {
 }
 
 function renderMusicText(music, index, lengthOfArray) {
-    // simple conversion: 390 = 41, so we need about 10 per letter
     if(music.length != 0){
         if(index == lengthOfArray-1){
             var musicCap = music.charAt(0).toUpperCase() + music.slice(1);
@@ -58,19 +59,102 @@ function renderMusicText(music, index, lengthOfArray) {
 const PersonsProfile = () => {
   const navigation = useNavigation();
   const route = useRoute();
-  const { personName, personAge, personGoals, personBio, personJob, verified, interests, music, job, KeyToHeart, BucketList} = route.params;
+  const { personName, personAge, personGoals, personBio, personJob, verified, interests, music, job, KeyToHeart, BucketList, has_tattoos, workout, sleep_schedule} = route.params;
   let verifiedIcon;
   let bioSpace;
   let userWants;
   let interestsIcon;
   let jobIcon;
+  let tattosIcon;
+  let tattooText;
+  let tattosSection3;
+  let sleepIcon;
+  let sleepText;
+  let sleepSection3;
   let jobText;
   let bioMargin;
   let unloockHeartSection;
   let bucketListSection;
+  let jobSection3;
+  let workoutIcon;
+  let workoutText;
+  let workoutSection3;
 
-  console.log(KeyToHeart);
+  // TATTOOS
+  if(has_tattoos == 0){
+    tattosIcon = "";
+    tattooText = "";
+    tattosSection3 = "";
+  }
+  else if(has_tattoos == 1){
+    tattosIcon = <MaterialCommunityIcons name="needle" size={22} color={expandedIconColor} />;
+    tattooText = <Text style={styles.music}>Yes</Text>;
+    tattosSection3 = <Section3 jobIcon={tattosIcon} jobText={tattooText}/>;
+  }
+  else if(has_tattoos == 2){
+    tattosIcon = <MaterialCommunityIcons name="needle" size={22} color={expandedIconColor} />;
+    tattooText = <Text style={styles.music}>No, but I want some!</Text>;
+    tattosSection3 = <Section3 jobIcon={tattosIcon} jobText={tattooText}/>;
+  }
+  else if(has_tattoos == 3){
+    tattosIcon = <MaterialCommunityIcons name="needle" size={22} color={expandedIconColor} />;
+    tattooText = <Text style={styles.music}>No</Text>;
+    tattosSection3 = <Section3 jobIcon={tattosIcon} jobText={tattooText}/>;
+  }
 
+    // SLEEP SCHEDULE
+    if(sleep_schedule == 0){
+        sleepIcon = "";
+        sleepText = "";
+        sleepSection3 = "";
+    }
+    else if(sleep_schedule == 1){ // morning
+        sleepIcon = <Feather name="sunrise" size={22} color={expandedIconColor} />;
+        sleepText = <Text style={styles.music}>Morning person</Text>;
+        sleepSection3 = <Section3 jobIcon={sleepIcon} jobText={sleepText}/>;
+    }
+    else if(sleep_schedule == 2){ // night owl
+        sleepIcon = <Ionicons name="moon" size={22} color={expandedIconColor} />;
+        sleepText = <Text style={styles.music}>Night owl</Text>;
+        sleepSection3 = <Section3 jobIcon={sleepIcon} jobText={sleepText}/>;
+    }
+    else if(sleep_schedule == 3){ // night and morning
+        sleepIcon = <MaterialCommunityIcons name="sleep-off" size={22} color={expandedIconColor} />;
+        sleepText = <Text style={styles.music}>Morning and night person</Text>;
+        sleepSection3 = <Section3 jobIcon={sleepIcon} jobText={sleepText}/>;
+    }
+    else if(sleep_schedule == 4){ // night and morning
+        sleepIcon = <MaterialCommunityIcons name="sleep" size={22} color={expandedIconColor} />;
+        sleepText = <Text style={styles.music}>Neither morning nor night</Text>;
+        sleepSection3 = <Section3 jobIcon={sleepIcon} jobText={sleepText}/>;
+    }
+
+// WORKOUT
+  if(workout == 0){
+    workoutIcon = "";
+    workoutText = "";
+    workoutSection3 = "";
+  }
+  else if(workout == 1){
+    workoutIcon = <MaterialCommunityIcons name="dumbbell" size={22} color={expandedIconColor} />;
+    workoutText = <Text style={styles.music}>Daily</Text>;
+    workoutSection3 = <Section3 jobIcon={workoutIcon} jobText={workoutText}/>;
+  }
+  else if(workout == 2){
+    workoutIcon = <MaterialCommunityIcons name="dumbbell" size={22} color={expandedIconColor} />;
+    workoutText = <Text style={styles.music}>Every other day</Text>;
+    workoutSection3 = <Section3 jobIcon={workoutIcon} jobText={workoutText}/>;
+  }
+  else if(workout == 3){
+    workoutIcon = <MaterialCommunityIcons name="dumbbell" size={22} color={expandedIconColor} />;
+    workoutText = <Text style={styles.music}>Weekly</Text>;
+    workoutSection3 = <Section3 jobIcon={workoutIcon} jobText={workoutText}/>;
+  }
+  else if(workout == 4){
+    workoutIcon = <MaterialCommunityIcons name="dumbbell" size={22} color={expandedIconColor} />;
+    workoutText = <Text style={styles.music}>I don't exercise often</Text>;
+    workoutSection3 = <Section3 jobIcon={workoutIcon} jobText={workoutText}/>;
+  }
 
 // BUCKET LIST
   if(BucketList == "" || BucketList == null){
@@ -93,10 +177,12 @@ const PersonsProfile = () => {
   if(job == ""){
     jobIcon = "";
     jobText = "";
+    jobSection3 = "";
   }
   else{
     jobIcon = <FontAwesome name="briefcase" size={22} color={expandedIconColor} />;
     jobText = <Text style={styles.music}>{job}</Text>;
+    jobSection3 = <Section3 jobIcon={jobIcon} jobText={jobText}/>;
   }
 
 //   INTERESTS
@@ -231,7 +317,7 @@ const PersonsProfile = () => {
                             <View style={styles.interestsContainer}>
                                 {/* <Text style={styles.otherInfo}>{interests}</Text> */}
                                 {music.map((Music, index) => (
-                                    renderMusicText(Music, index, Music.length)
+                                    renderMusicText(Music, index, music.length)
                                 ))}
                             </View>
                         </View>
@@ -247,7 +333,13 @@ const PersonsProfile = () => {
 
                     {/* THE EXTRAS SECTION */}
                     <View style={styles.section3}>
-                        <Section3 jobIcon={jobIcon} jobText={jobText}  />
+                        {/* <Section3 jobIcon={jobIcon} jobText={jobText}/> */}
+                        {/* <Section3 jobIcon={jobIcon} jobText={jobText}/>
+                        <Section3 jobIcon={jobIcon} jobText={jobText}/> */}
+                        {jobSection3}
+                        {tattosSection3}
+                        {sleepSection3}
+                        {workoutSection3}
                     </View>
 
 

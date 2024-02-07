@@ -43,7 +43,7 @@ const DisplayItems = () => {
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: '70%' }}>
         <ActivityIndicator size="large" color="#3A3A3A"/>
       </View>
-    );
+    ); 
   }
 
   // going to have to clean the data here i guess
@@ -82,6 +82,7 @@ const DisplayItems = () => {
     if(feedItems[i]['job'] == null || feedItems[i]['job'].length == 0){
       feedItems[i]['job'] = [""];
     }
+
   } 
   
   return (
@@ -100,6 +101,9 @@ const DisplayItems = () => {
           Job={item.job}
           KeyToHeart={item.win_my_heart}
           BucketList={item.bucket_list}
+          has_tattoos={item.has_tattoos}
+          workout={item.workout}
+          sleep_schedule={item.sleep_schedule}
         />
       ))}
     </View>

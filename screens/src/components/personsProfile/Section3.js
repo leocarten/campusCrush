@@ -13,16 +13,6 @@ const Section3 = ({jobIcon, jobText}) => {
                     {jobText}
                 </View>
             </View>
-
-            <View style={styles.additionalInfo}>
-                <View style={styles.iconContainer}>
-                    <Text>T</Text>
-                </View>
-                <View style={styles.interestsContainer}>
-                    <Text style={{color: 'white'}}>Tattoos + other stuff</Text>
-                </View>
-            </View>
-
         </View>
     );
 }
@@ -31,7 +21,7 @@ const styles = StyleSheet.create({
     additionalInfo: {
         flexDirection: 'row', 
         alignItems: 'center', 
-        marginBottom: '2%'
+        marginBottom: '1%'
     },
     iconContainer: {
         marginRight: 6, 

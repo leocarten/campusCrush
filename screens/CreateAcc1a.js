@@ -21,6 +21,7 @@ import { useNavigation } from '@react-navigation/native'
 import UserInputAccCreation from './src/components/userInputAccountCreation';
 import { backgroundColor } from './src/styles/backgroundColors';
 import { getVariables } from './globalVariables/GlobalVariables';
+import { Alert } from 'react-native';
 
 function CreateAcc1a() {
   const navigation = useNavigation();
@@ -30,8 +31,18 @@ function CreateAcc1a() {
   };
 
   const nextPage = () => {
-    console.log(getVariables());
-    navigation.navigate('CreateAcc2');
+    const attributes = getVariables();
+    if(attributes.app_purpose != '' && attributes.wants_to_be_shown != ''){
+      navigation.navigate('CreateAcc2');
+    }
+    else{
+      Alert.alert('Required fields not filled in', 'CampusCrush requires both of these fields to be filled in, you can change your settings afterwards!', [
+        {
+          text: 'Ok',
+          style: 'cancel',
+        },
+      ]);
+    }
   }
 
   

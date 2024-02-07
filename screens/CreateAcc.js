@@ -35,12 +35,11 @@ function CreateAcc() {
   const nextPage = () => {
     // console.log(getVariables());
     const attributes = getVariables();
-    if(attributes.firstname != '' && attributes.birthday != '' ){
+    if(attributes.firstname != '' && attributes.birthday != '' && attributes.gender != ''){
       navigation.navigate('CreateAcc1a');
-      console.log(getVariables())
     }
     else{
-      Alert.alert('Required fields not filled in', 'CampusCrush requires the first name and birthday field to be filled in.', [
+      Alert.alert('Required fields not filled in', 'CampusCrush requires the first name, gender, and birthday field to be filled in.', [
         {
           text: 'Ok',
           style: 'cancel',
@@ -63,7 +62,7 @@ function CreateAcc() {
     <Steps count={2} directions={"Build your profile"} style={{alignItems: 'left'}}/>
     <HorizontalIconLine count={2}  />
     <View>
-      <Text style={styles.info}><Ionicons name="ios-information-circle-outline" size={20} color="black" /> Only the Name and Birthday fields are <Text style={{fontWeight:'bold'}}>required</Text>, the rest will help other users get to know you better!</Text>
+      <Text style={styles.info}><Ionicons name="ios-information-circle-outline" size={20} color="black" /> Only the Name, Gender, and Birthday fields are <Text style={{fontWeight:'bold'}}>required</Text>, the rest will help other users get to know you better!</Text>
     </View>
       {/* <Text style={styles.welcome}>Let's start by getting some basic information!</Text> */}
       <UserInputAccCreation initMessage={"My first name is ..."} icon="new-message" field={"firstname"}/>
@@ -80,8 +79,8 @@ function CreateAcc() {
       <UserInputAccCreation initMessage={"My job title is ..."} icon="briefcase" field={"job"}/>
 
       <DropdownComponent initMessage="I have tattoos ..." options={[{ label: 'Yes', value: '1' },{ label: 'No, but I want some in the future', value: '2' }, { label: 'No', value: '3' }]} icon={<MaterialCommunityIcons name="needle" size={22} color="black" style={{ marginRight: 6 }}/> } field={"has_tattoos"}/>
-      <DropdownComponent initMessage="I am a ..." options={[{ label: 'Morning person', value: '1' },{ label: 'Night owl', value: '2' }, { label: 'Both', value: '3' }, { label: 'Neither', value: '9' }]} icon={<MaterialCommunityIcons name="sleep" size={22} color="black" style={{ marginRight: 6 }}/> } field={"sleep_schedule"}/>
-      <DropdownComponent initMessage="I exercise ..." options={[{ label: 'Daily', value: '1' },{ label: 'Every other day', value: '2' }, { label: 'Weekly', value: '3' }, { label: "I don't exercise", value: '9' }]} icon={<MaterialCommunityIcons name="dumbbell" size={22} color="black" style={{ marginRight: 6 }}/> } field={"workout"}/>
+      <DropdownComponent initMessage="I am a ..." options={[{ label: 'Morning person', value: '1' },{ label: 'Night owl', value: '2' }, { label: 'Both', value: '3' }, { label: 'Neither', value: '4' }]} icon={<MaterialCommunityIcons name="sleep" size={22} color="black" style={{ marginRight: 6 }}/> } field={"sleep_schedule"}/>
+      <DropdownComponent initMessage="I exercise ..." options={[{ label: 'Daily', value: '1' },{ label: 'Every other day', value: '2' }, { label: 'Weekly', value: '3' }, { label: "I don't exercise", value: '4' }]} icon={<MaterialCommunityIcons name="dumbbell" size={22} color="black" style={{ marginRight: 6 }}/> } field={"workout"}/>
 
       <DropdownComponent initMessage="I'd prefer a ..." options={[{ label: 'Dog', value: '1' },{ label: 'Cat', value: '2' },{ label: "Fish", value: '3' },{ label: "Lizard", value: '4' },{ label: "Other", value: '5' }]} icon={<MaterialIcons name="pets" size={20} color="black" style={{ marginRight: 6 }} /> } field={"pet_preference"}/>
     <View style={styles.buttonContainer}>

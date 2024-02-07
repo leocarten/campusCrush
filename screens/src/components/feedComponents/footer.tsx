@@ -8,6 +8,10 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { TouchableOpacity } from "react-native";
 import { useRef } from "react";
 
+const handleEditProfilePress = () => {
+  console.log("edit profile.");
+}
+
 const Footer = () => {
     return (
       <View style={styles.FooterView}>
@@ -19,7 +23,7 @@ const Footer = () => {
         </View>
 
         <View style={styles.iconStyle}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={handleEditProfilePress}>
                 <Text><MaterialCommunityIcons name="account-edit" size={35} color={iconColors} /></Text>
             </TouchableOpacity>
         </View>
