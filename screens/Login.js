@@ -20,7 +20,6 @@ const Login = () => {
     handleLogin(username, password);
     const loginResult = await handleLogin(username, password);
     if(loginResult === true){
-      navigation.navigate("Feed");
       console.log("Logging the person in now!");
       console.log("I am testing ....");
       await saveSecureValue()

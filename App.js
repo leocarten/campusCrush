@@ -38,7 +38,7 @@ export default function App() {
         <Stack.Screen name="CreateAcc3" component={CreateAcc3} />
         <Stack.Screen name="CreateAcc4" component={CreateAcc4} />
         {/* <Stack.Screen name="Thankyou" component={Thankyou} options={{ gestureEnabled: false }}/> */}
-        <Stack.Screen name="Thankyou" component={Thankyou}/>
+        <Stack.Screen name="Thankyou" component={Thankyou} options={{ gestureEnabled: false }}/>
         <Stack.Screen name="FilterPage" component={FilterPage} />
         <Stack.Screen name="Messages" component={Messages} />
         <Stack.Screen name="Store" component={Store} />

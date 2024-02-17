@@ -183,17 +183,17 @@ const PersonsProfile = () => {
   }
   else if(has_tattoos == 1){
     tattosIcon = <MaterialCommunityIcons name="needle" size={22} color={expandedIconColor} />;
-    tattooText = <Text style={styles.music}>Yes</Text>;
+    tattooText = <Text style={styles.music}>I have tattoos</Text>;
     tattosSection3 = <Section3 jobIcon={tattosIcon} jobText={tattooText}/>;
   }
   else if(has_tattoos == 2){
     tattosIcon = <MaterialCommunityIcons name="needle" size={22} color={expandedIconColor} />;
-    tattooText = <Text style={styles.music}>No, but I want some!</Text>;
+    tattooText = <Text style={styles.music}>No tattoos, but I want some!</Text>;
     tattosSection3 = <Section3 jobIcon={tattosIcon} jobText={tattooText}/>;
   }
   else if(has_tattoos == 3){
     tattosIcon = <MaterialCommunityIcons name="needle" size={22} color={expandedIconColor} />;
-    tattooText = <Text style={styles.music}>No</Text>;
+    tattooText = <Text style={styles.music}>No tattoos</Text>;
     tattosSection3 = <Section3 jobIcon={tattosIcon} jobText={tattooText}/>;
   }
 

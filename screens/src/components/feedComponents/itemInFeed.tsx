@@ -115,10 +115,10 @@ const ItemInFeed = ({isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Inte
 
     if(Comp >= 80){
         if(AppReason === 3 || AppReason === 4){
-            comp = <Text style={styles.compatibility}>Match: {Comp}% &#129309; </Text>;
+            comp = <View style={styles.compBackgroundHandshake}><Text style={styles.compatibility}>High match &#129309;</Text></View>;
         }
         else{
-            comp = <Text style={styles.compatibility}>Match: {Comp}% &#128150;</Text>;
+            comp = <View style={styles.compBackgroundHeart}><Text style={styles.compatibility}>High match &#128150;</Text></View>;
         }
     }
     else{
@@ -280,9 +280,41 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
 
     },
+    compBackgroundHandshake: {
+        borderColor: '#ffb805',
+        borderWidth: 1,
+        marginRight: '2%',
+        padding: 2,
+        borderRadius: 5,
+        backgroundColor: 'rgba(255,229,5,0.6)',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+        elevation: 6,
+    },
+    compBackgroundHeart: {
+        borderColor: '#ff0081',
+        borderWidth: 1,
+        marginRight: '2%',
+        padding: 2,
+        borderRadius: 5,
+        backgroundColor: 'rgba(255,119,188,0.6)',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
+        elevation: 6,
+    },
     compatibility: {
         fontSize: 17,
-        color: '#444444',
+        color: 'black',
         alignSelf: "center",
         marginRight: "1%"
     },
