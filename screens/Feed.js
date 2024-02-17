@@ -50,7 +50,7 @@ const Feed = () => {
     </ScrollView>
     
     <View style={styles.footer}>
-      <Footer/>
+    <Footer/>
     </View>
 
     </LinearGradient>

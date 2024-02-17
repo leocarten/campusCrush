@@ -21,12 +21,12 @@ const Login = () => {
     const loginResult = await handleLogin(username, password);
     if(loginResult === true){
       navigation.navigate("Feed");
-      // console.log("Logging the person in now!");
-      // console.log("I am testing ....");
-      // await saveSecureValue()
-      // console.log(await getSecureValues('access'));
-      // getItemsInFeed()
-      // navigation.navigate("Feed");
+      console.log("Logging the person in now!");
+      console.log("I am testing ....");
+      await saveSecureValue()
+      console.log(await getSecureValues('access'));
+      getItemsInFeed()
+      navigation.navigate("Feed");
     }
     else {
       // navigation.navigate("Feed");

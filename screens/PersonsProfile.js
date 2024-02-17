@@ -59,7 +59,7 @@ function renderMusicText(music, index, lengthOfArray) {
 const PersonsProfile = () => {
   const navigation = useNavigation();
   const route = useRoute();
-  const { personName, personAge, personGoals, personBio, personJob, verified, interests, music, job, KeyToHeart, BucketList, has_tattoos, workout, sleep_schedule} = route.params;
+  const { personName, personAge, personGoals, personBio, personJob, verified, interests, music, job, KeyToHeart, BucketList, has_tattoos, workout, sleep_schedule, Communication_style, Ideal_first_meetup} = route.params;
   let verifiedIcon;
   let bioSpace;
   let userWants;
@@ -79,6 +79,101 @@ const PersonsProfile = () => {
   let workoutIcon;
   let workoutText;
   let workoutSection3;
+  let communication_style_Icon;
+  let communicationStyleText;
+  let communicationStyleSection3;
+  let idealFirstMeetup_Icon;
+  let idealFirstMeetupText;
+  let idealFirstMeetupSection3;
+
+  // IDEAL FIRST MEETUP :()
+      if(Ideal_first_meetup == 0){
+        idealFirstMeetup_Icon = "";
+        idealFirstMeetupText = "";
+        idealFirstMeetupSection3 = "";
+      }
+      else if(Ideal_first_meetup == 1){
+        idealFirstMeetup_Icon = <FontAwesome5 name="people-arrows" size={19} color={expandedIconColor} />;
+        idealFirstMeetupText = <Text style={styles.music}>Video chat</Text>;
+        idealFirstMeetupSection3 = <Section3 jobIcon={idealFirstMeetup_Icon} jobText={idealFirstMeetupText}/>;
+      }
+      else if(Ideal_first_meetup == 2){
+        idealFirstMeetup_Icon = <FontAwesome5 name="people-arrows" size={19} color={expandedIconColor} />;
+        idealFirstMeetupText = <Text style={styles.music}>A chill night at home</Text>;
+        idealFirstMeetupSection3 = <Section3 jobIcon={idealFirstMeetup_Icon} jobText={idealFirstMeetupText}/>;
+      }
+      else if(Ideal_first_meetup == 3){
+        idealFirstMeetup_Icon = <FontAwesome5 name="people-arrows" size={19} color={expandedIconColor} />;
+        idealFirstMeetupText = <Text style={styles.music}>Play a board game</Text>;
+        idealFirstMeetupSection3 = <Section3 jobIcon={idealFirstMeetup_Icon} jobText={idealFirstMeetupText}/>;
+      }
+      else if(Ideal_first_meetup == 4){
+        idealFirstMeetup_Icon = <FontAwesome5 name="people-arrows" size={19} color={expandedIconColor} />;
+        idealFirstMeetupText = <Text style={styles.music}>Go stargazing</Text>;
+        idealFirstMeetupSection3 = <Section3 jobIcon={idealFirstMeetup_Icon} jobText={idealFirstMeetupText}/>;
+      }
+      else if(Ideal_first_meetup == 5){
+        idealFirstMeetup_Icon = <FontAwesome5 name="people-arrows" size={19} color={expandedIconColor} />;
+        idealFirstMeetupText = <Text style={styles.music}>Go to a coffee shop</Text>;
+        idealFirstMeetupSection3 = <Section3 jobIcon={idealFirstMeetup_Icon} jobText={idealFirstMeetupText}/>;
+      }
+      else if(Ideal_first_meetup == 6){
+        idealFirstMeetup_Icon = <FontAwesome5 name="people-arrows" size={19} color={expandedIconColor} />;
+        idealFirstMeetupText = <Text style={styles.music}>Grab a bite of food</Text>;
+        idealFirstMeetupSection3 = <Section3 jobIcon={idealFirstMeetup_Icon} jobText={idealFirstMeetupText}/>;
+      }
+      else if(Ideal_first_meetup == 7){
+        idealFirstMeetup_Icon = <FontAwesome5 name="people-arrows" size={19} color={expandedIconColor} />;
+        idealFirstMeetupText = <Text style={styles.music}>Catch a movie</Text>;
+        idealFirstMeetupSection3 = <Section3 jobIcon={idealFirstMeetup_Icon} jobText={idealFirstMeetupText}/>;
+      }
+      else if(Ideal_first_meetup == 8){
+        idealFirstMeetup_Icon = <FontAwesome5 name="people-arrows" size={19} color={expandedIconColor} />;
+        idealFirstMeetupText = <Text style={styles.music}>Go for a walk</Text>;
+        idealFirstMeetupSection3 = <Section3 jobIcon={idealFirstMeetup_Icon} jobText={idealFirstMeetupText}/>;
+      }
+      else if(Ideal_first_meetup == 9){
+        idealFirstMeetup_Icon = <FontAwesome5 name="people-arrows" size={19} color={expandedIconColor} />;
+        idealFirstMeetupText = <Text style={styles.music}>Go on a hike</Text>;
+        idealFirstMeetupSection3 = <Section3 jobIcon={idealFirstMeetup_Icon} jobText={idealFirstMeetupText}/>;
+      }
+      else if(Ideal_first_meetup == 10){
+        idealFirstMeetup_Icon = <FontAwesome5 name="people-arrows" size={19} color={expandedIconColor} />;
+        idealFirstMeetupText = <Text style={styles.music}>Go to a trivia night</Text>;
+        idealFirstMeetupSection3 = <Section3 jobIcon={idealFirstMeetup_Icon} jobText={idealFirstMeetupText}/>;
+      }
+      else if(Ideal_first_meetup == 11){
+        idealFirstMeetup_Icon = <FontAwesome5 name="people-arrows" size={19} color={expandedIconColor} />;
+        idealFirstMeetupText = <Text style={styles.music}>Visit a karaoke bar</Text>;
+        idealFirstMeetupSection3 = <Section3 jobIcon={idealFirstMeetup_Icon} jobText={idealFirstMeetupText}/>;
+      }
+
+    // COMMUNICATION STYLE
+    if(Communication_style == 0){
+      communication_style_Icon = "";
+      communicationStyleText = "";
+      communicationStyleSection3 = "";
+    }
+    else if(Communication_style == 1){
+      communication_style_Icon = <Ionicons name="chatbubbles-sharp" size={22} color={expandedIconColor} />;
+      communicationStyleText = <Text style={styles.music}>In person</Text>;
+      communicationStyleSection3 = <Section3 jobIcon={communication_style_Icon} jobText={communicationStyleText}/>;
+    }
+    else if(Communication_style == 2){
+      communication_style_Icon = <Ionicons name="chatbubbles-sharp" size={22} color={expandedIconColor} />;
+      communicationStyleText = <Text style={styles.music}>Texting</Text>;
+      communicationStyleSection3 = <Section3 jobIcon={communication_style_Icon} jobText={communicationStyleText}/>;
+    }
+    else if(Communication_style == 3){
+      communication_style_Icon = <Ionicons name="chatbubbles-sharp" size={22} color={expandedIconColor} />;
+      communicationStyleText = <Text style={styles.music}>Phone calls</Text>;
+      communicationStyleSection3 = <Section3 jobIcon={communication_style_Icon} jobText={communicationStyleText}/>;
+    }
+    else if(Communication_style == 4){
+      communication_style_Icon = <Ionicons name="chatbubbles-sharp" size={22} color={expandedIconColor} />;
+      communicationStyleText = <Text style={styles.music}>Video chats</Text>;
+      communicationStyleSection3 = <Section3 jobIcon={communication_style_Icon} jobText={communicationStyleText}/>;
+    }
 
   // TATTOOS
   if(has_tattoos == 0){
@@ -340,6 +435,8 @@ const PersonsProfile = () => {
                         {tattosSection3}
                         {sleepSection3}
                         {workoutSection3}
+                        {communicationStyleSection3}
+                        {idealFirstMeetupSection3}
                     </View>
 
 

@@ -18,7 +18,7 @@ import Store from './screens/Store'
 import PersonsProfile from './screens/PersonsProfile'
 import ErrorPage from './screens/errorFiles/Error';
 import FlashMessage from 'react-native-flash-message';
-
+import Footer from './screens/src/components/feedComponents/footer';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -26,7 +26,6 @@ export default function App() {
     // <HomePageComponent/>
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
-      
       {/* <Stack.Screen name="Feed" component={Feed} /> */}
       <Stack.Screen name="Welcome" component={HomePage} />
       <Stack.Screen name="Feed" component={Feed} options={{ gestureEnabled: false }}/>

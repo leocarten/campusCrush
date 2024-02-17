@@ -80,7 +80,28 @@ function CreateAcc() {
 
       <DropdownComponent initMessage="I have tattoos ..." options={[{ label: 'Yes', value: '1' },{ label: 'No, but I want some in the future', value: '2' }, { label: 'No', value: '3' }]} icon={<MaterialCommunityIcons name="needle" size={22} color="black" style={{ marginRight: 6 }}/> } field={"has_tattoos"}/>
       <DropdownComponent initMessage="I am a ..." options={[{ label: 'Morning person', value: '1' },{ label: 'Night owl', value: '2' }, { label: 'Both', value: '3' }, { label: 'Neither', value: '4' }]} icon={<MaterialCommunityIcons name="sleep" size={22} color="black" style={{ marginRight: 6 }}/> } field={"sleep_schedule"}/>
+     
       <DropdownComponent initMessage="I exercise ..." options={[{ label: 'Daily', value: '1' },{ label: 'Every other day', value: '2' }, { label: 'Weekly', value: '3' }, { label: "I don't exercise", value: '4' }]} icon={<MaterialCommunityIcons name="dumbbell" size={22} color="black" style={{ marginRight: 6 }}/> } field={"workout"}/>
+      <DropdownComponent initMessage="I prefer communication via ..." options={[{ label: 'In person', value: '1' },{ label: 'Texting', value: '2' }, { label: 'Phone calls', value: '3' }, { label: "Video chats", value: '4' }]} icon={<Ionicons name="chatbubbles-sharp" size={22} color="black" style={{ marginRight: 6 }}/> } field={"communication_style"}/>
+      
+      <DropdownComponent
+        initMessage="An ideal first meet-up would be ..."
+        options={[
+          { label: 'Video chat', value: '1' },
+          { label: 'A chill night at home', value: '2' },
+          { label: 'Play a board game', value: '3' },
+          { label: 'Go stargazing', value: '4' },
+          { label: 'Go to a coffee shop', value: '5' },
+          { label: 'Grab a bite of food', value: '6' },
+          { label: 'Catch a movie', value: '7' },
+          { label: 'Go for a walk', value: '8' },
+          { label: 'Go on a hike', value: '9' },
+          { label: 'Go to a trivia night', value: '10' },
+          { label: 'Visit a karaoke bar', value: '11' },
+        ]}
+        icon={<FontAwesome5 name="people-arrows" size={19} color="black" style={{ marginRight: 6 }}/> }
+        field={"ideal_first_meetup"}
+      />
 
       <DropdownComponent initMessage="I'd prefer a ..." options={[{ label: 'Dog', value: '1' },{ label: 'Cat', value: '2' },{ label: "Fish", value: '3' },{ label: "Lizard", value: '4' },{ label: "Other", value: '5' }]} icon={<MaterialIcons name="pets" size={20} color="black" style={{ marginRight: 6 }} /> } field={"pet_preference"}/>
     <View style={styles.buttonContainer}>

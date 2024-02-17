@@ -84,6 +84,8 @@ const DisplayItems = () => {
     }
 
   } 
+
+  console.log("feed items:",feedItems);
   
   return (
     <View>
@@ -104,6 +106,8 @@ const DisplayItems = () => {
           has_tattoos={item.has_tattoos}
           workout={item.workout}
           sleep_schedule={item.sleep_schedule}
+          Communication_style={item.communication_style}
+          Ideal_first_meetup={item.ideal_first_meetup}
         />
       ))}
     </View>
