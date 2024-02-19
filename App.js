@@ -19,6 +19,8 @@ import PersonsProfile from './screens/PersonsProfile'
 import ErrorPage from './screens/errorFiles/Error';
 import FlashMessage from 'react-native-flash-message';
 import Footer from './screens/src/components/feedComponents/footer';
+import EditProfilePage from './screens/EditUserProfile';
+import ViewProfilePage from './screens/ViewUserProfile';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -44,6 +46,9 @@ export default function App() {
         <Stack.Screen name="Store" component={Store} />
         <Stack.Screen name="PersonsProfile" component={PersonsProfile} />
         <Stack.Screen name="ErrorPage" component={ErrorPage} />
+        <Stack.Screen name="EditProfilePage" component={EditProfilePage} options={{ animation:'fade' }}/>
+        <Stack.Screen name="ViewProfilePage" component={ViewProfilePage} options={{ animation:'fade' }}/>
+
       </Stack.Navigator>
     </NavigationContainer>
   );

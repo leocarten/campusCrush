@@ -1,7 +1,7 @@
 import { Text, View, StyleSheet } from "react-native";
 import GradientText from "../../styles/gradientText";
 import { FontAwesome } from '@expo/vector-icons';
-import { iconColors } from "../../styles/feedStyles/feedColors";
+import { expandedIconColor, iconColors } from "../../styles/feedStyles/feedColors";
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { lineColor } from "../../styles/feedStyles/feedColors";
@@ -193,9 +193,55 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage }) => {
     </View>
     );
   }
+  else if(onFeedPage === 7){ // the user is on edit profile page
+    return (
+      <View style={styles.headerView}>
+        <View style={styles.leftContainer}>
+          {/* <Text>CampusCrush</Text> */}
+          <TouchableOpacity onPress={backToFeed}>
+            <GradientText colors={['#cc2b5e', '#753a88']} style={styles.campusCrush}>
+              <Text>
+              <Ionicons name="chevron-back" size={30} color="black" />
+              </Text>
+            </GradientText>
+          </TouchableOpacity>
+        </View> 
+        <TouchableOpacity>
+          <View style={styles.saveButtonContainer}>
+            <Text style={styles.saveButtonText}>
+              Save Changes <FontAwesome5 name="check-circle" size={18} color={expandedIconColor} />
+            </Text>
+          </View>
+        </TouchableOpacity>
+    </View>
+    );
+  }
 };
   
 const styles = StyleSheet.create({
+  saveButtonContainer:{
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignSelf: 'center',
+    marginTop: '1%',
+    borderWidth: 2,
+    borderColor: expandedIconColor,
+    padding: 5,
+    borderRadius: 5,
+    shadowColor: "white",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+    
+    elevation: 6,
+  },
+  saveButtonText: {
+    fontSize: 18,
+    color: iconColors
+  },
   points: {
     color: iconColors,
     alignSelf: "center",

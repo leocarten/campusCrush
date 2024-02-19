@@ -65,24 +65,24 @@ function CreateAcc() {
       <Text style={styles.info}><Ionicons name="ios-information-circle-outline" size={20} color="black" /> Only the Name, Gender, and Birthday fields are <Text style={{fontWeight:'bold'}}>required</Text>, the rest will help other users get to know you better!</Text>
     </View>
       {/* <Text style={styles.welcome}>Let's start by getting some basic information!</Text> */}
-      <UserInputAccCreation initMessage={"My first name is ..."} icon="new-message" field={"firstname"}/>
+      <UserInputAccCreation initMessage={"My first name is ..."} icon="new-message" field={"firstname"} typeOfChange={'creation'}/>
 
       {/* <UserInputAccCreation initMessage={"My birthday is ..."} icon="calendar" field={"birthday"}/> */}
       <CustomDatePicker/>
 
-      <UserInputAccCreation initMessage={"Create a short bio ..."} icon="quote" field={"bio"}/>
-      <DropdownComponent initMessage="I identify as a ..." options={[{ label: 'Male', value: '1' },{ label: 'Female', value: '2' },{ label: 'Other', value: '3' },]} icon={<Ionicons name="person" size={20} color="black" style={{ marginRight: 5 }}/>} field={"gender"}/>
-      <UserInputAccCreation initMessage={"One thing on my bucket-list ..."} icon="bucket" field={"bucket_list"}/>
-      <UserInputAccCreation initMessage={"To unlock my heart, you need ..."} icon="lock-open" field={"win_my_heart"}/>
-      <MultiSelectComponent initMessage={"My interests and hobbies are ..."} options={interestAndHobbies} icon={<MaterialIcons name="lightbulb" size={20} color="black" style={{ marginRight: 9 }}/>} field={"interests_hobbies"}/>
-      <MultiSelectComponent initMessage={"I listen to ..."} options={musicChoices} icon={<Entypo name="folder-music" size={22} color="black" style={{ marginRight: 9 }}/>} field={"music_preference"}/>
-      <UserInputAccCreation initMessage={"My job title is ..."} icon="briefcase" field={"job"}/>
+      <UserInputAccCreation initMessage={"Create a short bio ..."} icon="quote" field={"bio"} typeOfChange={"creation"}/>
+      <DropdownComponent initMessage="I identify as a ..." options={[{ label: 'Male', value: '1' },{ label: 'Female', value: '2' },{ label: 'Other', value: '3' },]} icon={<Ionicons name="person" size={20} color="black" style={{ marginRight: 5 }}/>} field={"gender"} typeOfChange={"creation"}/>
+      <UserInputAccCreation initMessage={"One thing on my bucket-list ..."} icon="bucket" field={"bucket_list"} typeOfChange={"creation"}/>
+      <UserInputAccCreation initMessage={"To unlock my heart, you need ..."} icon="lock-open" field={"win_my_heart"} typeOfChange={"creation"}/>
+      <MultiSelectComponent initMessage={"My interests and hobbies are ..."} options={interestAndHobbies} icon={<MaterialIcons name="lightbulb" size={20} color="black" style={{ marginRight: 9 }}/>} field={"interests_hobbies"} typeOfChange={"creation"}/>
+      <MultiSelectComponent initMessage={"I listen to ..."} options={musicChoices} icon={<Entypo name="folder-music" size={22} color="black" style={{ marginRight: 9 }}/>} field={"music_preference"} typeOfChange={"creation"}/>
+      <UserInputAccCreation initMessage={"My job title is ..."} icon="briefcase" field={"job"} typeOfChange={"creation"}/>
 
-      <DropdownComponent initMessage="I have tattoos ..." options={[{ label: 'Yes', value: '1' },{ label: 'No, but I want some in the future', value: '2' }, { label: 'No', value: '3' }]} icon={<MaterialCommunityIcons name="needle" size={22} color="black" style={{ marginRight: 6 }}/> } field={"has_tattoos"}/>
-      <DropdownComponent initMessage="I am a ..." options={[{ label: 'Morning person', value: '1' },{ label: 'Night owl', value: '2' }, { label: 'Both', value: '3' }, { label: 'Neither', value: '4' }]} icon={<MaterialCommunityIcons name="sleep" size={22} color="black" style={{ marginRight: 6 }}/> } field={"sleep_schedule"}/>
+      <DropdownComponent initMessage="I have tattoos ..." options={[{ label: 'Yes', value: '1' },{ label: 'No, but I want some in the future', value: '2' }, { label: 'No', value: '3' }]} icon={<MaterialCommunityIcons name="needle" size={22} color="black" style={{ marginRight: 6 }}/> } field={"has_tattoos"} typeOfChange={"creation"}/>
+      <DropdownComponent initMessage="I am a ..." options={[{ label: 'Morning person', value: '1' },{ label: 'Night owl', value: '2' }, { label: 'Both', value: '3' }, { label: 'Neither', value: '4' }]} icon={<MaterialCommunityIcons name="sleep" size={22} color="black" style={{ marginRight: 6 }}/> } field={"sleep_schedule"} typeOfChange={"creation"}/>
      
-      <DropdownComponent initMessage="I exercise ..." options={[{ label: 'Daily', value: '1' },{ label: 'Every other day', value: '2' }, { label: 'Weekly', value: '3' }, { label: "I don't exercise", value: '4' }]} icon={<MaterialCommunityIcons name="dumbbell" size={22} color="black" style={{ marginRight: 6 }}/> } field={"workout"}/>
-      <DropdownComponent initMessage="I prefer communication via ..." options={[{ label: 'In person', value: '1' },{ label: 'Texting', value: '2' }, { label: 'Phone calls', value: '3' }, { label: "Video chats", value: '4' }]} icon={<Ionicons name="chatbubbles-sharp" size={22} color="black" style={{ marginRight: 6 }}/> } field={"communication_style"}/>
+      <DropdownComponent initMessage="I exercise ..." options={[{ label: 'Daily', value: '1' },{ label: 'Every other day', value: '2' }, { label: 'Weekly', value: '3' }, { label: "I don't exercise", value: '4' }]} icon={<MaterialCommunityIcons name="dumbbell" size={22} color="black" style={{ marginRight: 6 }}/> } field={"workout"} typeOfChange={"creation"}/>
+      <DropdownComponent initMessage="I prefer communication via ..." options={[{ label: 'In person', value: '1' },{ label: 'Texting', value: '2' }, { label: 'Phone calls', value: '3' }, { label: "Video chats", value: '4' }]} icon={<Ionicons name="chatbubbles-sharp" size={22} color="black" style={{ marginRight: 6 }}/> } field={"communication_style"} typeOfChange={"creation"}/>
       
       <DropdownComponent
         initMessage="An ideal first meet-up would be ..."
@@ -101,9 +101,10 @@ function CreateAcc() {
         ]}
         icon={<FontAwesome5 name="people-arrows" size={19} color="black" style={{ marginRight: 6 }}/> }
         field={"ideal_first_meetup"}
+        typeOfChange={"creation"}
       />
 
-      <DropdownComponent initMessage="I'd prefer a ..." options={[{ label: 'Dog', value: '1' },{ label: 'Cat', value: '2' },{ label: "Fish", value: '3' },{ label: "Lizard", value: '4' },{ label: "Other", value: '5' }]} icon={<MaterialIcons name="pets" size={20} color="black" style={{ marginRight: 6 }} /> } field={"pet_preference"}/>
+      <DropdownComponent initMessage="I'd prefer a ..." options={[{ label: 'Dog', value: '1' },{ label: 'Cat', value: '2' },{ label: "Fish", value: '3' },{ label: "Lizard", value: '4' },{ label: "Other", value: '5' }]} icon={<MaterialIcons name="pets" size={20} color="black" style={{ marginRight: 6 }} /> } field={"pet_preference"} typeOfChange={"creation"}/>
     <View style={styles.buttonContainer}>
       <Text style={styles.next} onPress={lastPage}>
         <Text style={styles.buttonFont}><Entypo name="arrow-with-circle-left" size={24} color="black" /> Back </Text>

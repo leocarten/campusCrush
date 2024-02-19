@@ -11,7 +11,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 const ErrorPage = ({ route }) => {
   const navigation = useNavigation();
-  const { message } = route.params;
+  const { body, message, page } = route.params;
   return (
     <LinearGradient
     colors={feedBackgroundColor}
@@ -19,7 +19,7 @@ const ErrorPage = ({ route }) => {
     start={{ x: 0, y: 0 }}
     end={{ x: 1, y: 1 }}>
     <SafeAreaView style={{backgroundColor: feedHeadingBackground}}>
-      <Header onFeedPage={6}/>
+      <Header onFeedPage={page}/>
     </SafeAreaView>
 
     <ScrollView>
@@ -28,7 +28,7 @@ const ErrorPage = ({ route }) => {
                 <MaterialIcons name="error-outline" size={70}/>
             </Text>
             <Text style={styles.error}>
-                INVALID CREDENTIALS
+                {body}
             </Text>
             <Text style={styles.errorText}>
                 {message}
@@ -48,7 +48,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     errorText: {
-        fontSize: 20
+        fontSize: 20,
+        textAlign: 'center',
     },
     errorMessage: { 
         marginTop: '3%',

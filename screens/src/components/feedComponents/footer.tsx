@@ -7,12 +7,18 @@ import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { TouchableOpacity } from "react-native";
 import { useRef } from "react";
+import { useNavigation } from '@react-navigation/native'
 
-const handleEditProfilePress = () => {
-  console.log("edit profile.");
-}
 
 const Footer = () => {
+
+    // const navigation = useNavigation();
+    const navigation = useNavigation();
+
+    const handleEditProfilePress = async () => {
+      navigation.navigate("EditProfilePage");
+    };
+
     return (
       <View style={styles.FooterView}>
 
