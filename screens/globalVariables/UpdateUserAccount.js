@@ -23,3 +23,20 @@ const variables = {
   export function getVariablesFromUserUpdate() {
     return variables;
   }
+
+  export function resetValues(){
+    variables["bio"] = "";
+    variables["bucket_list"] = "";
+    variables["interests_hobbies"] = [];
+    variables["music_preference"] = [];
+    variables["pet_preference"] = "";
+    variables["app_purpose"] = "";
+    variables["wants_to_be_shown"] = "";
+    variables["has_tattoos"] = "";
+    variables["sleep_schedule"] = "";
+    variables["win_my_heart"] = "";
+    variables["job"] = "";
+    variables["workout"] = "";
+    variables["communication_style"] = "";
+    variables["ideal_first_meetup"] = "";
+  }

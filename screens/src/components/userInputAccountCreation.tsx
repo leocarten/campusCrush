@@ -50,6 +50,7 @@ const MultiSelectComponent = ({ initMessage, icon, onUserInput, field, typeOfCha
     );
   }
   else{
+    console.log("you should see this!")
     const [userInput, setUserInput] = useState('');
     const handleEndEditing = () => {
       if(field === "bio"){
@@ -67,6 +68,7 @@ const MultiSelectComponent = ({ initMessage, icon, onUserInput, field, typeOfCha
       else if(field === "workout"){
         updateUserVariables(field, userInput);
       }
+      console.log("hi")
     };
     return (
       <View style={styles.container}>
@@ -77,8 +79,12 @@ const MultiSelectComponent = ({ initMessage, icon, onUserInput, field, typeOfCha
             placeholder={initMessage}
             placeholderTextColor="rgba(0,0,0,0.5)"
             value={userInput}
-            onChangeText={(text) => setUserInput(text)}
-            onEndEditing={handleEndEditing}
+            onChangeText={(text) => {
+              setUserInput(text)
+              updateUserVariables(field, text);
+            }
+          }
+            // onEndEditing={handleEndEditing}
           />
         </View>
       </View>

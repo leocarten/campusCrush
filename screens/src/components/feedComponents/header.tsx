@@ -10,13 +10,22 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
-
+import { getVariablesFromUserUpdate } from "../../../globalVariables/UpdateUserAccount";
+import { resetValues } from "../../../globalVariables/UpdateUserAccount";
+import EditUserData from "../../../../endpoints/EditUserData";
 interface HeaderProps {
   onFeedPage: int;
 }
 
 const Header: React.FC<HeaderProps> = ({ onFeedPage }) => {
   const navigation = useNavigation();
+
+  // const handleUpdateData = () => {
+  //   console.log(getVariablesFromUserUpdate());
+  //   console.log("I am making the request ...");
+  //   console.log(getVariablesFromUserUpdate());
+  //   EditUserData()
+  // }
 
   const goToFilter = () => {
     navigation.navigate("FilterPage");
@@ -206,42 +215,43 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage }) => {
             </GradientText>
           </TouchableOpacity>
         </View> 
-        <TouchableOpacity>
+        <EditUserData/>
+        {/* <TouchableOpacity onPress={handleUpdateData}>
           <View style={styles.saveButtonContainer}>
             <Text style={styles.saveButtonText}>
               Save Changes <FontAwesome5 name="check-circle" size={18} color={expandedIconColor} />
             </Text>
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
     </View>
     );
   }
 };
   
 const styles = StyleSheet.create({
-  saveButtonContainer:{
-    justifyContent: 'center',
-    alignContent: 'center',
-    alignSelf: 'center',
-    marginTop: '1%',
-    borderWidth: 2,
-    borderColor: expandedIconColor,
-    padding: 5,
-    borderRadius: 5,
-    shadowColor: "white",
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.27,
-    shadowRadius: 4.65,
+  // saveButtonContainer:{
+  //   justifyContent: 'center',
+  //   alignContent: 'center',
+  //   alignSelf: 'center',
+  //   marginTop: '1%',
+  //   borderWidth: 2,
+  //   borderColor: expandedIconColor,
+  //   padding: 5,
+  //   borderRadius: 5,
+  //   shadowColor: "white",
+  //   shadowOffset: {
+  //     width: 0,
+  //     height: 3,
+  //   },
+  //   shadowOpacity: 0.27,
+  //   shadowRadius: 4.65,
     
-    elevation: 6,
-  },
-  saveButtonText: {
-    fontSize: 18,
-    color: iconColors
-  },
+  //   elevation: 6,
+  // },
+  // saveButtonText: {
+  //   fontSize: 18,
+  //   color: iconColors
+  // },
   points: {
     color: iconColors,
     alignSelf: "center",
