@@ -23,7 +23,12 @@ import { backgroundColor } from './src/styles/backgroundColors';
 import { getVariables } from './globalVariables/GlobalVariables';
 import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 import AcceptTOS_Button from './endpointStuff/CreateUser';
-
+import * as Location from 'expo-location';
+import { useEffect } from 'react';
+import { Alert } from 'react-native';
+import { updateGlobalVariables } from './globalVariables/GlobalVariables';
+import MovingIcon from './src/components/movingIcon';
+import { SafeAreaView } from 'react-native-safe-area-context';
 function CreateAcc() {
   const navigation = useNavigation();
 
@@ -33,39 +38,32 @@ function CreateAcc() {
     navigation.navigate('CreateAcc3');
   };
 
-  // const nextPage = async () => {
-  //   setIsLoading(true);
+  const [address, setAddress] = useState();
 
-  // }
+  useEffect(() => {
+    const getPermissions = async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        console.log("Please grant location permissions");
+        return;
+      }
+      let currentLocation = await Location.getCurrentPositionAsync({});
+      // setLocation(currentLocation);
+      console.log("Location:");
+      const lat = (currentLocation['coords']['latitude']);
+      const long_ = (currentLocation['coords']['longitude']);
 
-  // const nextPage = () => {
-  //   // navigation.navigate('Thankyou');
-  //   // console.log(getVariables());
-  //   const [loading, setLoading] = useState(false);
-  //   setLoading(true);
+      console.log(lat);
+      console.log(long_);
 
-  //   fetch('http://18.188.112.190:5001/createUser', {
-  //     method: 'POST',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(getVariables()),
-  //     })
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       // Handle the response data
-  //       console.log(data);
-  //     })
-  //     .catch(error => {
-  //       // Handle errors
-  //       console.error('Error:', error);
-  //     })
-  //     .finally( () => {
-  //       setLoading(false);
-  //     });
-  // };
+      // HARD-CODED VALUES FOR NOW
+      updateGlobalVariables('lat',43.7570);
+      updateGlobalVariables('long_',71.6882);
 
+    };
+    getPermissions();
+  }, []);
+  
   const [username, setUsername] = useState('');
 
   return (
@@ -74,8 +72,10 @@ function CreateAcc() {
     style={styles.container}
     start={{ x: 0, y: 0 }}
     end={{ x: 1, y: 1 }}>
-    <Text style={styles.firstText}>[Icon]</Text>
-    <View style={styles.icon} />
+      <SafeAreaView>
+    <View style={{marginTop:'3%', marginBottom: '3%', alignSelf: 'center'}}>
+      <MovingIcon/>
+    </View>
     <ScrollView>
     <Steps count={6} directions={"Terms and Services"} style={{alignItems: 'left'}}/>
     <HorizontalIconLine count={6}  />
@@ -95,7 +95,7 @@ function CreateAcc() {
 
 
     </ScrollView>
-
+    </SafeAreaView>
     </LinearGradient>
   );
 }

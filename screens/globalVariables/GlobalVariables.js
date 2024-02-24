@@ -18,7 +18,9 @@ const variables = {
   "job":"",
   "workout":"",
   "communication_style":"",
-  "ideal_first_meetup":""
+  "ideal_first_meetup":"",
+  "lat":"",
+  "long_":""
 }
 
 export function updateGlobalVariables(field, newValue){

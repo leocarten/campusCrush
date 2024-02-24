@@ -38,13 +38,13 @@ const Feed = () => {
       <View style={{marginTop: '2%'}}></View>
 
 
-      <DisplayItems/>
+      {/* <DisplayItems/> */}
  
       {/* isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Interests, Music, Job */}
-      {/* <ItemInFeed key={2} isVerified={1} Name={"Molly"} Age={"21"} Comp={"74"} Bio={"Hi there! I'm a spontaneous adventurer with a passion for trying new things. Whether it's exploring hidden gems in the city or embarking on last-minute road trips, I'm always up for a good time and making connections. Let's create some unforgettable memories together!"} AppReason={3} Interests={["Model-building", "Piano playing", "Sports"]} Music={["Rock"]} Job={"Job"}/>
+      <ItemInFeed key={2} isVerified={1} Name={"Molly"} Age={"21"} Comp={"74"} Bio={"Hi there! I'm a spontaneous adventurer with a passion for trying new things. Whether it's exploring hidden gems in the city or embarking on last-minute road trips, I'm always up for a good time and making connections. Let's create some unforgettable memories together!"} AppReason={3} Interests={["Model-building", "Piano playing", "Sports"]} Music={["Rock"]} Job={"Job"}/>
       <ItemInFeed key={3} isVerified={0} Name={"Madison"} Age={"21"} Comp={"85"} Bio={"Hey, I'm a laid-back soul who finds joy in the simple pleasures of life. From cozy movie nights to impromptu picnics in the park, I believe in making every moment count. If you're someone who enjoys laughter, good conversation, and a carefree vibe, we might just hit it off!"} AppReason={1} Interests={["Sports", "Food", "Cooking"]} Music={["Rock"]} Job={"Job"}/>
       <ItemInFeed key={4} isVerified={1} Name={"Hailey"} Age={"21"} Comp={"87"} Bio={"I am cool"} AppReason={2} Interests={["Partying"]} Music={["Country"]} Job={"Software Engineer"} KeyToHeart={""} BucketList={""} has_tattoos={1} workout={1} sleep_schedule={1} personalityType={"INFJ"}/>
-      <ItemInFeed key={5} isVerified={1} Name={"Maria"} Age={"21"} Comp={"79"} Bio={"Hello! I'm a foodie at heart, constantly on the lookout for the next culinary adventure. Whether it's exploring trendy food trucks or experimenting in the kitchen, my taste buds are always ready for a flavor-packed experience. If you're into discovering new cuisines and appreciate good company, let's spice up each other's lives!"} AppReason={3} Interests={["Working out", "Concerts", "Tennis", "Softball"]} Music={["Rock"]} Job={"Job"}/> */}
+      <ItemInFeed key={5} isVerified={1} Name={"Maria"} Age={"21"} Comp={"79"} Bio={"Hello! I'm a foodie at heart, constantly on the lookout for the next culinary adventure. Whether it's exploring trendy food trucks or experimenting in the kitchen, my taste buds are always ready for a flavor-packed experience. If you're into discovering new cuisines and appreciate good company, let's spice up each other's lives!"} AppReason={3} Interests={["Working out", "Concerts", "Tennis", "Softball"]} Music={["Rock"]} Job={"Job"}/>
 
     </ScrollView>
     

@@ -5,6 +5,9 @@ const windowWidth = Dimensions.get('window').width;
 import { Fontisto } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { expandedIconColor } from "../../styles/feedStyles/feedColors";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { feedHeadingBackground } from "../../styles/feedStyles/feedColors";
+
 let windowHeightPercentage;
 if(windowHeight < 700){
     windowHeightPercentage = ( (1-(.2)) * windowHeight);
@@ -19,7 +22,6 @@ import { iconColors } from "../../styles/feedStyles/feedColors";
 import { nameColor } from "../../styles/feedStyles/feedColors";
 import { FontAwesome } from '@expo/vector-icons';
 import { TouchableOpacity } from "react-native";
-import { feedHeadingBackground } from "../../styles/feedStyles/feedColors";
 import GradientText from "../../styles/gradientText";
 import { Platform } from "react-native";
 import { useNavigation } from "@react-navigation/native";
@@ -78,12 +80,19 @@ function renderMusicText(music, index, lengthOfArray) {
     // totalConsumedWidthMusic = 0;
 }
 
-const ItemInFeed = ({isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Interests, Music, Job, KeyToHeart, BucketList, has_tattoos, workout, sleep_schedule, Communication_style, Ideal_first_meetup}) => {
+const ItemInFeed = ({isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Interests, Music, Job, KeyToHeart, BucketList, has_tattoos, workout, sleep_schedule, Communication_style, Ideal_first_meetup, Distance}) => {
     totalConsumedWidth = 0;
     let userWants;
     let comp;
     let verifiedIcon;
     let musicIcon;
+    var roundedDistance = Math.floor(Distance);
+    let distanceUnit = "miles"
+    if(roundedDistance < 1){
+        roundedDistance = 1;
+        distanceUnit = "mile"
+    }
+
     // console.log("Interests:",Interests)
     if(Music[0] != ""){
         musicIcon = <Text style={styles.music}><Fontisto name="applemusic" size={22} color={iconColors}/> </Text>;
@@ -96,21 +105,25 @@ const ItemInFeed = ({isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Inte
     if(isVerified === 1){
         verifiedIcon = <Text><MaterialIcons name="verified" size={22} color="#30ADA7"/></Text>
     }
+    // <DropdownComponent initMessage="I am using this app to find..." options={[{ label: 'Nothing serious', value: '1' },{ label: 'A lasting relationship', value: '2' },{ label: "New experiences", value: '3' },{ label: "New friendships", value: '4' },{ label: "I'm not sure yet", value: '5' }]} icon={<FontAwesome5 name="user-friends" size={20} color="black" style={{ marginRight: 5 }}/>} field={"app_purpose"} typeOfChange={"creation"}/>
 
     if(AppReason === 1){
-        userWants = <Text>A long-term partner &#10084;</Text>;
+        userWants = <Text>Nothing serious &#128524;</Text>;
     }
     else if(AppReason === 2){
-        userWants = <Text>A short-term partner &#128520;</Text>;
+        userWants = <Text>A lasting relationship &#10084;</Text>;
     }
     else if(AppReason === 3){
-        userWants = <Text>To meet new people &#127760;</Text>;
+        userWants = <Text>New experiences &#127760;</Text>;
     }
     else if(AppReason === 4){
-        userWants = <Text>I'm not sure &#129304;</Text>;
+        userWants = <Text>New friendships &#128100;</Text>;
+    }
+    else if(AppReason === 5){
+        userWants = <Text>I'm not sure yet &#129300;</Text>;
     }
     else{
-        userWants = <Text>I DON'T KNOW</Text>;
+        userWants = <Text>Suprise me! &#127880;</Text>;
     }
 
     if(Comp >= 80){
@@ -156,9 +169,12 @@ const ItemInFeed = ({isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Inte
 
                 {/* Expand */}
                 <View style={styles.expandIconContainer}>
+                    <View style={styles.locationContainer}>
+                        <Text style={styles.nearbyText}><MaterialCommunityIcons name="map-marker" size={17} color={expandedIconColor}/> {roundedDistance} {distanceUnit} away </Text>
+                    </View>
                     <TouchableOpacity onPress={handleExpandPress}>
                         <Text>
-                            <FontAwesome name="expand" size={24} color='gray' />
+                            <FontAwesome name="expand" size={23} color='gray' />
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -201,6 +217,27 @@ const ItemInFeed = ({isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Inte
 }
 
 const styles = StyleSheet.create({
+    nearbyText: {
+        fontSize: 14, // Increased font size for emphasis
+        fontWeight: 'bold', // Added bold font weight for better visibility
+        color: expandedIconColor, // Changed text color for better contrast
+    },
+    locationContainer: {
+        borderColor: iconColors,
+        borderWidth: 1,
+        borderRadius: 3,
+        padding: 2,
+        shadowColor: feedHeadingBackground,
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.10,
+        shadowRadius: 1.41,
+        
+        elevation: 2,
+    },
+      
     interest:{
         fontSize: 18,
         backgroundColor: 'transparent',
@@ -271,7 +308,10 @@ const styles = StyleSheet.create({
     },
     expandIconContainer:{
         marginTop: '2%',
-        marginLeft: '92%',
+        marginLeft: '3%',
+        marginRight: '3%',
+        flexDirection: "row",
+        justifyContent: "space-between",
     },
     nameContainer: {
         marginTop: '2%',

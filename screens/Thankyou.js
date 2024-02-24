@@ -9,7 +9,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { getVariables } from './globalVariables/GlobalVariables';
 import ConfettiCannon from 'react-native-confetti-cannon';
-
+import { SafeAreaView } from 'react-native-safe-area-context';
+import MovingIcon from './src/components/movingIcon';
 
 const Thankyou = () => {
   const navigation = useNavigation();
@@ -25,31 +26,34 @@ const Thankyou = () => {
     style={styles.container}
     start={{ x: 0, y: 0 }}
     end={{ x: 1, y: 1 }}>
-    <Text style={styles.firstText}>[Icon]</Text>
-    <View style={styles.icon} />
-    <ConfettiCannon 
-    count={200} 
-    origin={{x: 0, y: 0}} 
-    fallSpeed={2200}
-    fadeOut={true}
-    />
-    <ScrollView>
-    {/* <Steps count={5} directions={"Terms and Services"} style={{alignItems: 'left'}}/> */}
-    {/* <HorizontalIconLine count={5}  /> */}
+    <SafeAreaView>
+      <View style={{marginTop:'3%', marginBottom: '3%', alignSelf: 'center'}}>
+        <MovingIcon/>
+      </View>
+      <ConfettiCannon 
+      count={200} 
+      origin={{x: 0, y: 0}} 
+      fallSpeed={2200}
+      fadeOut={true}
+      />
+      <ScrollView>
+      {/* <Steps count={5} directions={"Terms and Services"} style={{alignItems: 'left'}}/> */}
+      {/* <HorizontalIconLine count={5}  /> */}
 
-    <View style={styles.viewContainer}>
-    <Text style={styles.congrats}>Congradulations, {getVariables()['firstname']}!</Text>
-      {/* <Text style={styles.heading}>Your account has been created <AntDesign name="check" size={22} color="black" /></Text> */}
-      <Text style={styles.text}>Welcome aboard, and thank you for choosing CampusCrush! Explore the unique features, connect with others, and make the most of your CampusCrush experience. We are excited to start this journey with you!</Text>
-      <Text style={styles.text}>As you interact with CampusCrush, please feel free to leave us feedback. We are always happy to hear back from our users!</Text>
-      <Text style={styles.sincerely}>Sincerely,</Text>
-      <Text style={styles.signature}>The CampusCrush Team</Text>
-    </View>
+      <View style={styles.viewContainer}>
+      <Text style={styles.congrats}>Congradulations, {getVariables()['firstname']}!</Text>
+        {/* <Text style={styles.heading}>Your account has been created <AntDesign name="check" size={22} color="black" /></Text> */}
+        <Text style={styles.text}>Welcome aboard, and thank you for choosing CampusCrush! Explore the unique features, connect with others, and make the most of your CampusCrush experience. We are excited to start this journey with you!</Text>
+        <Text style={styles.text}>As you interact with CampusCrush, please feel free to leave us feedback. We are always happy to hear back from our users!</Text>
+        <Text style={styles.sincerely}>Sincerely,</Text>
+        <Text style={styles.signature}>The CampusCrush Team</Text>
+      </View>
 
-    <TouchableOpacity style={styles.showMeFeed} onPress={nextPage}>
-      <Text style={{fontSize: 20, fontWeight: 'bold', padding: 3}}>Go to feed <Ionicons name="arrow-forward" size={20} color="black" /></Text>
-    </TouchableOpacity>
-    </ScrollView>
+      <TouchableOpacity style={styles.showMeFeed} onPress={nextPage}>
+        <Text style={{fontSize: 20, fontWeight: 'bold', padding: 3}}>Go to feed <Ionicons name="arrow-forward" size={20} color="black" /></Text>
+      </TouchableOpacity>
+      </ScrollView>
+    </SafeAreaView>
     </LinearGradient>
   );
 }

@@ -22,6 +22,8 @@ import UserInputAccCreation from './src/components/userInputAccountCreation';
 import { backgroundColor } from './src/styles/backgroundColors';
 import { getVariables } from './globalVariables/GlobalVariables';
 import { Alert } from 'react-native';
+import MovingIcon from './src/components/movingIcon';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 function CreateAcc1a() {
   const navigation = useNavigation();
@@ -52,8 +54,10 @@ function CreateAcc1a() {
     style={styles.container}
     start={{ x: 0, y: 0 }}
     end={{ x: 1, y: 1 }}>
-    <Text style={styles.firstText}>[Icon]</Text>
-    <View style={styles.icon} />
+      <SafeAreaView>
+    <View style={{marginTop:'3%', marginBottom: '3%', alignSelf: 'center'}}>
+      <MovingIcon/>
+    </View>
     <ScrollView>
     <Steps count={3} directions={"Customize your feed"} style={{alignItems: 'left'}}/>
     <HorizontalIconLine count={3}  />
@@ -61,8 +65,9 @@ function CreateAcc1a() {
       <Text style={styles.info}><Ionicons name="ios-information-circle-outline" size={20} color="black" /> How does this impact my feed?</Text>
     </View>
       {/* <Text style={styles.welcome}>Let's start by getting some basic information!</Text> */}
+      <DropdownComponent initMessage="I am using this app to find..." options={[{ label: 'Nothing serious', value: '1' },{ label: 'A lasting relationship', value: '2' },{ label: "New experiences", value: '3' },{ label: "New friendships", value: '4' },{ label: "I'm not sure yet", value: '5' }]} icon={<FontAwesome5 name="user-friends" size={20} color="black" style={{ marginRight: 5 }}/>} field={"app_purpose"} typeOfChange={"creation"}/>
 
-      <DropdownComponent initMessage="I am using this app to ..." options={[{ label: 'Find a short-term partner', value: '1' },{ label: 'Find a long-term parter', value: '2' },{ label: "Meet new people", value: '3' },{ label: "Find new friends", value: '4' },{ label: "I'm not sure yet", value: '5' }]} icon={<FontAwesome5 name="user-friends" size={20} color="black" style={{ marginRight: 5 }}/>} field={"app_purpose"} typeOfChange={"creation"}/>
+      {/* <DropdownComponent initMessage="I am using this app to ..." options={[{ label: 'Find a short-term partner', value: '1' },{ label: 'Find a long-term parter', value: '2' },{ label: "Meet new people", value: '3' },{ label: "Find new friends", value: '4' },{ label: "I'm not sure yet", value: '5' }]} icon={<FontAwesome5 name="user-friends" size={20} color="black" style={{ marginRight: 5 }}/>} field={"app_purpose"} typeOfChange={"creation"}/> */}
       <DropdownComponent initMessage="I want to be shown ..." options={[{ label: 'Males only', value: '1' },{ label: 'Females only', value: '2' },{ label: "Everyone", value: '3' },]} icon={<MaterialIcons name="person-search" size={28} color="black" style={{ marginRight: 4 }}/>} field={"wants_to_be_shown"} typeOfChange={"creation"}/>
 
      
@@ -78,6 +83,7 @@ function CreateAcc1a() {
     </View>
 
     </ScrollView>
+    </SafeAreaView>
 
     </LinearGradient>
   );
@@ -95,7 +101,8 @@ const styles = StyleSheet.create({
     marginTop: 20, 
     marginBottom: 60, 
     marginLeft: '10%',
-    marginRight: '10%'
+    marginRight: '10%',
+    marginTop: '70%'
   },
   next: {
     backgroundColor: 'transparent',

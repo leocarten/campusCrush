@@ -13,6 +13,8 @@ import { AntDesign } from '@expo/vector-icons';
 import { getVariablesFromUserUpdate } from "../../../globalVariables/UpdateUserAccount";
 import { resetValues } from "../../../globalVariables/UpdateUserAccount";
 import EditUserData from "../../../../endpoints/EditUserData";
+import MovingIcon from "../movingIcon";
+
 interface HeaderProps {
   onFeedPage: int;
 }

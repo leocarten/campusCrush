@@ -82,10 +82,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignContent: 'center',
         alignSelf: 'center',
-        marginTop: '1%',
+        // marginTop: '1%',
         borderWidth: 2,
         borderColor: expandedIconColor,
-        padding: 5,
+        padding: 3,
         borderRadius: 5,
         shadowColor: "white",
         shadowOffset: {

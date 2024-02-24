@@ -23,6 +23,8 @@ import { backgroundColor } from './src/styles/backgroundColors';
 import {updateGlobalVariables} from './globalVariables/GlobalVariables';
 import {getVariables} from './globalVariables/GlobalVariables';
 import { Alert } from 'react-native';
+import MovingIcon from './src/components/movingIcon';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 function GetUserCredentials() {
 
@@ -59,8 +61,10 @@ function GetUserCredentials() {
     style={styles.container}
     start={{ x: 0, y: 0 }}
     end={{ x: 1, y: 1 }}>
-    <Text style={styles.firstText}>[Icon]</Text>
-    <View style={styles.icon} />
+      <SafeAreaView>
+    <View style={{marginTop:'3%', marginBottom: '3%', alignSelf: 'center'}}>
+      <MovingIcon/>
+    </View>
     <ScrollView>
     <Steps count={1} directions={"User Credentials"} style={{alignItems: 'left'}}/>
     <HorizontalIconLine count={1}  />
@@ -68,7 +72,7 @@ function GetUserCredentials() {
       <Text style={styles.info}><Ionicons name="ios-information-circle-outline" size={20} color="black" /> Password must be 10 or more characters, contain a special character, and a capital letter</Text>
     </View>
 
-<View style={styles.inputContainer}>
+      <View style={styles.inputContainer}>
         <View style={styles.iconContainer}>
         <AntDesign name="user" size={24} color="black"/>
         </View>
@@ -106,7 +110,7 @@ function GetUserCredentials() {
     </View>
 
     </ScrollView>
-
+    </SafeAreaView>
     </LinearGradient>
   );
   }
@@ -124,6 +128,7 @@ const styles = StyleSheet.create({
     marginBottom: 60, 
     marginLeft: '10%',
     marginRight: '10%',
+    marginTop: '60%'
   },
   inputBox: {
     height: 40,

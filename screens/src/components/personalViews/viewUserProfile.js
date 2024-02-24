@@ -420,21 +420,25 @@ const ViewUserProfile = () => {
   }
 
 //   APP PURPOSE AND GOALS
+
   if(personGoals === 1){
-    userWants = <Text>A long-term partner &#10084;</Text>;
-    }
-    else if(personGoals === 2){
-        userWants = <Text>A short-term partner &#128520;</Text>;
-    }
-    else if(personGoals === 3){
-        userWants = <Text>To meet new people &#127760;</Text>;
-    }
-    else if(personGoals === 4){
-        userWants = <Text>I'm not sure &#129304;</Text>;
-    }
-    else{
-        userWants = <Text>I DON'T KNOW</Text>;
-    }
+    userWants = <Text>Nothing serious &#128524;</Text>;
+  }
+  else if(personGoals === 2){
+    userWants = <Text>A lasting relationship &#10084;</Text>;
+  }
+  else if(personGoals === 3){
+    userWants = <Text>New experiences &#127760;</Text>;
+  }
+  else if(personGoals === 4){
+    userWants = <Text>New friendships &#128100;</Text>;
+  }
+  else if(personGoals === 5){
+    userWants = <Text>I'm not sure yet &#129300;</Text>;
+  }
+  else{
+    userWants = <Text>Suprise me! &#127880;</Text>;
+  }
 
   return (
 

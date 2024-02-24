@@ -24,6 +24,8 @@ import { getVariables } from './globalVariables/GlobalVariables';
 import CustomDatePicker from './src/components/CustomDatePicker';
 import { Alert } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import MovingIcon from './src/components/movingIcon';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 function CreateAcc() {
   const navigation = useNavigation();
@@ -56,8 +58,10 @@ function CreateAcc() {
     style={styles.container}
     start={{ x: 0, y: 0 }}
     end={{ x: 1, y: 1 }}>
-    <Text style={styles.firstText}>[Icon]</Text>
-    <View style={styles.icon} />
+      <SafeAreaView>
+    <View style={{marginTop:'3%', marginBottom: '3%', alignSelf: 'center'}}>
+      <MovingIcon/>
+    </View>
     <ScrollView>
     <Steps count={2} directions={"Build your profile"} style={{alignItems: 'left'}}/>
     <HorizontalIconLine count={2}  />
@@ -116,7 +120,7 @@ function CreateAcc() {
     </View>
 
     </ScrollView>
-
+    </SafeAreaView>
     </LinearGradient>
   );
   }
@@ -132,7 +136,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between', 
     marginTop: '10%', 
-    marginBottom: '20%', 
+    marginBottom: '40%', 
     marginLeft: '10%',
     marginRight: '10%'
   },

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Animated, Easing } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { Text } from 'react-native';
+import { Image } from 'react-native';
 
 const MovingIcon = () => {
   const [animatedValue] = useState(new Animated.Value(0));
@@ -30,12 +32,25 @@ const MovingIcon = () => {
 
   const translateY = animatedValue.interpolate({
     inputRange: [0, 1],
-    outputRange: [0, 6], // Adjust the range as needed
+    outputRange: [0, 1], // Adjust the range as needed
   });
 
   return (
     <Animated.View style={[styles.icon, { transform: [{ translateY }] }]}>
-      <FontAwesome5 name="hand-holding-heart" size={60} color="black" />
+      <Image
+      source={require('./../..//assets/images/ccLogo1.png')}
+      style={{ 
+        width: 80, 
+        height: 80, 
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.8,
+        shadowRadius: 4.62,
+      }}
+      />
     </Animated.View>
   );
 };
@@ -44,7 +59,7 @@ const styles = StyleSheet.create({
   icon: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: '5%'
+    marginBottom: '1%'
   },
 });
 

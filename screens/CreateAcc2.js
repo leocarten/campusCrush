@@ -20,11 +20,13 @@ import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 import UserInputAccCreation from './src/components/userInputAccountCreation';
 import { backgroundColor } from './src/styles/backgroundColors';
+import MovingIcon from './src/components/movingIcon';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 function CreateAcc() {
   const navigation = useNavigation();
   const lastPage = () => {
-    navigation.navigate('CreateAcc');
+    navigation.navigate('CreateAcc1a');
   };
   const nextPage = () => {
     navigation.navigate('CreateAcc3');
@@ -38,8 +40,10 @@ function CreateAcc() {
     style={styles.container}
     start={{ x: 0, y: 0 }}
     end={{ x: 1, y: 1 }}>
-    <Text style={styles.firstText}>[Icon]</Text>
-    <View style={styles.icon} />
+      <SafeAreaView>
+    <View style={{marginTop:'3%', marginBottom: '3%', alignSelf: 'center'}}>
+      <MovingIcon/>
+    </View>
     <ScrollView>
     <Steps count={4} directions={"Choose your Bitmoji"} style={{alignItems: 'left'}}/>
     <HorizontalIconLine count={4}  />
@@ -60,7 +64,7 @@ function CreateAcc() {
 
 
     </ScrollView>
-
+    </SafeAreaView>
     </LinearGradient>
   );
 }
