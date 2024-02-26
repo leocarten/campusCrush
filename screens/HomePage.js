@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     marginBottom: '55%',
   },
   supercharge: {
-    fontStyle: 'italic',
+    // fontStyle: 'italic',
     textShadowColor: 'rgba(0, 0, 0, 0.5)',
     textShadowOffset: {width: -1, height: 1},
     textShadowRadius: 1,

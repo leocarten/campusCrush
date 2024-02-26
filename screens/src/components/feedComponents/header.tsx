@@ -49,6 +49,10 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage }) => {
     navigation.navigate("Login");
   }
 
+  const goHome= () => {
+    navigation.navigate("Welcome");
+  }
+
   if(onFeedPage === 1){ // on the feed
     return (
       <View style={styles.headerView}>
@@ -104,7 +108,7 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage }) => {
           </TouchableOpacity>
         </View>
 
-        <View style={styles.iconStyle}>
+        {/* <View style={styles.iconStyle}>
           <TouchableOpacity>
             <Text><MaterialCommunityIcons name="restart" size={30} color={iconColors} /></Text>
             </TouchableOpacity>
@@ -114,7 +118,7 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage }) => {
           <TouchableOpacity>
             <Text><AntDesign name="checkcircle" size={28} color='#29900B' /></Text>
             </TouchableOpacity>
-        </View>
+        </View> */}
         
     </View>
     );
@@ -206,28 +210,51 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage }) => {
   }
   else if(onFeedPage === 7){ // the user is on edit profile page
     return (
-      <View style={styles.headerView}>
-        <View style={styles.leftContainer}>
-          {/* <Text>CampusCrush</Text> */}
-          <TouchableOpacity onPress={backToFeed}>
-            <GradientText colors={['#cc2b5e', '#753a88']} style={styles.campusCrush}>
-              <Text>
-              <Ionicons name="chevron-back" size={30} color="black" />
-              </Text>
-            </GradientText>
-          </TouchableOpacity>
-        </View> 
+    //   <View style={styles.headerView}>
+    //     <View style={styles.leftContainer}>
+    //       {/* <Text>CampusCrush</Text> */}
+    //       <TouchableOpacity onPress={backToFeed}>
+    //         <GradientText colors={['#cc2b5e', '#753a88']} style={styles.campusCrush}>
+    //           <Text>
+    //           <Ionicons name="chevron-back" size={30} color="black" />
+    //           </Text>
+    //         </GradientText>
+    //       </TouchableOpacity>
+    //     </View> 
+    //     <EditUserData/>
+    // </View>
+    <View style={styles.headerView}>
+      <View style={styles.leftContainer}>
+        {/* <Text>CampusCrush</Text> */}
+        <TouchableOpacity onPress={backToFeed}>
+          <GradientText colors={['#cc2b5e', '#753a88']} style={styles.campusCrush}>
+            <Ionicons name="chevron-back" size={30} color="black" />
+          </GradientText>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.rightContainer}>
         <EditUserData/>
-        {/* <TouchableOpacity onPress={handleUpdateData}>
-          <View style={styles.saveButtonContainer}>
-            <Text style={styles.saveButtonText}>
-              Save Changes <FontAwesome5 name="check-circle" size={18} color={expandedIconColor} />
-            </Text>
-          </View>
-        </TouchableOpacity> */}
+      </View>
     </View>
+
     );
   }
+  else if(onFeedPage === 8){ // the user is on learn about campuscrush page
+    return (
+    <View style={styles.headerView}>
+      <View style={styles.leftContainer}>
+        {/* <Text>CampusCrush</Text> */}
+        <TouchableOpacity onPress={goHome}>
+          <GradientText colors={['#cc2b5e', '#753a88']} style={styles.campusCrush}>
+            <Ionicons name="chevron-back" size={30}  />
+          </GradientText>
+        </TouchableOpacity>
+      </View>
+    </View>
+
+    );
+  }
+
 };
   
 const styles = StyleSheet.create({
@@ -267,13 +294,14 @@ const styles = StyleSheet.create({
         marginLeft: '2%',
         marginRight: '2%',
         flexDirection: 'row',
-        justifyContent: 'space-between', 
+        alignItems: 'center', // Center items vertically
+        justifyContent: 'center', 
         // borderBottomWidth: 1.5,
         borderColor: lineColor,
         paddingBottom: '3%',
     },
     leftContainer: {
-        flex: 1, // Takes 2/5 of the available space
+      marginRight: 'auto', // Takes 2/5 of the available space
       },
       campusCrush: {
         fontSize: 29,
@@ -282,6 +310,9 @@ const styles = StyleSheet.create({
         textShadowOffset: {width: -1, height: 1},
         textShadowRadius: 2,
         // marginRight: '2%'
+      },
+      rightContainer: {
+        marginLeft: 'auto', // Pushes EditUserData component to the left
       },
 });
 

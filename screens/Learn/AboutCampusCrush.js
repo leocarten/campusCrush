@@ -10,6 +10,11 @@ import { LinearGradient } from "expo-linear-gradient";
 import { learnBackgroundColor } from "../src/styles/learnBackgroundColors";
 import GradientText from "../src/styles/gradientText";
 import { feedHeadingBackground } from "../src/styles/feedStyles/feedColors";
+import MovingIcon from "../src/components/movingIcon";
+import { backgroundColor } from "../src/styles/backgroundColors";
+import { iconColors } from "../src/styles/feedStyles/feedColors";
+import Header from "../src/components/feedComponents/header";
+
 function AboutCampusCrush() {
     const navigation = useNavigation();
 
@@ -21,84 +26,97 @@ function AboutCampusCrush() {
         navigation.navigate('Welcome');
     }
     return(
-
-        <ScrollView style={styles.all}>
-            <SafeAreaView>
-
-                <View >
-                    <View style={styles.section}>
-                    <GradientText colors={['#cc2b5e', '#753a88']} style={styles.campusCrush}>
-                    CampusCrush
-                    </GradientText>                       
-                     <Text style={styles.sectionHeading}>What is CampusCrush?</Text>
-                        <Text style={styles.body}>
-                            Discover a whole new way to connect with others using CampusCrush - our mobile app is your new go-to platform for meeting, chatting, and interacting with others. Whether you're searching for friends, partners, or more, CampusCrush has got you covered. Dive into our dynamic feed, spark conversations, and personalize your profile to showcase the real you. Elevate your experience with our unique points system – redeem perks from our in-app store to boost your odds of making meaningful connections.
-                        </Text>
-                        <Text style={styles.body}>
-                            Our app offers:
-                        </Text>
-                        <Text style={styles.bulletPoint}> <Text style={{fontSize: 26}}>&#128140;</Text> Blind dates</Text>
-                        <Text style={styles.bulletPoint}> <Text style={{fontSize: 26}}>&#129668;</Text> Match-making games</Text>
-                        <Text style={styles.bulletPoint}> <Text style={{fontSize: 26}}>&#127919;</Text> Filter to find a connection for you</Text>
-                        <Text style={styles.bulletPoint}>... add more as i expand out</Text>
-                    </View>
-
-                    <View style={styles.section}>                    
-                     <Text style={styles.sectionHeading}>Is my data safe?</Text>
-                    </View>
-
-                    <View style={styles.section}>                    
-                     <Text style={styles.sectionHeading}>How do I interact with the app?</Text>
-                    </View>
-
-
-                    <View style={styles.buttonContainer}>
-                        <TouchableOpacity style={styles.next} onPress={lastPage}>
-                            <Text style={styles.buttonFont}><Entypo name="arrow-with-circle-left" size={26} color="white" /> Back </Text>
-                        </TouchableOpacity>
-                    </View>
+        <LinearGradient
+        colors={[feedHeadingBackground]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}>
+        {/* <SafeAreaView> */}
+        <View style={{marginTop:'8%'}}>
+            <Header onFeedPage={8}/>
+        </View>
+        {/* </SafeAreaView> */}
+        <ScrollView style={{marginBottom: '30%'}}>
+            <View >
+                <View style={styles.section}>
+                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                        <MovingIcon/>
+                        <GradientText colors={['#cc2b5e', '#753a88']} style={styles.campusCrush}>
+                            CampusCrush
+                        </GradientText>  
+                    </View>                     
+                    <Text style={styles.firstSectionHeading}>What is CampusCrush?</Text>
+                    <Text style={styles.body}>
+                        Discover a whole new way to connect with others using CampusCrush - our mobile app is your new go-to platform for meeting, chatting, and interacting with others. Whether you're searching for friends, partners, or more, CampusCrush has got you covered. Dive into our dynamic feed, spark conversations, and personalize your profile to showcase the real you. Elevate your experience with our unique points system and redeem perks from our in-app store to boost your odds of making meaningful connections.
+                    </Text>
 
                 </View>
-                </SafeAreaView>
-            </ScrollView>
 
+                <View style={styles.section}>                    
+                    <Text style={styles.sectionHeading}>What features does CampusCrush offer?</Text>
+                    <Text style={styles.body}>
+                        CampusCrush recognizes the value of your time. Our mission is to streamline your experience by facilitating meaningful real-world connections amidst your busy schedule. Through our innovative point system, you earn rewards as you engage with others on our platform. These points can be redeemed for exclusive CampusCrush items, enhancing your experience even further.
+                    </Text>
+                </View>
+
+                <View style={styles.section}>                    
+                    <Text style={styles.sectionHeading}>Is my data safe?</Text>
+                    <Text style={styles.body}>
+                        At CampusCrush, our utmost priority is the security and safety of our users' data. We employ robust designs and state-of-the-art technology to ensure that every user enjoys a meaningful and secure experience on our platform.
+                    </Text>
+                </View>
+
+                <View style={styles.section}>                    
+                    <Text style={styles.sectionHeading}>What is the point system, and how are they earned?</Text>
+                    <Text style={styles.body}>
+                    At CampusCrush, we firmly believe in rewarding users for their interactions. Our mission is to facilitate the expansion of social networks. By engaging with others on our platform, you earn valuable points that can be redeemed at our in-app store!
+                    </Text>
+                </View>
+
+            </View>
+            </ScrollView>
+        </LinearGradient>
     );
 }
 
 const styles = StyleSheet.create({
     campusCrush: {
-        fontSize: 40,
+        fontSize: 30,
         fontWeight: 'bold',
-        textShadowColor: 'rgba(0, 0, 0, 0.9)',
+        textShadowColor: 'white',
         textShadowOffset: {width: -1, height: 1},
         textShadowRadius: 3,
-        marginBottom: '5%'
+        marginBottom: '0%'
       },
-    all: {
-        backgroundColor: feedHeadingBackground,
-
-    },
     section:{
-        marginTop: '4%',
+        // marginTop: '4%',
         marginLeft: '4%',
         marginRight: '4%',
     },
     body:{
         fontSize: 20,
         marginBottom: '1%',
-        color:'white'
+        color: iconColors
     },
     bulletPoint: {
         marginLeft: '5%',
         fontSize: 20,
         marginBottom: '1%',
-        color:'white'
+        color:iconColors
+    },
+    firstSectionHeading:{
+        fontSize: 25,
+        marginBottom: '1%',
+        marginTop: '1%',
+        fontWeight: 'bold',
+        color:'#DBDBDB',
+        fontFamily: 'Arial Rounded MT Bold'
     },
     sectionHeading:{
         fontSize: 25,
-        marginBottom: '3%',
+        marginBottom: '1%',
+        marginTop: '5%',
         fontWeight: 'bold',
-        color:'white',
+        color:'#DBDBDB',
         fontFamily: 'Arial Rounded MT Bold'
     },
     buttonContainer: {

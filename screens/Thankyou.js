@@ -41,11 +41,11 @@ const Thankyou = () => {
       {/* <HorizontalIconLine count={5}  /> */}
 
       <View style={styles.viewContainer}>
-      <Text style={styles.congrats}>Congradulations, {getVariables()['firstname']}!</Text>
+      <Text style={styles.congrats}>Congratulations, {getVariables()['firstname']}!</Text>
         {/* <Text style={styles.heading}>Your account has been created <AntDesign name="check" size={22} color="black" /></Text> */}
         <Text style={styles.text}>Welcome aboard, and thank you for choosing CampusCrush! Explore the unique features, connect with others, and make the most of your CampusCrush experience. We are excited to start this journey with you!</Text>
         <Text style={styles.text}>As you interact with CampusCrush, please feel free to leave us feedback. We are always happy to hear back from our users!</Text>
-        <Text style={styles.sincerely}>Sincerely,</Text>
+        <Text style={styles.sincerely}>Cheers,</Text>
         <Text style={styles.signature}>The CampusCrush Team</Text>
       </View>
 
@@ -61,7 +61,7 @@ const Thankyou = () => {
 const styles = StyleSheet.create({
   congrats:{
     textAlign: 'center',
-    fontSize: 25,
+    fontSize: 24,
     marginBottom: '5%'
   },
   heading:{

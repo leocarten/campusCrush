@@ -10,6 +10,8 @@ import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 import { deleteKey } from '../authentication/deleteValue';
 import { saveSecureValue } from '../authentication/saveValue';
 import { getItemsInFeed } from '../endpoints/GetItemsForFeed';
+import MovingIcon from './src/components/movingIcon';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -17,20 +19,19 @@ const Login = () => {
   const navigation = useNavigation();
 
   const onLoginPress = async () => {
-    // handleLogin(username, password);
-    const loginResult = await handleLogin(username, password);
-    if(loginResult === true){
-      console.log("Logging the person in now!");
-      console.log("I am testing ....");
-      // await saveSecureValue()
-      // console.log(await getSecureValues('access'));
-      // getItemsInFeed()
+    // const loginResult = await handleLogin(username, password);
+    // if(loginResult === true){
+    //   console.log("Logging the person in now!");
+    //   console.log("I am testing ....");
+    //   // await saveSecureValue()
+    //   // console.log(await getSecureValues('access'));
+    //   // getItemsInFeed()
       navigation.navigate("Feed");
-    }
-    else {
-      // navigation.navigate("Feed");
-      navigation.navigate("ErrorPage",{body: "INVALID CREDENTIALS", message: "We could not locate your account in our records, did you use the correct username and password?", page: 6});
-    }
+    // }
+    // else {
+    //   // navigation.navigate("Feed");
+    //   navigation.navigate("ErrorPage",{body: "INVALID CREDENTIALS", message: "We could not locate your account in our records, did you use the correct username and password?", page: 6});
+    // }
   };
 
   return (
@@ -39,8 +40,10 @@ const Login = () => {
     style={styles.container}
     start={{ x: 0, y: 0 }}
     end={{ x: 1, y: 1 }}>
-    <Text style={styles.firstText}>[Icon]</Text>
-    <View style={styles.icon} />
+      <SafeAreaView>
+    <View style={{marginTop:'15%', marginBottom: '3%', alignSelf: 'center'}}>
+      <MovingIcon/>
+    </View>
     <Text style={styles.title}>We're happy to see you <Text style={styles.supercharge}>again</Text></Text>
     <View style={styles.inputContainer}>
         <View style={styles.iconContainer}>
@@ -76,7 +79,7 @@ const Login = () => {
 
 
     {/* <GetLoginEndpoint username={username} password={password}/> */}
-
+    </SafeAreaView>
     </LinearGradient>
   );
 };
@@ -106,7 +109,7 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   loginText: {
-    fontSize: 24
+    fontSize: 22,
   },
   title: {
     fontSize: 26,
@@ -116,9 +119,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'transparent',
-    borderRadius: 10,
+    borderRadius: 5,
     height: 40,
-    borderColor: 'transparent',
+    borderColor: 'rgba(0, 0, 0, 0.75)',
+    borderWidth: 2,
+    shadowColor: "black",
+    shadowOffset: {
+      width: 1,
+      height: 1,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+
+elevation: 2,
   },
   inputBox: {
     height: 40,
@@ -131,7 +144,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   supercharge: {
-    fontStyle: 'italic',
     textShadowColor: 'rgba(0, 0, 0, 0.5)',
     textShadowOffset: {width: -1, height: 1},
     textShadowRadius: 2,

@@ -23,9 +23,9 @@ const Footer = () => {
       <View style={styles.FooterView}>
 
         <View style={styles.leftContainer}>
-            <TouchableOpacity>
-                <Text><Ionicons name="arrow-up-circle-sharp" size={35} color={iconColors} /></Text>
-            </TouchableOpacity>
+            {/* <TouchableOpacity> */}
+                <Text><Ionicons name="arrow-up-circle-sharp" size={35} color={"transparent"} /></Text>
+            {/* </TouchableOpacity> */}
         </View>
 
         <View style={styles.iconStyle}>

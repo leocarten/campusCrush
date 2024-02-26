@@ -5,7 +5,6 @@ import { iconColors } from '../../styles/feedStyles/feedColors';
 const StoreItem = ({ name, emoji, text, points })  => {
     return(
         <View>
-
             <TouchableOpacity>
                 <View style={styles.container}>
                     <Text style={styles.itemName}>
@@ -39,14 +38,14 @@ const styles = StyleSheet.create({
     points: {
         alignSelf: 'center',
         fontSize: 20,
-        marginLeft: '5%',
+        marginLeft: '2%',
         color: iconColors
     },
     itemText: {
         alignSelf: 'center',
         marginLeft: '5%',
         fontSize: 20,
-        width: '60%'
+        width: '55%'
     },
     container: {
         marginTop: '3%',
@@ -56,7 +55,16 @@ const styles = StyleSheet.create({
         borderColor: '#C9C9C9',
         borderWidth: 3,
         borderRadius: 5,
-        padding: 8
+        padding: 8,
+        shadowColor: "black",
+        shadowOffset: {
+            width: 1,
+            height: 1,
+        },
+        shadowOpacity: 0.4,
+        shadowRadius: 0.1,
+
+        elevation: 2,
     },
     emoji: {
         fontSize: 60,

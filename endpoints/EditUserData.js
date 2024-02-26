@@ -68,7 +68,7 @@ const EditUserData = () => {
         <TouchableOpacity onPress={fetchData}>
           <View style={styles.saveButtonContainer}>
             <Text style={styles.saveButtonText}>
-              Save Changes <FontAwesome5 name="check-circle" size={18} color={expandedIconColor} />
+              Save Changes <FontAwesome5 name="check-circle" size={19} color={expandedIconColor} />
             </Text>
           </View>
         </TouchableOpacity> 
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
         // marginTop: '1%',
         borderWidth: 2,
         borderColor: expandedIconColor,
-        padding: 3,
+        padding: 4,
         borderRadius: 5,
         shadowColor: "white",
         shadowOffset: {
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   horizontal: {
     // flexDirection: 'row',
     // justifyContent: 'space-around',
-    padding: 10,
+    padding: 3,
   },
   next: {
     backgroundColor: 'transparent',
