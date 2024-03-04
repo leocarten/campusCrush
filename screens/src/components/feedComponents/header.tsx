@@ -14,12 +14,13 @@ import { getVariablesFromUserUpdate } from "../../../globalVariables/UpdateUserA
 import { resetValues } from "../../../globalVariables/UpdateUserAccount";
 import EditUserData from "../../../../endpoints/EditUserData";
 import MovingIcon from "../movingIcon";
+import { Feather } from '@expo/vector-icons';
 
 interface HeaderProps {
   onFeedPage: int;
 }
 
-const Header: React.FC<HeaderProps> = ({ onFeedPage }) => {
+const Header: React.FC<HeaderProps> = ({ onFeedPage, name }) => {
   const navigation = useNavigation();
 
   // const handleUpdateData = () => {
@@ -255,32 +256,56 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage }) => {
     );
   }
 
+  else if(onFeedPage === 9){ // the user is on learn about campuscrush page
+    return (
+    <View style={styles.headerView}>
+      <View style={styles.leftContainer}>
+        {/* <Text>CampusCrush</Text> */}
+        <TouchableOpacity onPress={goToMessages}>
+          <GradientText colors={['#cc2b5e', '#753a88']} style={styles.campusCrush}>
+            <Ionicons name="chevron-back" size={30}  />
+          </GradientText>
+        </TouchableOpacity>
+      </View>
+    </View>
+
+    );
+  }
+
+  else if(onFeedPage === 10){ // the user is in the messaging between 2 users page
+    return (
+    <View style={styles.headerView}>
+      <View style={styles.leftContainer}>
+        {/* <Text>CampusCrush</Text> */}
+        <TouchableOpacity onPress={goToMessages}>
+          <GradientText colors={['#cc2b5e', '#753a88']} style={styles.campusCrush}>
+            <Ionicons name="chevron-back" size={30}  />
+          </GradientText>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.name}>
+        <Text style={styles.nameText}>
+          {name}
+        </Text>
+      </View>
+      <Feather name="settings" size={24} color={expandedIconColor} />
+    </View>
+
+    );
+  }
+
 };
   
 const styles = StyleSheet.create({
-  // saveButtonContainer:{
-  //   justifyContent: 'center',
-  //   alignContent: 'center',
-  //   alignSelf: 'center',
-  //   marginTop: '1%',
-  //   borderWidth: 2,
-  //   borderColor: expandedIconColor,
-  //   padding: 5,
-  //   borderRadius: 5,
-  //   shadowColor: "white",
-  //   shadowOffset: {
-  //     width: 0,
-  //     height: 3,
-  //   },
-  //   shadowOpacity: 0.27,
-  //   shadowRadius: 4.65,
-    
-  //   elevation: 6,
-  // },
-  // saveButtonText: {
-  //   fontSize: 18,
-  //   color: iconColors
-  // },
+  name:{
+    marginRight: 'auto'
+  },
+  nameText:{
+    textAlign: "center",
+    color:iconColors,
+    fontSize: 20,
+    fontWeight: "700"
+  },
   points: {
     color: iconColors,
     alignSelf: "center",

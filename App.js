@@ -21,6 +21,7 @@ import FlashMessage from 'react-native-flash-message';
 import Footer from './screens/src/components/feedComponents/footer';
 import EditProfilePage from './screens/EditUserProfile';
 import ViewProfilePage from './screens/ViewUserProfile';
+import MessagesBetweenUsers from './screens/UsersConversations';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -48,6 +49,7 @@ export default function App() {
         <Stack.Screen name="ErrorPage" component={ErrorPage} />
         <Stack.Screen name="EditProfilePage" component={EditProfilePage} options={{ animation:'fade' }}/>
         <Stack.Screen name="ViewProfilePage" component={ViewProfilePage} options={{ animation:'fade' }}/>
+        <Stack.Screen name="MessagesBetweenUsers" component={MessagesBetweenUsers}/>
 
       </Stack.Navigator>
     </NavigationContainer>

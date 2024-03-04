@@ -28,10 +28,10 @@ const FilterPage = () => {
 
     
     <ScrollView style={{marginBottom: '10%'}}>
-        <MessagesComponent name={"Owen"} hasBeenOpened={false} messageContent={"Sup"} wasRecieved={true}/>
-        <MessagesComponent name={"Allison"} hasBeenOpened={true} messageContent={"I like your shirt in the 5th picture you have!"} wasRecieved={true}/>
-        <MessagesComponent name={"Bailey"} hasBeenOpened={true} messageContent={"Hi Bailey, how was your day today?"} wasRecieved={false}/>
-        <MessagesComponent name={"Marissa"} hasBeenOpened={false} messageContent={"We have a lot in common! Do you want to meetup sometime?"} wasRecieved={true}/>
+        <MessagesComponent conversationID={1} name={"Owen"} hasBeenOpened={false} messageContent={"Why havent you answered me?"} wasRecieved={true}/>
+        <MessagesComponent conversationID={2} name={"Allison"} hasBeenOpened={true} messageContent={"I like your shirt in the 5th picture you have!"} wasRecieved={true}/>
+        <MessagesComponent conversationID={3} name={"Bailey"} hasBeenOpened={true} messageContent={"Hi Bailey, how was your day today?"} wasRecieved={false}/>
+        <MessagesComponent conversationID={4} name={"Marissa"} hasBeenOpened={false} messageContent={"We have a lot in common! Do you want to meetup sometime?"} wasRecieved={true}/>
 
     </ScrollView>
 

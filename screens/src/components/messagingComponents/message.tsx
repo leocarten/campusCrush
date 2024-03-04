@@ -7,8 +7,18 @@ import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import GradientText from "../../styles/gradientText";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native'
 
-const MessagesComponent = ({ name, hasBeenOpened, messageContent, wasRecieved }) => {
+
+const MessagesComponent = ({ conversationID, name, hasBeenOpened, messageContent, wasRecieved }) => {
+    const navigation = useNavigation();
+
+    const handleMessageTap = () => {
+        // go to convo screen with name
+        console.log(conversationID);
+        navigation.navigate("MessagesBetweenUsers", {conversationID: conversationID, name: name});
+    }
+
     let circle;
     let messageIcon;
     if(hasBeenOpened === false){
@@ -27,7 +37,7 @@ const MessagesComponent = ({ name, hasBeenOpened, messageContent, wasRecieved })
     }
 
     return(
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleMessageTap}>
             <View style={styles.container}>
                 <Text style={styles.name}>
                     {name}
