@@ -38,7 +38,7 @@ const FilterPage = () => {
           <View style={styles.heading}>
               <Text style={styles.filter}>
                 {/* &#127919; Filter your feed to see what <Text style={{fontStyle: 'italic', fontWeight: 'bold'}}>you</Text> want to see */}
-                Filter your feed to see what <Text style={{fontStyle: 'italic', fontWeight: 'bold'}}>you</Text> want to see...
+                Filter your feed to see what <Text style={{fontWeight: 'bold'}}>you</Text> want to see...
               </Text>
               <Text style={styles.info}><Ionicons name="ios-information-circle-outline" size={20} color="gray" /> Free account can only select a maximum of 2 filter options</Text>
 

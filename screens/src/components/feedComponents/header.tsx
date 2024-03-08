@@ -294,6 +294,28 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage, name }) => {
     );
   }
 
+  else if(onFeedPage === 11){ // the user is in the messaging between 2 users page
+    return (
+    <View style={styles.headerView}>
+      <View style={styles.leftContainer}>
+        {/* <Text>CampusCrush</Text> */}
+        <TouchableOpacity onPress={backToFeed}>
+          <GradientText colors={['#cc2b5e', '#753a88']} style={styles.campusCrush}>
+            <Ionicons name="chevron-back" size={30}  />
+          </GradientText>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.name}>
+        <Text style={styles.nameText}>
+          {name}
+        </Text>
+      </View>
+      <Feather name="settings" size={24} color={expandedIconColor} />
+    </View>
+
+    );
+  }
+
 };
   
 const styles = StyleSheet.create({

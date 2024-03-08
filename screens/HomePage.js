@@ -156,6 +156,8 @@ const styles = StyleSheet.create({
     color: homePageColors.primary,
     marginHorizontal: '3%',
     marginBottom: '55%',
+    maxWidth: '100%',
+    textAlign:"center" 
   },
   supercharge: {
     // fontStyle: 'italic',

@@ -93,7 +93,7 @@ const DisplayItems = () => {
       <View>
         {feedItems.map((item, index) => ( 
           <ItemInFeed
-            key={index}
+            key={item.id}
             isVerified={item.is_verified} 
             Name={item.first_name}
             Age={item.dob}

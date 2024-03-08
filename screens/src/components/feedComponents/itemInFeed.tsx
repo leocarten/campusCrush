@@ -7,6 +7,8 @@ import { Entypo } from '@expo/vector-icons';
 import { expandedIconColor } from "../../styles/feedStyles/feedColors";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { feedHeadingBackground } from "../../styles/feedStyles/feedColors";
+import { FontAwesome5 } from '@expo/vector-icons';
+
 
 let windowHeightPercentage;
 if(windowHeight < 700){
@@ -56,11 +58,6 @@ function renderInterestText(interest, index) {
 }
 
 function renderMusicText(music, index, lengthOfArray) {
-    // simple conversion: 390 = 41, so we need about 10 per letter
-    // console.log('music: ',music);
-    // console.log(totalConsumedWidthMusic)
-    // console.log("music:",lengthOfArray);
-    // console.log("index:",index);
     if(music.length != 0){
         // if( (windowWidth/12) >= totalConsumedWidthMusic ){
         //     // console.log("Adding ",music)
@@ -72,15 +69,19 @@ function renderMusicText(music, index, lengthOfArray) {
                 var musicCap = music.charAt(0).toUpperCase() + music.slice(1);
                 return <Text key={index} style={styles.music}>{musicCap}<Entypo name="dot-single" size={17} color={expandedIconColor} /></Text>
             }
-        // }
-        // else{
-        //     totalConsumedWidthMusic = 0;
-        // }
+
     }
-    // totalConsumedWidthMusic = 0;
 }
 
+
 const ItemInFeed = ({isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Interests, Music, Job, KeyToHeart, BucketList, has_tattoos, workout, sleep_schedule, Communication_style, Ideal_first_meetup, Distance}) => {
+    const navigate = useNavigation();
+    const sendFirstMessage = ({name}) => {
+        // const navigate = useNavigation();
+        navigate.navigate("MessagesBetweenUsers", {conversationID: 69420, name: name, page: 11, isFirstMessage: true});
+        // console.log(name)
+    }
+    
     totalConsumedWidth = 0;
     let userWants;
     let comp;
@@ -128,16 +129,15 @@ const ItemInFeed = ({isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Inte
 
     if(Comp >= 80){
         if(AppReason === 3 || AppReason === 4){
-            comp = <View style={styles.compBackgroundHandshake}><Text style={styles.compatibility}>High match &#129309;</Text></View>;
+            comp = <View style={styles.compBackgroundHandshake}><Text style={styles.compatibility}>High match <FontAwesome5 name="hands-helping" size={17} color={iconColors} /></Text></View>;
         }
         else{
-            comp = <View style={styles.compBackgroundHeart}><Text style={styles.compatibility}>High match &#128150;</Text></View>;
+            comp = <View style={styles.compBackgroundHeart}><Text style={styles.compatibility}>High match <FontAwesome name="heart" size={17} color={iconColors} /></Text></View>;
         }
     }
     else{
         comp = "";
     }
-
     let bioSpace;
     if(Bio === ""){
         bioSpace = ""
@@ -185,9 +185,9 @@ const ItemInFeed = ({isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Inte
                         <Text style={styles.bio} numberOfLines={1}>
                             <Text style={{fontWeight: '500'}}>I want:</Text> {userWants}
                         </Text>
-                        <TouchableOpacity>
+                        <TouchableOpacity style={{marginRight: '2%'}} onPress={() => sendFirstMessage({ name: Name })}>
                             <GradientText colors={['#cc2b5e', '#753a88']}>
-                                <FontAwesome name="send" size={28} style={styles.sendMessageIcon}/>
+                                <FontAwesome name="send" size={26} style={styles.sendMessageIcon}/>
                             </GradientText>
                         </TouchableOpacity>                    
                     </View>
@@ -321,42 +321,45 @@ const styles = StyleSheet.create({
 
     },
     compBackgroundHandshake: {
-        borderColor: '#ffb805',
-        borderWidth: 1,
+        borderColor: iconColors,
+        borderWidth: 1.5,
         marginRight: '2%',
-        padding: 2,
-        borderRadius: 5,
-        backgroundColor: 'rgba(255,229,5,0.6)',
+        padding: 3,
+        borderRadius: 4,
+        backgroundColor: 'transparent',
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
-            height: 3,
+            height: 1,
         },
-        shadowOpacity: 0.2,
-        shadowRadius: 3,
-        elevation: 6,
+        shadowOpacity: 0.05,
+        shadowRadius: 1.41,
+        
+        elevation: 2,
     },
     compBackgroundHeart: {
-        borderColor: '#ff0081',
-        borderWidth: 1,
+        borderColor: iconColors,
+        borderWidth: 1.5,
         marginRight: '2%',
-        padding: 2,
-        borderRadius: 5,
-        backgroundColor: 'rgba(255,119,188,0.6)',
+        padding: 3,
+        borderRadius: 4,
+        backgroundColor: 'transparent',
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
-            height: 3,
+            height: 1,
         },
-        shadowOpacity: 0.3,
-        shadowRadius: 3,
-        elevation: 6,
+        shadowOpacity: 0.05,
+        shadowRadius: 1.41,
+        
+        elevation: 2,
     },
     compatibility: {
-        fontSize: 17,
-        color: 'black',
+        fontSize: 16,
+        color: expandedIconColor,
         alignSelf: "center",
-        marginRight: "1%"
+        marginRight: "1%",
+        fontWeight: "600"
     },
     name: {
         fontSize: 24,

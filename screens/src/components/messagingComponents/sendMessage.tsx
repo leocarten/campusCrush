@@ -15,26 +15,29 @@ export function SendUserMessage( name ) {
 
   useEffect(() => {
     setMessages([
-      {
-        _id: 3,
-        text: 'Why havent you answered me?',
-        createdAt: new Date(),
-        user: {
-          _id: 4,
-          name: '{Name}',
-          avatar: 'https://cdn-icons-png.freepik.com/512/145/145865.png',
-        },
-      },
-      {
-        _id: 1,
-        text: 'Hey there, nice to meet you! I look forward to connecting with.',
-        createdAt: new Date(),
-        user: {
-          _id: 2,
-          name: '{Name}',
-          avatar: 'https://cdn-icons-png.freepik.com/512/145/145865.png',
-        },
-      },
+
+      
+
+      // {
+      //   _id: 3,
+      //   text: 'Why havent you answered me?',
+      //   createdAt: new Date(),
+      //   user: {
+      //     _id: 4,
+      //     name: '{Name}',
+      //     avatar: 'https://cdn-icons-png.freepik.com/512/145/145865.png',
+      //   },
+      // },
+      // {
+      //   _id: 1,
+      //   text: 'Hey there, nice to meet you! I look forward to connecting with.',
+      //   createdAt: new Date(),
+      //   user: {
+      //     _id: 2,
+      //     name: '{Name}',
+      //     avatar: 'https://cdn-icons-png.freepik.com/512/145/145865.png',
+      //   },
+      // },
     ])
   }, [])
 
@@ -104,6 +107,7 @@ return (
     placeholder={"Type your message ..."}
     isLoadingEarlier={true}
     />
+    
 )
 
 

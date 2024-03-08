@@ -16,7 +16,7 @@ const MessagesComponent = ({ conversationID, name, hasBeenOpened, messageContent
     const handleMessageTap = () => {
         // go to convo screen with name
         console.log(conversationID);
-        navigation.navigate("MessagesBetweenUsers", {conversationID: conversationID, name: name});
+        navigation.navigate("MessagesBetweenUsers", {conversationID: conversationID, name: name, page:10});
     }
 
     let circle;
@@ -33,7 +33,8 @@ const MessagesComponent = ({ conversationID, name, hasBeenOpened, messageContent
     }
     else{
         // messageIcon = <MaterialCommunityIcons name="send-check" size={24} color={iconColors} />;
-        messageIcon = <FontAwesome name="send" size={22} color={iconColors} />;
+        // messageIcon = <FontAwesome name="send" size={22} color={iconColors} />;
+        messageIcon = <MaterialCommunityIcons name="send-check" size={24} color={iconColors}/>;
     }
 
     return(
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
     },
     iconState: {
         fontWeight: '600',
-        marginLeft: '1%'
+        marginLeft: '2%'
     },
     center: {
         alignSelf: "center",
@@ -90,9 +91,9 @@ const styles = StyleSheet.create({
         justifyContent: "flex-start", 
     },
     messageContent: {
-        fontSize: 19,
-        width: '80%',
-        fontWeight: '500'
+        fontSize: 18,
+        width: '78%',
+        fontWeight: '400'
     },
     messageContainer: {
         flexDirection: 'row',

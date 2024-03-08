@@ -19,19 +19,19 @@ const Login = () => {
   const navigation = useNavigation();
 
   const onLoginPress = async () => {
-    // const loginResult = await handleLogin(username, password);
-    // if(loginResult === true){
-    //   console.log("Logging the person in now!");
-    //   console.log("I am testing ....");
-    //   // await saveSecureValue()
-    //   // console.log(await getSecureValues('access'));
-    //   // getItemsInFeed()
+    const loginResult = await handleLogin(username, password);
+    if(loginResult === true){
+      console.log("Logging the person in now!");
+      console.log("I am testing ....");
+      // await saveSecureValue()
+      // console.log(await getSecureValues('access'));
+      // getItemsInFeed()
       navigation.navigate("Feed");
-    // }
-    // else {
-    //   // navigation.navigate("Feed");
-    //   navigation.navigate("ErrorPage",{body: "INVALID CREDENTIALS", message: "We could not locate your account in our records, did you use the correct username and password?", page: 6});
-    // }
+    }
+    else {
+      // navigation.navigate("Feed");
+      navigation.navigate("ErrorPage",{body: "INVALID CREDENTIALS", message: "We could not locate your account in our records, did you use the correct username and password?", page: 6});
+    }
   };
 
   return (

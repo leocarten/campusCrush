@@ -12,31 +12,47 @@ import { SendUserMessage } from './src/components/messagingComponents/sendMessag
 const MessagesBetweenUsers = ({ route }) => {
 
     const navigation = useNavigation();
-    const { conversationID, name } = route.params;
+    const { conversationID, name, page, isFirstMessage } = route.params;
     console.log(name);
+    console.log('first message: ',isFirstMessage)
 
+    if(isFirstMessage != true){
+        // use additional messages endpoint
+        return (
+            <LinearGradient
+            colors={feedBackgroundColor}
+            style={styles.container}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}>
+            <SafeAreaView style={{backgroundColor: feedHeadingBackground}}>
+            <Header onFeedPage={page} name={name}/>
+            </SafeAreaView>
 
-    return (
-        <LinearGradient
-        colors={feedBackgroundColor}
-        style={styles.container}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}>
-        <SafeAreaView style={{backgroundColor: feedHeadingBackground}}>
-        <Header onFeedPage={10} name={name}/>
-        </SafeAreaView>
+            <SendUserMessage/>
+            <View style={{marginBottom: '0%', backgroundColor: 'white'}}><Text style={{color: 'transparent', fontSize: 25}}>hi</Text></View>
 
-        <SendUserMessage/>
-        <View style={{marginBottom: '0%', backgroundColor: 'white'}}><Text style={{color: 'transparent', fontSize: 25}}>hi</Text></View>
-
+            </LinearGradient>
+        );
+    }
+    else{
         
-        {/* <View style={styles.footer}>
-        <Footer/>
-        </View> */}
-        
+        // use send first message endpoint
+        return (
+            <LinearGradient
+            colors={feedBackgroundColor}
+            style={styles.container}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}>
+            <SafeAreaView style={{backgroundColor: feedHeadingBackground}}>
+            <Header onFeedPage={page} name={name}/>
+            </SafeAreaView>
 
-        </LinearGradient>
-    );
+            <SendUserMessage/>
+            <View style={{marginBottom: '0%', backgroundColor: 'white'}}><Text style={{color: 'transparent', fontSize: 25}}>hi</Text></View>
+            
+            </LinearGradient>
+        );
+    }
 
 }
 
