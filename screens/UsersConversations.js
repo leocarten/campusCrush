@@ -12,11 +12,15 @@ import { SendUserMessage } from './src/components/messagingComponents/sendMessag
 const MessagesBetweenUsers = ({ route }) => {
 
     const navigation = useNavigation();
-    const { conversationID, name, page, isFirstMessage } = route.params;
+    const { originSenderId, originRecId, name, page, isFirstMessage, recieverID } = route.params;
     console.log(name);
-    console.log('first message: ',isFirstMessage)
+    console.log('MessagesBetweenUsers, first message: ',isFirstMessage)
+    console.log('MessagesBetweenUsers, origin sender id:',originSenderId);
+    console.log('MessagesBetweenUsers, origin rec id:',originRecId);
 
     if(isFirstMessage != true){
+        console.log("Need to load messages HERE!");
+
         // use additional messages endpoint
         return (
             <LinearGradient
@@ -27,14 +31,14 @@ const MessagesBetweenUsers = ({ route }) => {
             <SafeAreaView style={{backgroundColor: feedHeadingBackground}}>
             <Header onFeedPage={page} name={name}/>
             </SafeAreaView>
-
-            <SendUserMessage/>
+            <SendUserMessage isFirstMessage={false} recID={originRecId} sendID={originSenderId}/>
             <View style={{marginBottom: '0%', backgroundColor: 'white'}}><Text style={{color: 'transparent', fontSize: 25}}>hi</Text></View>
-
             </LinearGradient>
         );
     }
     else{
+
+        console.log("Im in message:",name,recieverID)
         
         // use send first message endpoint
         return (
@@ -47,7 +51,7 @@ const MessagesBetweenUsers = ({ route }) => {
             <Header onFeedPage={page} name={name}/>
             </SafeAreaView>
 
-            <SendUserMessage/>
+            <SendUserMessage isFirstMessage={true} recID={recieverID}/>
             <View style={{marginBottom: '0%', backgroundColor: 'white'}}><Text style={{color: 'transparent', fontSize: 25}}>hi</Text></View>
             
             </LinearGradient>

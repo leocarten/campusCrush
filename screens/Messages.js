@@ -7,8 +7,9 @@ import Header from './src/components/feedComponents/header';
 import { feedHeadingBackground } from './src/styles/feedStyles/feedColors';
 import { feedBackgroundColor } from './src/styles/feedStyles/feedColors';
 import MessagesComponent from './src/components/messagingComponents/message';
+import DisplayConvoComponent from '../endpoints/getConversations';
 
-const FilterPage = () => {
+const MessagesPage = () => {
   const navigation = useNavigation();
   return (
     <LinearGradient
@@ -28,10 +29,14 @@ const FilterPage = () => {
 
     
     <ScrollView style={{marginBottom: '10%'}}>
-        <MessagesComponent conversationID={1} name={"Owen"} hasBeenOpened={false} messageContent={"Why havent you answered me?"} wasRecieved={true}/>
+
+    <DisplayConvoComponent />
+      
+
+        {/* <MessagesComponent conversationID={1} name={"Owen"} hasBeenOpened={false} messageContent={"Why havent you answered me?"} wasRecieved={true}/>
         <MessagesComponent conversationID={2} name={"Allison"} hasBeenOpened={true} messageContent={"I like your shirt in the 5th picture you have!"} wasRecieved={true}/>
         <MessagesComponent conversationID={3} name={"Bailey"} hasBeenOpened={true} messageContent={"Hi Bailey, how was your day today?"} wasRecieved={false}/>
-        <MessagesComponent conversationID={4} name={"Marissa"} hasBeenOpened={false} messageContent={"We have a lot in common! Do you want to meetup sometime?"} wasRecieved={true}/>
+        <MessagesComponent conversationID={4} name={"Marissa"} hasBeenOpened={false} messageContent={"We have a lot in common! Do you want to meetup sometime?"} wasRecieved={true}/> */}
 
     </ScrollView>
 
@@ -64,4 +69,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default FilterPage;
+export default MessagesPage;

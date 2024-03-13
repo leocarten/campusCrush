@@ -94,6 +94,7 @@ const DisplayItems = () => {
         {feedItems.map((item, index) => ( 
           <ItemInFeed
             key={item.id}
+            userID={item.id}
             isVerified={item.is_verified} 
             Name={item.first_name}
             Age={item.dob}

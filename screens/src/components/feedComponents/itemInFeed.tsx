@@ -74,13 +74,15 @@ function renderMusicText(music, index, lengthOfArray) {
 }
 
 
-const ItemInFeed = ({isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Interests, Music, Job, KeyToHeart, BucketList, has_tattoos, workout, sleep_schedule, Communication_style, Ideal_first_meetup, Distance}) => {
+const ItemInFeed = ({userID, isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Interests, Music, Job, KeyToHeart, BucketList, has_tattoos, workout, sleep_schedule, Communication_style, Ideal_first_meetup, Distance}) => {
     const navigate = useNavigation();
     const sendFirstMessage = ({name}) => {
         // const navigate = useNavigation();
-        navigate.navigate("MessagesBetweenUsers", {conversationID: 69420, name: name, page: 11, isFirstMessage: true});
+        navigate.navigate("MessagesBetweenUsers", {conversationID: 69420, name: name, page: 11, isFirstMessage: true, recieverID: userID});
         // console.log(name)
     }
+
+    console.log(Name,Age, userID);
     
     totalConsumedWidth = 0;
     let userWants;

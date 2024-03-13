@@ -8,43 +8,196 @@ import { feedHeadingBackground } from '../../styles/feedStyles/feedColors'
 import { StyleSheet } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { sendFirstMessage } from '../../../../endpoints/SendFirstMessage'
+import { getSecureValues } from '../../../../authentication/getValue'
+import { sendAdditionalMessages } from '../../../../endpoints/sendAdditionalMessage'
 
+// async function getData(){
+//   try {
+//     const apiUrl = 'http://18.188.112.190:5001/getMessages';
+//     const accessToken = await getSecureValues('access');
+//     const credentials = {
+//       type: 'access',
+//       tokenFromUser: accessToken,
+//     }
+//     const response = await fetch(apiUrl, {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify(credentials),
+//     });
+//     if (response.ok) {
+//       const data = await response.json();
+//       console.log("response from server:",data['results']);
+//       if (data['results']['success'] === true){
+//         // secure the tokens returned from the server!
+//         return [true, data['results']['messages'], data['results']['requestersID']];
+//       }
+//       else {
+//         if(data['results']['message'] === "You have no messages yet.") {
+//           return [false]
+//           // console.log("Uh oh, no messages for you yet.")
+//         } else {
+//           return [false]
+//           // console.error('Items failed:', response.status, await response.text());
+//         }
+//       }
+//     } else {
+//       console.error('Items failed:', response.status, await response.text());
+//       return [false]
+//     }
+//   } catch (error) {
+//     console.error('Error during item retrieval:', error);
+//     return [false]
+//   }
+// }
 
-export function SendUserMessage( name ) {
-  const [messages, setMessages] = useState([])
+export function SendUserMessage( {isFirstMessage, recID, sendID} ) {
+  const [messages, setMessages] = useState([]);
+  console.log('in SendUserMessage, recID:',recID);
+  console.log('in SendUserMessage, sendID:',sendID);
 
+  // console.log(getData())
   useEffect(() => {
-    setMessages([
+    const fetchData = async () => {
+      try {
+        const data = await getData();
+        if (data[0] === true) {
+          // const receivedMessages = data[1];
+          const requestersID = data[2];
+          const messagesFromServer = data[1];
 
-      
+          const formattedMessages = messagesFromServer.map((message) => {
+            const isRequester = requestersID === message.senderID; // Check if senderID matches requestersID
+            const userId = isRequester ? 1 : 0; // Set userId based on the condition
+            
+            return {
+                _id: message.messageID,
+                text: message.messageContent,
+                createdAt: message.timestamp,
+                user: {
+                    _id: userId, // Set user id based on condition
+                    name: '{Name}', // Replace with actual name if available
+                    avatar: 'https://cdn-icons-png.freepik.com/512/145/145865.png',
+                },
+            };
+        });
+        
+        setMessages(formattedMessages);
 
-      // {
-      //   _id: 3,
-      //   text: 'Why havent you answered me?',
-      //   createdAt: new Date(),
-      //   user: {
-      //     _id: 4,
-      //     name: '{Name}',
-      //     avatar: 'https://cdn-icons-png.freepik.com/512/145/145865.png',
-      //   },
-      // },
-      // {
-      //   _id: 1,
-      //   text: 'Hey there, nice to meet you! I look forward to connecting with.',
-      //   createdAt: new Date(),
-      //   user: {
-      //     _id: 2,
-      //     name: '{Name}',
-      //     avatar: 'https://cdn-icons-png.freepik.com/512/145/145865.png',
-      //   },
-      // },
-    ])
-  }, [])
+          // setMessages([      
+          //   {
+          //     _id: 1,
+          //     text: 'Why havent you answered me?',
+          //     createdAt: new Date(),
+          //     user: {
+          //       _id: 2,
+          //       name: '{Name}',
+          //       avatar: 'https://cdn-icons-png.freepik.com/512/145/145865.png',
+          //     },
+          //   },
+          //   {
+          //     _id: 3,
+          //     text: 'Hey there, nice to meet you! I look forward to connecting with.',
+          //     createdAt: new Date(),
+          //     user: {
+          //       _id: 4,
+          //       name: '{Name}',
+          //       avatar: 'https://cdn-icons-png.freepik.com/512/145/145865.png',
+          //     },
+          //   },
+          // ]);
 
-  const onSend = useCallback((messages = []) => {
-    setMessages(previousMessages =>
-      GiftedChat.append(previousMessages, messages),
-    )
+          console.log("Messages received:", data[1]);
+          // loop through and display messages on UI
+          // for(var i = )
+
+
+        } else {
+          console.log("No messages or error occurred.");
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  async function getData() {
+    try {
+      const apiUrl = 'http://18.188.112.190:5001/getMessages';
+      const accessToken = await getSecureValues('access');
+      const credentials = {
+        type: 'access',
+        tokenFromUser: accessToken,
+        id1: sendID,
+        id2: recID
+      }
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(credentials),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Response from server:", data['results']);
+        if (data['results']['success'] === true) {
+          return [true, data['results']['messages'], data['results']['requestersID']];
+        } else {
+          if (data['results']['message'] === "You have no messages yet.") {
+            return [false];
+          } else {
+            return [false];
+          }
+        }
+      } else {
+        console.error('Items failed:', response.status, await response.text());
+        return [false];
+      }
+    } catch (error) {
+      console.error('Error during item retrieval:', error);
+      return [false];
+    }
+  }
+
+
+  const onSend = useCallback(async (messages = []) => {
+    // do something for when ifFirstMessage is true
+    // OR do something when it is false
+    if(isFirstMessage == true){
+      console.log("First message!!");
+      const firstMessage = messages[0]['text'];
+      // make endpoint call to send first message
+      // await 
+      // if successful, append message
+      // else: say there was an error
+      console.log('recID: ',recID);
+      console.log('sender id:',sendID);
+      const sendingFirstMessage = await sendFirstMessage(recID, firstMessage);
+      setMessages(previousMessages =>
+        GiftedChat.append(previousMessages, messages),
+      )
+      console.log("Your first message has been sent :)")
+    }
+    else{
+      console.log("NOT first message");
+      // send additional messages endpoint
+      // const sendAdditionalMessage = await sendAdditionalMessages(recID, "bro",)
+      const newMessage = messages[0]['text'];
+      const sendNewMessage = await sendAdditionalMessages(recID, sendID, newMessage);
+      console.log('after call, sender:',sendID);
+      console.log('after call, rec:',recID)
+      setMessages(previousMessages =>
+        GiftedChat.append(previousMessages, messages),
+      )
+      // console.log('new message:',newMessage)
+
+    }
   }, [])
 
   function renderBubble (props) {
@@ -89,27 +242,48 @@ const scrollToBottom = () => {
         <AntDesign name="down" size={24} color="black" />
     )
 }
-
-return (
-    <GiftedChat
-    messages={messages}
-    onSend={messages => onSend(messages)}
-    user={{
-        _id: 1,
-    }}
-    renderBubble={renderBubble}
-    renderSend={renderSend}
-    scrollToBottom
-    scrollToBottomComponent={scrollToBottom}
-    showAvatarForEveryMessage={false}
-    // isTyping={true}
-    renderUsernameOnMessage={false}
-    placeholder={"Type your message ..."}
-    isLoadingEarlier={true}
-    />
-    
-)
-
+if(isFirstMessage == true){
+  return (
+      <GiftedChat
+      messages={messages}
+      onSend={messages => onSend(messages)}
+      user={{
+          _id: 1,
+      }}
+      renderBubble={renderBubble}
+      renderSend={renderSend}
+      scrollToBottom
+      scrollToBottomComponent={scrollToBottom}
+      showAvatarForEveryMessage={false}
+      // isTyping={true}
+      renderUsernameOnMessage={false}
+      placeholder={"Type your message ..."}
+      isLoadingEarlier={true}
+      />
+      
+  )
+  }
+  else{
+    return (
+      <GiftedChat
+      messages={messages}
+      onSend={messages => onSend(messages)}
+      user={{
+          _id: 1,
+      }}
+      renderBubble={renderBubble}
+      renderSend={renderSend}
+      scrollToBottom
+      scrollToBottomComponent={scrollToBottom}
+      showAvatarForEveryMessage={false}
+      // isTyping={true}
+      renderUsernameOnMessage={false}
+      placeholder={"Type your message ..."}
+      isLoadingEarlier={true}
+      />
+      
+  )
+  }
 
 }
 

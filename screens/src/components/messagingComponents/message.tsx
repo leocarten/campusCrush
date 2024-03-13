@@ -10,25 +10,35 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native'
 
 
-const MessagesComponent = ({ conversationID, name, hasBeenOpened, messageContent, wasRecieved }) => {
+const MessagesComponent = ({ conversationID, originSenderId, originRecId, name, hasBeenOpened, messageContent, wasRecieved, recID, reqID, IdOfPersonWhoSentLastMessage }) => {
     const navigation = useNavigation();
+    // key={index}
+    // // conversationID={conversation.id}
+    // originSenderId={conversation.originalSenderID}
+    // originRecId={conversation.originalRecieverID}
+    // name={"test"}
+    // hasBeenOpened={conversation.hasOpenedMessage}
+    // messageContent={conversation.mostRecentMessage}
+    // recID={123}
+    console.log('in MessagesComponent, senderID:',originSenderId);
+    console.log('in MessagesComponent, recID:',originRecId);
 
     const handleMessageTap = () => {
         // go to convo screen with name
-        console.log(conversationID);
-        navigation.navigate("MessagesBetweenUsers", {conversationID: conversationID, name: name, page:10});
+        console.log("You just clicked on a conversation with:",name);
+        navigation.navigate("MessagesBetweenUsers", {originSenderId:originSenderId, originRecId: originRecId, name: name, page: 10, isFirstMessage: false, recieverID: recID});
     }
 
     let circle;
     let messageIcon;
-    if(hasBeenOpened === false){
+    if(hasBeenOpened === 0 && (reqID != IdOfPersonWhoSentLastMessage)){
         circle = <FontAwesome name="circle" size={20} />;
     }
     else{
         circle = <FontAwesome name="circle" size={20} color='transparent'/>;
     }
 
-    if(wasRecieved === true){
+    if(reqID != IdOfPersonWhoSentLastMessage){
         messageIcon = <Ionicons name="return-down-back" size={24} color={iconColors} />;
     }
     else{
@@ -82,7 +92,7 @@ const styles = StyleSheet.create({
     },
     iconState: {
         fontWeight: '600',
-        marginLeft: '2%'
+        marginLeft: '1%'
     },
     center: {
         alignSelf: "center",
@@ -100,7 +110,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between', 
     },
     container:{
-        marginLeft:'3%',
+        marginLeft:'6%',
         marginRight:'3%',
         marginTop:'3%',
         marginBottom:'1%',
@@ -119,6 +129,7 @@ const styles = StyleSheet.create({
         marginBottom: '1%',
         fontSize: 22,
         fontWeight: '600',
+        marginLeft: '6%'
     }
     
 });
