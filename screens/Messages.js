@@ -11,6 +11,7 @@ import DisplayConvoComponent from '../endpoints/getConversations';
 
 const MessagesPage = () => {
   const navigation = useNavigation();
+  
   return (
     <LinearGradient
     colors={feedBackgroundColor}

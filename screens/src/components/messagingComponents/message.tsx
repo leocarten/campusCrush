@@ -26,6 +26,7 @@ const MessagesComponent = ({ conversationID, originSenderId, originRecId, name, 
     const handleMessageTap = () => {
         // go to convo screen with name
         console.log("You just clicked on a conversation with:",name);
+        // 
         navigation.navigate("MessagesBetweenUsers", {originSenderId:originSenderId, originRecId: originRecId, name: name, page: 10, isFirstMessage: false, recieverID: recID});
     }
 

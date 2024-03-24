@@ -21,7 +21,11 @@ const MessagesBetweenUsers = ({ route }) => {
     if(isFirstMessage != true){
         console.log("Need to load messages HERE!");
 
-        // use additional messages endpoint
+        console.log("\n\nYOO, THIS IS WHERE THE WEB SOCKET SHOULD BE!! This file is UsersConversations.js\n ");
+
+        // create websocket with convoID
+        // When the user presses the back arrow, i need to disconnect from the socket and then re-fresh the convos page
+
         return (
             <LinearGradient
             colors={feedBackgroundColor}
@@ -38,7 +42,7 @@ const MessagesBetweenUsers = ({ route }) => {
     }
     else{
 
-        console.log("Im in message:",name,recieverID)
+        console.log("Im in message:",name,recieverID);
         
         // use send first message endpoint
         return (

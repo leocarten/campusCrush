@@ -172,10 +172,6 @@ export function SendUserMessage( {isFirstMessage, recID, sendID} ) {
     if(isFirstMessage == true){
       console.log("First message!!");
       const firstMessage = messages[0]['text'];
-      // make endpoint call to send first message
-      // await 
-      // if successful, append message
-      // else: say there was an error
       console.log('recID: ',recID);
       console.log('sender id:',sendID);
       const sendingFirstMessage = await sendFirstMessage(recID, firstMessage);
@@ -185,9 +181,11 @@ export function SendUserMessage( {isFirstMessage, recID, sendID} ) {
       console.log("Your first message has been sent :)")
     }
     else{
+
+      // should we create the websocket here?
+      console.log("\n\nIN WEB SOCKET!!\n\n")
+
       console.log("NOT first message");
-      // send additional messages endpoint
-      // const sendAdditionalMessage = await sendAdditionalMessages(recID, "bro",)
       const newMessage = messages[0]['text'];
       const sendNewMessage = await sendAdditionalMessages(recID, sendID, newMessage);
       console.log('after call, sender:',sendID);
@@ -195,8 +193,6 @@ export function SendUserMessage( {isFirstMessage, recID, sendID} ) {
       setMessages(previousMessages =>
         GiftedChat.append(previousMessages, messages),
       )
-      // console.log('new message:',newMessage)
-
     }
   }, [])
 

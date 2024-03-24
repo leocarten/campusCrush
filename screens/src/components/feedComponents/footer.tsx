@@ -8,8 +8,8 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { TouchableOpacity } from "react-native";
 import { useRef } from "react";
 import { useNavigation } from '@react-navigation/native'
-import { io } from "socket.io-client";
-// import UseSocket from "../../../../sockets/testSocket";
+import io from 'socket.io-client';
+// import UseSocket from "../../../../sockets/testSocket";'
 
 const Footer = () => {
 
@@ -20,22 +20,10 @@ const Footer = () => {
       navigation.navigate("EditProfilePage");
     };
 
-    function componentDidMount(){
-    //   const socket = io("http://18.188.112.190:5001");
-    //   socket.on('connect', () => {
-    //     console.log('Connected to server');
-        
-    //     // Send data as a message
-    //     socket.emit('message', { key: 'value' }); 
-    // })
-    //   console.log(socket);
-      const socket = io.connect("http://18.188.112.190:5001");
-    }
-
-    function sendMessage(){
-      const socket = io("http://18.188.112.190:5001/testSocket");
-      socket.emit('message',"Hello from client")
-    }
+    // function sendMessage(){
+    //   const socket = io("http://18.188.112.190:5001/testSocket");
+    //   socket.emit('message',"Hello from client")
+    // }
 
     return (
       <View style={styles.FooterView}>
@@ -53,7 +41,7 @@ const Footer = () => {
         </View>
 
         <View style={styles.iconStyle}>
-          <TouchableOpacity onPress={componentDidMount}>
+          <TouchableOpacity>
                 <Text>
                   <MaterialCommunityIcons name="cog" size={35} color={iconColors} />
                 </Text>
