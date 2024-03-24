@@ -34,15 +34,15 @@ const MessagesBetweenUsers = ({ route }) => {
 
         socket.emit('join_conversation', conversationID);
 
-        // Testing
-        socket.emit('send_message', {
-            jwt: getSecureValues('access'),
-            convoID: conversationID,
-            id1: originSenderId,
-            id2: originRecId,
-            messageContent: "shaddup",
-            typeOfVerification: "access"
-        });
+        // // Testing
+        // socket.emit('send_message', {
+        //     jwt: getSecureValues('access'),
+        //     convoID: conversationID,
+        //     id1: originSenderId,
+        //     id2: originRecId,
+        //     messageContent: "shaddup",
+        //     typeOfVerification: "access"
+        // });
 
 
         // When the user presses the back arrow, i need to disconnect from the socket and then re-fresh the convos page
@@ -56,7 +56,7 @@ const MessagesBetweenUsers = ({ route }) => {
             <SafeAreaView style={{backgroundColor: feedHeadingBackground}}>
                 <Header onFeedPage={page} name={name}/>
             </SafeAreaView>
-            <SendUserMessage isFirstMessage={false} recID={originRecId} sendID={originSenderId}/>
+            <SendUserMessage isFirstMessage={false} recID={originRecId} sendID={originSenderId} socket={socket} conversationID={conversationID} originSenderId={originSenderId} originRecId={originRecId}/>
             <View style={{marginBottom: '0%', backgroundColor: 'white'}}><Text style={{color: 'transparent', fontSize: 25}}>hi</Text></View>
             </LinearGradient>
         );

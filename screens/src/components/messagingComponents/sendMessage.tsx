@@ -53,7 +53,7 @@ import { sendAdditionalMessages } from '../../../../endpoints/sendAdditionalMess
 //   }
 // }
 
-export function SendUserMessage( {isFirstMessage, recID, sendID} ) {
+export function SendUserMessage( {isFirstMessage, recID, sendID, socket, conversationID, originSenderId, originRecId} ) {
   const [messages, setMessages] = useState([]);
   console.log('in SendUserMessage, recID:',recID);
   console.log('in SendUserMessage, sendID:',sendID);
@@ -183,10 +183,17 @@ export function SendUserMessage( {isFirstMessage, recID, sendID} ) {
     else{
 
       // should we create the websocket here?
-      console.log("Might also need to emit the message here in sendMessage.tsx in messagingComponents.")
-
-      console.log("NOT first message");
+      console.log("Might also need to emit the message here in sendMessage.tsx in messagingComponents.");
       const newMessage = messages[0]['text'];
+      socket.emit('send_message', {
+        jwt: getSecureValues('access'),
+        convoID: conversationID,
+        id1: originSenderId,
+        id2: originRecId,
+        messageContent: newMessage,
+        typeOfVerification: "access"
+      });
+      console.log("NOT first message");
       const sendNewMessage = await sendAdditionalMessages(recID, sendID, newMessage);
       console.log('after call, sender:',sendID);
       console.log('after call, rec:',recID)
