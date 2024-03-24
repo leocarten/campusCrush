@@ -12,6 +12,7 @@ import { saveSecureValue } from '../authentication/saveValue';
 import { getItemsInFeed } from '../endpoints/GetItemsForFeed';
 import MovingIcon from './src/components/movingIcon';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import TestSocket from '../sockets/testSocket';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -23,13 +24,9 @@ const Login = () => {
     if(loginResult === true){
       console.log("Logging the person in now!");
       console.log("I am testing ....");
-      // await saveSecureValue()
-      // console.log(await getSecureValues('access'));
-      // getItemsInFeed()
       navigation.navigate("Feed");
     }
     else {
-      // navigation.navigate("Feed");
       navigation.navigate("ErrorPage",{body: "INVALID CREDENTIALS", message: "We could not locate your account in our records, did you use the correct username and password?", page: 6});
     }
   };
