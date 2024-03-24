@@ -9,7 +9,7 @@ import { TouchableOpacity } from "react-native";
 import { useRef } from "react";
 import { useNavigation } from '@react-navigation/native'
 import { io } from "socket.io-client";
-import UseSocket from "../../../../sockets/testSocket";
+// import UseSocket from "../../../../sockets/testSocket";
 
 const Footer = () => {
 
@@ -21,14 +21,15 @@ const Footer = () => {
     };
 
     function componentDidMount(){
-      const socket = io("http://18.188.112.190:5001");
-      socket.on('connect', () => {
-        console.log('Connected to server');
+    //   const socket = io("http://18.188.112.190:5001");
+    //   socket.on('connect', () => {
+    //     console.log('Connected to server');
         
-        // Send data as a message
-        socket.emit('message', { key: 'value' }); 
-    })
-      console.log(socket);
+    //     // Send data as a message
+    //     socket.emit('message', { key: 'value' }); 
+    // })
+    //   console.log(socket);
+      const socket = io.connect("http://18.188.112.190:5001");
     }
 
     function sendMessage(){
