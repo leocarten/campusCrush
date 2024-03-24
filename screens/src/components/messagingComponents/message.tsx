@@ -27,7 +27,7 @@ const MessagesComponent = ({ conversationID, originSenderId, originRecId, name, 
         // go to convo screen with name
         console.log("You just clicked on a conversation with:",name);
         // 
-        navigation.navigate("MessagesBetweenUsers", {originSenderId:originSenderId, originRecId: originRecId, name: name, page: 10, isFirstMessage: false, recieverID: recID});
+        navigation.navigate("MessagesBetweenUsers", {conversationID:conversationID, originSenderId:originSenderId, originRecId: originRecId, name: name, page: 10, isFirstMessage: false, recieverID: recID});
     }
 
     let circle;

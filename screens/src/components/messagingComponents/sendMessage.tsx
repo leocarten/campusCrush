@@ -183,7 +183,7 @@ export function SendUserMessage( {isFirstMessage, recID, sendID} ) {
     else{
 
       // should we create the websocket here?
-      console.log("\n\nIN WEB SOCKET!!\n\n")
+      console.log("Might also need to emit the message here in sendMessage.tsx in messagingComponents.")
 
       console.log("NOT first message");
       const newMessage = messages[0]['text'];

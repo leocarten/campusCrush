@@ -66,7 +66,7 @@ const DisplayConvoComponent = (id1, id2) => {
         conversations.map((conversation, index) => (
           <MessagesComponent
             key={index}
-            // conversationID={conversation.id}
+            conversationID={conversation.convoID}
             originSenderId={conversation.originalSenderID}
             originRecId={conversation.originalRecieverID}
             name={conversation.receiver_name}
