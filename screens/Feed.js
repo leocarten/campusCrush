@@ -13,11 +13,14 @@ import { feedBackgroundColor } from './src/styles/feedStyles/feedColors';
 import { getSecureValues } from '../authentication/getValue';
 import { getItemsInFeed } from '../endpoints/GetItemsForFeed';
 import DisplayItems from './DisplayItems';
+import { useFocusEffect } from '@react-navigation/native';
 
 
-const Feed = () => {
+const Feed = ({route}) => {
   const navigation = useNavigation();
   navigation.canGoBack(false);
+
+
 
   getItemsInFeed().then(result => {
     for(var i = 0; i < result.length; i++){
@@ -34,11 +37,10 @@ const Feed = () => {
     <SafeAreaView style={{backgroundColor: feedHeadingBackground}}>
       <Header onFeedPage={1}/>
     </SafeAreaView>
-    <ScrollView>
-      <View style={{marginTop: '2%'}}></View>
+    {/* <ScrollView> */}
+      {/* <View style={{marginTop: '2%'}}></View> */}
 
-
-      <DisplayItems/>
+      <DisplayItems />
  
       {/* isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Interests, Music, Job */}
       {/* <ItemInFeed key={2} userID={1} isVerified={1} Name={"Molly"} Age={"21"} Comp={"74"} Bio={"Hi there! I'm a spontaneous adventurer with a passion for trying new things. Whether it's exploring hidden gems in the city or embarking on last-minute road trips, I'm always up for a good time and making connections. Let's create some unforgettable memories together!"} AppReason={3} Interests={["Model-building", "Piano playing", "Sports"]} Music={["Rock"]} Job={"Job"}/>
@@ -46,7 +48,7 @@ const Feed = () => {
       <ItemInFeed key={4} userID={3} isVerified={1} Name={"Hailey"} Age={"21"} Comp={"87"} Bio={"I am cool"} AppReason={2} Interests={["Partying"]} Music={["Country"]} Job={"Software Engineer"} KeyToHeart={""} BucketList={""} has_tattoos={1} workout={1} sleep_schedule={1} personalityType={"INFJ"}/>
       <ItemInFeed key={5} userID={4} isVerified={1} Name={"Maria"} Age={"21"} Comp={"79"} Bio={"Hello! I'm a foodie at heart, constantly on the lookout for the next culinary adventure. Whether it's exploring trendy food trucks or experimenting in the kitchen, my taste buds are always ready for a flavor-packed experience. If you're into discovering new cuisines and appreciate good company, let's spice up each other's lives!"} AppReason={3} Interests={["Working out", "Concerts", "Tennis", "Softball"]} Music={["Rock"]} Job={"Job"}/> */}
 
-    </ScrollView>
+    {/* </ScrollView> */}
     
     <View style={styles.footer}>
     <Footer/>

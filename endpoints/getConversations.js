@@ -5,13 +5,13 @@ import React, { useState, useEffect } from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import MessagesComponent from '../screens/src/components/messagingComponents/message';
 
-const DisplayConvoComponent = (id1, id2) => {
+const DisplayConvoComponent = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [conversations, setConversations] = useState([]);
 
   useEffect(() => {
     displayConversations();
-  }, []);
+  }, []); 
 
   const displayConversations = async () => {
     setIsLoading(true); // Set isLoading to true when data fetching begins

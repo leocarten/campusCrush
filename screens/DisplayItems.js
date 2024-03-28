@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import ItemInFeed from './src/components/feedComponents/itemInFeed';
 import { getItemsInFeed } from '../endpoints/GetItemsForFeed';
 import { ActivityIndicator } from 'react-native';
 import NoItemsFoundInFeed from './src/components/feedComponents/noItemsFoundInFeed';
+import { Button } from 'react-native';
+import { RefreshControl } from 'react-native';
 
 function calculateAge(birthdate) {
     const birthDateObject = new Date(birthdate);
@@ -22,28 +24,58 @@ function calculateAge(birthdate) {
 const DisplayItems = () => {
   const [feedItems, setFeedItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const result = await getItemsInFeed();
+  //       setFeedItems(result);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
+
+  const fetchData = async () => {
+    try {
+      const result = await getItemsInFeed();
+      setFeedItems(result);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await getItemsInFeed();
-        setFeedItems(result);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setLoading(false);
-      }
-    };
-
     fetchData();
   }, []);
+
+  const onRefresh = () => {
+    console.log("Refresh")
+  }
+
+  const handleRefresh = () => {
+    fetchData(); // Fetch items again when refreshing
+  };
+
+  // const handleRefresh = () => {
+  //   setLoading(true); // Set loading state to true
+  //   fetchData(); // Fetch items again when the refresh button is clicked
+  // };
+
 
   if (loading) {
     // Render a loading indicator or message while data is being fetched
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: '70%' }}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: '0%' }}>
         <ActivityIndicator size="large" color="#3A3A3A"/>
-      </View>
+      </View> 
     ); 
   }
 
@@ -90,6 +122,11 @@ const DisplayItems = () => {
     console.log("feed items:",feedItems);
     
     return (
+      <ScrollView
+      refreshControl={
+        <RefreshControl onRefresh={handleRefresh} />
+      }
+      >
       <View>
         {feedItems.map((item, index) => ( 
           <ItemInFeed
@@ -115,6 +152,7 @@ const DisplayItems = () => {
           />
         ))}
       </View>
+      </ScrollView>
     );
   }
   else{
@@ -127,3 +165,6 @@ const DisplayItems = () => {
 };
 
 export default DisplayItems;
+
+
+

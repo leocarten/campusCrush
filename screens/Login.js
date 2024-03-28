@@ -12,7 +12,6 @@ import { saveSecureValue } from '../authentication/saveValue';
 import { getItemsInFeed } from '../endpoints/GetItemsForFeed';
 import MovingIcon from './src/components/movingIcon';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import TestSocket from '../sockets/testSocket';
 
 const Login = () => {
   const [username, setUsername] = useState('');

@@ -20,18 +20,18 @@ const Footer = () => {
       navigation.navigate("EditProfilePage");
     };
 
-    // function sendMessage(){
-    //   const socket = io("http://18.188.112.190:5001/testSocket");
-    //   socket.emit('message',"Hello from client")
-    // }
+    const handleRefresh = async () => {
+      navigation.navigate("Feed", { refresh: true });
+    };
+
 
     return (
       <View style={styles.FooterView}>
 
         <View style={styles.leftContainer}>
-            {/* <TouchableOpacity> */}
-                <Text><Ionicons name="arrow-up-circle-sharp" size={35} color={"transparent"} /></Text>
-            {/* </TouchableOpacity> */}
+            <TouchableOpacity onPress={handleRefresh}>
+                <Text><Ionicons name="refresh-circle" size={35} color={iconColors} /></Text>
+            </TouchableOpacity>
         </View>
 
         <View style={styles.iconStyle}>

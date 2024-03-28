@@ -16,11 +16,12 @@ import EditUserData from "../../../../endpoints/EditUserData";
 import MovingIcon from "../movingIcon";
 import { Feather } from '@expo/vector-icons';
 
+
 interface HeaderProps {
   onFeedPage: int;
 }
 
-const Header: React.FC<HeaderProps> = ({ onFeedPage, name }) => {
+const Header: React.FC<HeaderProps> = ({ onFeedPage, name, socket }) => {
   const navigation = useNavigation();
 
   // const handleUpdateData = () => {
@@ -35,7 +36,7 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage, name }) => {
   };
 
   const goToMessages = () => {
-    navigation.navigate("Messages");
+    navigation.navigate("Messages", { refresh: true });
   }
 
   const backToFeed = () => {
@@ -257,6 +258,7 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage, name }) => {
   }
 
   else if(onFeedPage === 9){ // the user is on learn about campuscrush page
+
     return (
     <View style={styles.headerView}>
       <View style={styles.leftContainer}>
@@ -273,6 +275,7 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage, name }) => {
   }
 
   else if(onFeedPage === 10){ // the user is in the messaging between 2 users page
+    socket.disconnect();
     return (
     <View style={styles.headerView}>
       <View style={styles.leftContainer}>
@@ -295,6 +298,7 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage, name }) => {
   }
 
   else if(onFeedPage === 11){ // the user is in the messaging between 2 users page
+
     return (
     <View style={styles.headerView}>
       <View style={styles.leftContainer}>

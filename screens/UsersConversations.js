@@ -10,37 +10,35 @@ import Footer from './src/components/feedComponents/footer';
 import { SendUserMessage } from './src/components/messagingComponents/sendMessage';
 import io from "socket.io-client"
 import { getSecureValues } from '../authentication/getValue';
-
+import socket from '../sockets/socket';
 
 const MessagesBetweenUsers = ({ route }) => {
 
     const navigation = useNavigation();
-    // const { originSenderId, originRecId, name, page, isFirstMessage, recieverID } = route.params;
     const { conversationID, originSenderId, originRecId, name, page, isFirstMessage, recieverID } = route.params;
 
     console.log(name);
-    console.log('MessagesBetweenUsers, first message: ',isFirstMessage)
-    console.log('MessagesBetweenUsers, origin sender id:',originSenderId);
-    console.log('MessagesBetweenUsers, origin rec id:',originRecId);
+    console.log('page',page)
 
     if(isFirstMessage != true){
         console.log("Need to load messages HERE!");
 
         console.log("\n\nYOO, THIS IS WHERE THE WEB SOCKET SHOULD BE!! This file is UsersConversations.js\n");
 
-        // create websocket with convoID
-        const WebSocketServerURL = 'http://18.188.112.190:5002';
-        const socket = io.connect(WebSocketServerURL);
+        socket.emit("join_conversation", conversationID);
 
-        socket.emit('join_conversation', conversationID);
+        socket.on('new_message', (data) => {
+            const newMessage = data.message;
+            console.log("Other person just said:",newMessage);
+        });
 
-        // // Testing
+        // Testing
         // socket.emit('send_message', {
         //     jwt: getSecureValues('access'),
         //     convoID: conversationID,
         //     id1: originSenderId,
         //     id2: originRecId,
-        //     messageContent: "shaddup",
+        //     messageContent: "Test",
         //     typeOfVerification: "access"
         // });
 
@@ -54,7 +52,7 @@ const MessagesBetweenUsers = ({ route }) => {
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}>
             <SafeAreaView style={{backgroundColor: feedHeadingBackground}}>
-                <Header onFeedPage={page} name={name}/>
+                <Header onFeedPage={page} name={name} socket={socket}/>
             </SafeAreaView>
             <SendUserMessage isFirstMessage={false} recID={originRecId} sendID={originSenderId} socket={socket} conversationID={conversationID} originSenderId={originSenderId} originRecId={originRecId}/>
             <View style={{marginBottom: '0%', backgroundColor: 'white'}}><Text style={{color: 'transparent', fontSize: 25}}>hi</Text></View>

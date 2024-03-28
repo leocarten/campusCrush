@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react'
-import { GiftedChat } from 'react-native-gifted-chat'
+import { GiftedAvatar, GiftedChat } from 'react-native-gifted-chat'
 import { View } from 'react-native'
 import { Bubble, Send } from 'react-native-gifted-chat'
 import { Text } from 'react-native'
@@ -11,49 +11,19 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { sendFirstMessage } from '../../../../endpoints/SendFirstMessage'
 import { getSecureValues } from '../../../../authentication/getValue'
 import { sendAdditionalMessages } from '../../../../endpoints/sendAdditionalMessage'
+import io from "socket.io-client"
 
-// async function getData(){
-//   try {
-//     const apiUrl = 'http://18.188.112.190:5001/getMessages';
-//     const accessToken = await getSecureValues('access');
-//     const credentials = {
-//       type: 'access',
-//       tokenFromUser: accessToken,
-//     }
-//     const response = await fetch(apiUrl, {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify(credentials),
-//     });
-//     if (response.ok) {
-//       const data = await response.json();
-//       console.log("response from server:",data['results']);
-//       if (data['results']['success'] === true){
-//         // secure the tokens returned from the server!
-//         return [true, data['results']['messages'], data['results']['requestersID']];
-//       }
-//       else {
-//         if(data['results']['message'] === "You have no messages yet.") {
-//           return [false]
-//           // console.log("Uh oh, no messages for you yet.")
-//         } else {
-//           return [false]
-//           // console.error('Items failed:', response.status, await response.text());
-//         }
-//       }
-//     } else {
-//       console.error('Items failed:', response.status, await response.text());
-//       return [false]
-//     }
-//   } catch (error) {
-//     console.error('Error during item retrieval:', error);
-//     return [false]
-//   }
-// }
+
+
 
 export function SendUserMessage( {isFirstMessage, recID, sendID, socket, conversationID, originSenderId, originRecId} ) {
+
+  function generateUniqueId() {
+    const timestamp = Date.now().toString(36); // Convert current timestamp to base36 string
+    const randomString = Math.random().toString(36).substr(2, 5); // Generate random string and take a substring
+    return timestamp + randomString; 
+  }
+
   const [messages, setMessages] = useState([]);
   console.log('in SendUserMessage, recID:',recID);
   console.log('in SendUserMessage, sendID:',sendID);
@@ -86,32 +56,7 @@ export function SendUserMessage( {isFirstMessage, recID, sendID, socket, convers
         
         setMessages(formattedMessages);
 
-          // setMessages([      
-          //   {
-          //     _id: 1,
-          //     text: 'Why havent you answered me?',
-          //     createdAt: new Date(),
-          //     user: {
-          //       _id: 2,
-          //       name: '{Name}',
-          //       avatar: 'https://cdn-icons-png.freepik.com/512/145/145865.png',
-          //     },
-          //   },
-          //   {
-          //     _id: 3,
-          //     text: 'Hey there, nice to meet you! I look forward to connecting with.',
-          //     createdAt: new Date(),
-          //     user: {
-          //       _id: 4,
-          //       name: '{Name}',
-          //       avatar: 'https://cdn-icons-png.freepik.com/512/145/145865.png',
-          //     },
-          //   },
-          // ]);
-
           console.log("Messages received:", data[1]);
-          // loop through and display messages on UI
-          // for(var i = )
 
 
         } else {
@@ -167,8 +112,6 @@ export function SendUserMessage( {isFirstMessage, recID, sendID, socket, convers
 
 
   const onSend = useCallback(async (messages = []) => {
-    // do something for when ifFirstMessage is true
-    // OR do something when it is false
     if(isFirstMessage == true){
       console.log("First message!!");
       const firstMessage = messages[0]['text'];
@@ -185,14 +128,34 @@ export function SendUserMessage( {isFirstMessage, recID, sendID, socket, convers
       // should we create the websocket here?
       console.log("Might also need to emit the message here in sendMessage.tsx in messagingComponents.");
       const newMessage = messages[0]['text'];
+
+
+
       socket.emit('send_message', {
-        jwt: getSecureValues('access'),
+        jwt: await getSecureValues('access'),
         convoID: conversationID,
         id1: originSenderId,
         id2: originRecId,
         messageContent: newMessage,
         typeOfVerification: "access"
       });
+
+      // socket_.on('new_message', (data) => {
+      //     console.log("Other person just said:", data.message);
+      //     const newMessage = {
+      //       _id: generateUniqueId(),
+      //       text: data.message,
+      //       createdAt: new Date(),
+      //       user: {
+      //         _id: 1, 
+      //         name: '{Name}', 
+      //         avatar: 'https://cdn-icons-png.freepik.com/512/145/145865.png',
+      //       },
+      //     };
+      //     console.log(newMessage);
+      //   });
+  
+
       console.log("NOT first message");
       const sendNewMessage = await sendAdditionalMessages(recID, sendID, newMessage);
       console.log('after call, sender:',sendID);
@@ -263,7 +226,6 @@ if(isFirstMessage == true){
       placeholder={"Type your message ..."}
       isLoadingEarlier={true}
       />
-      
   )
   }
   else{
