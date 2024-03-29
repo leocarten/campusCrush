@@ -8,43 +8,22 @@ import { feedBackgroundColor } from './src/styles/feedStyles/feedColors';
 import { feedHeadingBackground } from './src/styles/feedStyles/feedColors';
 import Footer from './src/components/feedComponents/footer';
 import { SendUserMessage } from './src/components/messagingComponents/sendMessage';
-import io from "socket.io-client"
 import { getSecureValues } from '../authentication/getValue';
-import socket from '../sockets/socket';
+import { v4 as uuidv4 } from 'uuid';
+import { connectAndJoinConversation } from '../sockets/socket';
 
 const MessagesBetweenUsers = ({ route }) => {
 
     const navigation = useNavigation();
     const { conversationID, originSenderId, originRecId, name, page, isFirstMessage, recieverID } = route.params;
 
+ 
     console.log(name);
-    console.log('page',page)
+    console.log('page',page);
 
     if(isFirstMessage != true){
-        console.log("Need to load messages HERE!");
-
-        console.log("\n\nYOO, THIS IS WHERE THE WEB SOCKET SHOULD BE!! This file is UsersConversations.js\n");
-
-        socket.emit("join_conversation", conversationID);
-
-        socket.on('new_message', (data) => {
-            const newMessage = data.message;
-            console.log("Other person just said:",newMessage);
-        });
-
-        // Testing
-        // socket.emit('send_message', {
-        //     jwt: getSecureValues('access'),
-        //     convoID: conversationID,
-        //     id1: originSenderId,
-        //     id2: originRecId,
-        //     messageContent: "Test",
-        //     typeOfVerification: "access"
-        // });
-
-
-        // When the user presses the back arrow, i need to disconnect from the socket and then re-fresh the convos page
-
+        const socket = connectAndJoinConversation(conversationID);
+        // const socket = "leo";
         return (
             <LinearGradient
             colors={feedBackgroundColor}
@@ -61,7 +40,7 @@ const MessagesBetweenUsers = ({ route }) => {
     }
     else{
 
-        console.log("Im in message:",name,recieverID);
+        // console.log("Im in message:",name,recieverID);
         
         // use send first message endpoint
         return (

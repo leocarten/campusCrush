@@ -275,7 +275,7 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage, name, socket }) => {
   }
 
   else if(onFeedPage === 10){ // the user is in the messaging between 2 users page
-    socket.disconnect();
+    // socket.disconnect();
     return (
     <View style={styles.headerView}>
       <View style={styles.leftContainer}>

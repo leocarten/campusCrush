@@ -11,22 +11,23 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { sendFirstMessage } from '../../../../endpoints/SendFirstMessage'
 import { getSecureValues } from '../../../../authentication/getValue'
 import { sendAdditionalMessages } from '../../../../endpoints/sendAdditionalMessage'
-import io from "socket.io-client"
+import { io } from 'socket.io-client'
+import { updateJoinedStatus } from '../../../globalVariables/Socket'
+import { joinedStatus } from '../../../globalVariables/Socket'
 
-
-
+function generateUniqueId() {
+  return Math.random().toString(36).substring(2, 6);
+}
 
 export function SendUserMessage( {isFirstMessage, recID, sendID, socket, conversationID, originSenderId, originRecId} ) {
-
-  function generateUniqueId() {
-    const timestamp = Date.now().toString(36); // Convert current timestamp to base36 string
-    const randomString = Math.random().toString(36).substr(2, 5); // Generate random string and take a substring
-    return timestamp + randomString; 
-  }
 
   const [messages, setMessages] = useState([]);
   console.log('in SendUserMessage, recID:',recID);
   console.log('in SendUserMessage, sendID:',sendID);
+
+
+
+  let hold;
 
   // console.log(getData())
   useEffect(() => {
@@ -41,6 +42,7 @@ export function SendUserMessage( {isFirstMessage, recID, sendID, socket, convers
           const formattedMessages = messagesFromServer.map((message) => {
             const isRequester = requestersID === message.senderID; // Check if senderID matches requestersID
             const userId = isRequester ? 1 : 0; // Set userId based on the condition
+            hold = userId;
             
             return {
                 _id: message.messageID,
@@ -129,10 +131,15 @@ export function SendUserMessage( {isFirstMessage, recID, sendID, socket, convers
       console.log("Might also need to emit the message here in sendMessage.tsx in messagingComponents.");
       const newMessage = messages[0]['text'];
 
+      const WebSocketServerURL = 'http://18.188.112.190:5002';
+      const socket_ = io.connect(WebSocketServerURL);
+      socket_.emit("join_conversation", conversationID);
 
+      const userJWT = await getSecureValues('access');
+      console.log("Emit send message");
 
-      socket.emit('send_message', {
-        jwt: await getSecureValues('access'),
+      socket_.emit('send_message', {
+        jwt: userJWT,
         convoID: conversationID,
         id1: originSenderId,
         id2: originRecId,
@@ -140,29 +147,75 @@ export function SendUserMessage( {isFirstMessage, recID, sendID, socket, convers
         typeOfVerification: "access"
       });
 
-      // socket_.on('new_message', (data) => {
-      //     console.log("Other person just said:", data.message);
-      //     const newMessage = {
-      //       _id: generateUniqueId(),
-      //       text: data.message,
-      //       createdAt: new Date(),
-      //       user: {
-      //         _id: 1, 
-      //         name: '{Name}', 
-      //         avatar: 'https://cdn-icons-png.freepik.com/512/145/145865.png',
-      //       },
-      //     };
-      //     console.log(newMessage);
-      //   });
+      let isMessageListenerSet = false; 
+
+      if (!isMessageListenerSet) {
+          socket_.on('new_message', (data) => {
+              console.log("Other person just said:", data.message, hold);
+              const newMessage = {
+                  _id: generateUniqueId(),
+                  text: data.message,
+                  createdAt: new Date(),
+                  user: {
+                      _id: 1, 
+                      name: '{Name}', 
+                      avatar: 'https://cdn-icons-png.freepik.com/512/145/145865.png',
+                  },
+              };
+              setMessages(previousMessages =>
+                  GiftedChat.append(previousMessages, [newMessage]), // Append single message array
+              );
+          });
+
+          isMessageListenerSet = true;
+      }
+
+      // const userJWT = await getSecureValues('access');
+      // console.log("Emit send message");
+
+      // socket.emit('send_message', {
+      //   jwt: userJWT,
+      //   convoID: conversationID,
+      //   id1: originSenderId,
+      //   id2: originRecId,
+      //   messageContent: newMessage,
+      //   typeOfVerification: "access"
+      // });
+
+      // let isMessageListenerSet = false; 
+ 
+      // if (!isMessageListenerSet) {
+      //     socket.on('new_message', (data) => {
+      //         console.log("Other person just said:", data.message, hold);
+      //         const newMessage = {
+      //             _id: generateUniqueId(),
+      //             text: data.message,
+      //             createdAt: new Date(),
+      //             user: {
+      //                 _id: 1, 
+      //                 name: '{Name}', 
+      //                 avatar: 'https://cdn-icons-png.freepik.com/512/145/145865.png',
+      //             },
+      //         };
+      //         setMessages(previousMessages =>
+      //             GiftedChat.append(previousMessages, [newMessage]), // Append single message array
+      //         );
+      //     });
+
+      //     isMessageListenerSet = true;
+      // }
+
+
+      
   
 
       console.log("NOT first message");
       const sendNewMessage = await sendAdditionalMessages(recID, sendID, newMessage);
       console.log('after call, sender:',sendID);
       console.log('after call, rec:',recID)
-      setMessages(previousMessages =>
-        GiftedChat.append(previousMessages, messages),
-      )
+      // setMessages(previousMessages =>
+      //   GiftedChat.append(previousMessages, messages),
+      // )
     }
   }, [])
 

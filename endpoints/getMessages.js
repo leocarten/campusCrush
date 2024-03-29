@@ -31,7 +31,7 @@ export function getMessages() {
   
       if (response.ok) {
         const data = await response.json();
-        console.log("response from server:",data['results']);
+        // console.log("response from server:",data['results']);
         if (data['results']['success'] === true){
           // secure the tokens returned from the server!
           return [true, data['results']['messages'], data['results']['requestersID']];
