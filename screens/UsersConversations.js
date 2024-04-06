@@ -22,7 +22,8 @@ const MessagesBetweenUsers = ({ route }) => {
     console.log('page',page);
 
     if(isFirstMessage != true){
-        const socket = connectAndJoinConversation(conversationID);
+        // const socket = connectAndJoinConversation(conversationID);
+        const socket = "hi";
         // const socket = "leo";
         return (
             <LinearGradient

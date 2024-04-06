@@ -11,7 +11,10 @@ import GradientText from './src/styles/gradientText';
 import { TouchableOpacity } from 'react-native';
 import {Ionicons} from '@expo/vector-icons'; 
 import MovingIcon from './src/components/movingIcon';
-
+import { FontAwesome5 } from '@expo/vector-icons';
+import { iconColors } from './src/styles/feedStyles/feedColors';
+import { FontAwesome } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const FilterPage = () => {
   const navigation = useNavigation();
@@ -41,7 +44,7 @@ const FilterPage = () => {
         <View style={styles.heading}>
           <Text style={styles.filter}>
             {/* &#128188; Redeem the points you've earned to earn CampusCrush features... */}
-            Redeem the points you've earned to earn CampusCrush features...
+            Redeem the points you've earned to recieve CampusCrush features...
           </Text>
           <TouchableOpacity>
                 <View>
@@ -50,11 +53,12 @@ const FilterPage = () => {
             </TouchableOpacity>
         </View>
 
-        <StoreItem name={"2 hour Top Placement"} emoji={<Text>&#128285;</Text>} text={"Claim the top spot with our Featured Profile Boost! Your profile will be strategically positioned at the very top of users' feeds, giving you unmatched visibility and a kick start in the quest for meaningful connections."} points={"75"}/>
-        <StoreItem name={"Match Making Roulette"} emoji={<Text>&#127920;</Text>} text={"Get paired with others who also want to make a random connection! This can be used to help create connections if you are having a hard time getting started!"} points={"150"}/>
-        <StoreItem name={"Go on a Blind Date"} emoji={<Text>&#128140;</Text>} text={"Some say love is blind, and that we see with our hearts. Try our blind date feature, where you will be paired with another person, but can only see their Bitmoji! If both users agree to reveal profiles, it's considered a match!"} points={"125"}/>
-        <StoreItem name={"Respond and send 1 extra message"} emoji={<Text>&#128258;</Text>} text={"Out of messages for the day? No worries, redeem an extra for a low cost!"} points={"50"}/>
-        <StoreItem name={"Lottery spin"} emoji={<Text>&#128176;</Text>} text={"For 50 tokens, you have a chance to win 30 to 200 tokens. Becareful, there is a chance you could lose a few!"} points={"50"}/>
+        <StoreItem item={1} name={"2 hour Top Placement"} emoji={<Text><FontAwesome5 name="level-up-alt" size={60} color={iconColors} /></Text>} text={"Claim the top spot of everyones feed with our Profile Boost! "} points={"75"}/>
+        {/* <StoreItem name={"Match Making Roulette"} emoji={<Text>&#127920;</Text>} text={"Get paired with others who also want to make a random connection! This can be used to help create connections if you are having a hard time getting started!"} points={"150"}/> */}
+        <StoreItem item={2} name={"Go on a Blind Date"} emoji={<Text><FontAwesome name="low-vision" size={60} color={iconColors} /></Text>} text={"Be paired up, but only their Bitmoji is visible to you!"} points={"125"}/>
+        <StoreItem item={3} name={"Send 1 extra message"} emoji={<Text><MaterialCommunityIcons name="message-plus-outline" size={60} color={iconColors} /></Text>} text={"Earn an extra message with this item!"} points={"50"}/>
+        <StoreItem item={4} name={"Lottery spin"} emoji={<Text><MaterialCommunityIcons name="treasure-chest" size={60} color={iconColors} /></Text>} text={"For 50 tokens, you have a chance to win 30 to 200 tokens!"} points={"50"}/>
+        <StoreItem item={5} name={"Message Viewer"} emoji={<Text><FontAwesome5 name="search" size={57} color={iconColors}  /></Text>} text={"See when others read your message for the next 24hrs."} points={"75"}/>
 
 
     </ScrollView>
@@ -88,7 +92,7 @@ const styles = StyleSheet.create({
         padding: 8,
         // borderRadius: 5,
         borderColor: '#ABABAB',
-        borderBottomWidth: 3,
+        borderBottomWidth: 1,
         shadowColor: "#000",
         shadowOffset: {
           width: 0,
@@ -107,11 +111,11 @@ const styles = StyleSheet.create({
         fontSize: 22
     },
     campusCrush: {
-      fontSize: 30,
+      fontSize: 26,
       fontWeight: 'bold',
       textShadowColor: 'rgba(0, 0, 0, 0.9)',
       textShadowOffset: {width: -1, height: 1},
-      textShadowRadius: 3,
+      textShadowRadius: 2,
       marginTop: '3%',
       marginBottom: '3%',
     },

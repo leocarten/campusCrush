@@ -42,19 +42,19 @@ function CreateAcc() {
 
   useEffect(() => {
     const getPermissions = async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        console.log("Please grant location permissions");
-        return;
-      }
-      let currentLocation = await Location.getCurrentPositionAsync({});
-      // setLocation(currentLocation);
-      console.log("Location:");
-      const lat = (currentLocation['coords']['latitude']);
-      const long_ = (currentLocation['coords']['longitude']);
+      // let { status } = await Location.requestForegroundPermissionsAsync();
+      // if (status !== 'granted') {
+      //   console.log("Please grant location permissions");
+      //   return;
+      // }
+      // let currentLocation = await Location.getCurrentPositionAsync({});
+      // // setLocation(currentLocation);
+      // console.log("Location:");
+      // const lat = (currentLocation['coords']['latitude']);
+      // const long_ = (currentLocation['coords']['longitude']);
 
-      console.log(lat);
-      console.log(long_);
+      // console.log(lat);
+      // console.log(long_);
 
       // HARD-CODED VALUES FOR NOW
       updateGlobalVariables('lat',43.7570);

@@ -15,6 +15,7 @@ import { resetValues } from "../../../globalVariables/UpdateUserAccount";
 import EditUserData from "../../../../endpoints/EditUserData";
 import MovingIcon from "../movingIcon";
 import { Feather } from '@expo/vector-icons';
+import PointsComponent from "../pointsComponents/Points";
 
 
 interface HeaderProps {
@@ -170,8 +171,8 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage, name, socket }) => {
 
         <View>
           <Text style={styles.points}>
-            <Ionicons name="person-sharp" size={24} color={iconColors} />
-            <Text> 500 pts </Text>
+            <Ionicons name="person-sharp" size={26} color={iconColors} />
+            <Text> <PointsComponent/></Text>
           </Text>
         </View>
         
@@ -335,7 +336,8 @@ const styles = StyleSheet.create({
   points: {
     color: iconColors,
     alignSelf: "center",
-    fontSize: 17
+    fontSize: 17,
+    
   },
     iconStyle: {
       marginRight: '3.5%',

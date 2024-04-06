@@ -1,11 +1,55 @@
 import React, {useState} from 'react';
 import {Text, TextInput, View, StyleSheet, TouchableOpacity} from 'react-native';
 import { iconColors } from '../../styles/feedStyles/feedColors';
+import { Alert } from 'react-native';
+import { lotterySpin } from '../../../../endpoints/LotterySpin';
+import { useNavigation } from '@react-navigation/native'
 
-const StoreItem = ({ name, emoji, text, points })  => {
-    return(
+const handleClick = async (type, navigation) => {
+
+    if(type === 1) {
+        // Handle item 1 logic
+    } else if(type === 2) {
+        // Handle item 2 logic
+    } else if(type === 3) {
+        // Handle item 3 logic
+    } else if(type === 4) {
+        Alert.alert(
+            'Verification',
+            "The lottery spin costs 50 tokens, are you sure you'd like to redeem this item?",
+            [
+                {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                },
+                {
+                    text: 'Redeem',
+                    onPress: async () => {
+                        const spin = await lotterySpin();
+                        if(spin === false){
+                            console.log("You don't have enough!!");
+                        }
+                        else{
+                            navigation.navigate('Congrats', { spin });
+                        }
+                    }
+                },
+            ],
+            { cancelable: false }
+        );
+    }
+}
+
+const StoreItem = ({ item, name, emoji, text, points })  => {
+    const navigation = useNavigation();
+
+
+    console.log("Item prop:", item);
+    
+    return (
         <View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => handleClick(item, navigation)}>
                 <View style={styles.container}>
                     <Text style={styles.itemName}>
                         {name}
@@ -29,17 +73,19 @@ const StoreItem = ({ name, emoji, text, points })  => {
     );
 }
 
+
 const styles = StyleSheet.create({
     itemName: {
         marginBottom: '2%',
-        fontSize: 22,
+        fontSize: 22.5,
         fontWeight: 'bold'
     },
     points: {
         alignSelf: 'center',
         fontSize: 20,
         marginLeft: '2%',
-        color: iconColors
+        color: iconColors,
+        fontWeight: '600'
     },
     itemText: {
         alignSelf: 'center',
@@ -52,11 +98,11 @@ const styles = StyleSheet.create({
         marginBottom: '3%',
         marginLeft: '3%',
         marginRight: '3%',
-        borderColor: '#C9C9C9',
+        borderColor: '#BBBBBB',
         borderWidth: 3,
         borderRadius: 5,
         padding: 8,
-        shadowColor: "black",
+        shadowColor: "#D8D8D8",
         shadowOffset: {
             width: 1,
             height: 1,
@@ -68,7 +114,7 @@ const styles = StyleSheet.create({
     },
     emoji: {
         fontSize: 60,
-        marginBottom: '1%',
+        // marginBottom: '1%',
     },
     info: {
         fontSize: 16,

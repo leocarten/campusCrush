@@ -46,13 +46,13 @@ const FilterPage = () => {
 
           <DropdownComponent initMessage="I want to see people who are ..." options={[{ label: 'Looking for a long-term relationship', value: '1' },{ label: 'Looking for a short-term relationship', value: '2' },{ label: 'Looking to meet new people', value: '3' },]} icon={<Ionicons name="person" size={20} color="black" style={{ marginRight: 5 }}/>} />
 
-          <DropdownComponent initMessage="Show me verified users only" options={[{ label: 'True', value: '1' },{ label: 'False', value: '2' },]} icon={<FontAwesome5 name="user-check" size={18} color="black" style={{ marginRight: 5 }}/>} />
+          <DropdownComponent initMessage="Show me verified users only" options={[{ label: 'Yes', value: '1' },{ label: 'No', value: '2' },]} icon={<FontAwesome5 name="user-check" size={18} color="black" style={{ marginRight: 5 }}/>} />
 
-          <DropdownComponent initMessage="Has a bio" options={[{ label: 'True', value: '1' },{ label: 'False', value: '2' },]} icon={<MaterialCommunityIcons name="comment-quote" size={20} color="black" style={{ marginRight: 5 }}/>} />
+          <DropdownComponent initMessage="Has a bio" options={[{ label: 'Yes', value: '1' },{ label: 'No', value: '2' },]} icon={<MaterialCommunityIcons name="comment-quote" size={20} color="black" style={{ marginRight: 5 }}/>} />
         
-          <DropdownComponent initMessage="Has at least 1 common interest" options={[{ label: 'True', value: '1' },{ label: 'False', value: '2' },]} icon={<FontAwesome5 name="people-arrows" size={20} color="black" style={{ marginRight: 5 }}/>} />
+          <DropdownComponent initMessage="Has at least 1 common interest" options={[{ label: 'Yes', value: '1' },{ label: 'No', value: '2' },]} icon={<FontAwesome5 name="people-arrows" size={20} color="black" style={{ marginRight: 5 }}/>} />
 
-          <DropdownComponent initMessage="Has a high match rate" options={[{ label: 'True', value: '1' },{ label: 'False', value: '2' },]} icon={<MaterialCommunityIcons name="handshake" size={24} color="black" style={{ marginRight: 5 }} />}/>
+          <DropdownComponent initMessage="Has a high match rate" options={[{ label: 'Yes', value: '1' },{ label: 'No', value: '2' },]} icon={<MaterialCommunityIcons name="handshake" size={24} color="black" style={{ marginRight: 5 }} />}/>
 
           <UserInputSlider type={"Age"}/>
 
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
       padding: 8,
       // borderRadius: 5,
       borderColor: '#ABABAB',
-      borderBottomWidth: 3,
+      borderBottomWidth: 1,
       shadowColor: "#000",
       shadowOffset: {
         width: 0,

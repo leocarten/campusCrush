@@ -135,7 +135,7 @@ const DisplayItems = () => {
             isVerified={item.is_verified} 
             Name={item.first_name}
             Age={item.dob}
-            Comp={81}
+            Comp={item.compatibility*100}
             Bio={item.bio}
             AppReason={item.app_purpose}
             Interests={item.interests}
