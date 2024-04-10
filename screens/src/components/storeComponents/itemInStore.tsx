@@ -3,7 +3,8 @@ import {Text, TextInput, View, StyleSheet, TouchableOpacity} from 'react-native'
 import { iconColors } from '../../styles/feedStyles/feedColors';
 import { Alert } from 'react-native';
 import { lotterySpin } from '../../../../endpoints/LotterySpin';
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native';
+import { buyAdditionalMessage } from '../../../../endpoints/BuyAdditionalMessage';
 
 const handleClick = async (type, navigation) => {
 
@@ -12,7 +13,40 @@ const handleClick = async (type, navigation) => {
     } else if(type === 2) {
         // Handle item 2 logic
     } else if(type === 3) {
-        // Handle item 3 logic
+        // Handle item 3 logic (buy additional message)
+        Alert.alert(
+            'Verification',
+            "The additional message costs 100 tokens, are you sure you'd like to redeem this item?",
+            [
+                {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                },
+                {
+                    text: 'Redeem',
+                    onPress: async () => {
+                        const spin = await buyAdditionalMessage();
+                        if(spin === false){
+                            navigation.navigate('ErrorPage', { 
+                                icon: 3,
+                                body: 'Insufficient funds',
+                                message: 'Uh oh, do not have enough points to purchase this item. Continue to interact with CampusCrush to be awarded points, or purchase some!',
+                                page: 3 // or whatever page name you want to pass
+                              });
+                        }
+                        else{
+                            spin['message'] = `You have purchased an additional message, hopefully you create a great connection!`
+                            navigation.navigate('Congrats', { spin });
+                        }
+                    }
+                },
+            ],
+            { cancelable: false }
+        );
+
+
+
     } else if(type === 4) {
         Alert.alert(
             'Verification',
@@ -28,9 +62,15 @@ const handleClick = async (type, navigation) => {
                     onPress: async () => {
                         const spin = await lotterySpin();
                         if(spin === false){
-                            console.log("You don't have enough!!");
+                            navigation.navigate('ErrorPage', { 
+                                icon: 3,
+                                body: 'Insufficient funds',
+                                message: 'Uh oh, do not have enough points to purchase this item. Continue to interact with CampusCrush to be awarded points, or purchase some!',
+                                page: 3 
+                              });
                         }
                         else{
+                            spin['message'] = `Your spin won you ${spin['lotteryTokens']} tokens!`
                             navigation.navigate('Congrats', { spin });
                         }
                     }
@@ -77,8 +117,9 @@ const StoreItem = ({ item, name, emoji, text, points })  => {
 const styles = StyleSheet.create({
     itemName: {
         marginBottom: '2%',
-        fontSize: 22.5,
-        fontWeight: 'bold'
+        fontSize: 22,
+        fontWeight: '600',
+        color: '#333',
     },
     points: {
         alignSelf: 'center',
@@ -90,8 +131,10 @@ const styles = StyleSheet.create({
     itemText: {
         alignSelf: 'center',
         marginLeft: '5%',
-        fontSize: 20,
-        width: '55%'
+        fontSize: 18,
+        width: '55%',
+        color: '#333',
+        fontWeight: '400'
     },
     container: {
         marginTop: '3%',

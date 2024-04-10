@@ -32,7 +32,7 @@ const MessagesBetweenUsers = ({ route }) => {
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}>
             <SafeAreaView style={{backgroundColor: feedHeadingBackground}}>
-                <Header onFeedPage={page} name={name} socket={socket}/>
+                <Header onFeedPage={page} name={name} socket={socket} conversationID={conversationID} id1={originSenderId} id2={originRecId} id3={recieverID} />
             </SafeAreaView>
             <SendUserMessage isFirstMessage={false} recID={originRecId} sendID={originSenderId} socket={socket} conversationID={conversationID} originSenderId={originSenderId} originRecId={originRecId}/>
             <View style={{marginBottom: '0%', backgroundColor: 'white'}}><Text style={{color: 'transparent', fontSize: 25}}>hi</Text></View>

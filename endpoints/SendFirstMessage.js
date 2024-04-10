@@ -31,6 +31,9 @@ const sendFirstMessage = async (recieverID_,message_) => {
             // secure the tokens returned from the server!
             return true;
         }
+        else if((data['results']['message'] == "User has exceeded maximum of 3 messages per day.")){
+          return -1;
+        }
         else{
           if(data['results']['message'] == "Conversation already started."){
             console.log("We need to request the other endpoint.");

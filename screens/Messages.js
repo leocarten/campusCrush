@@ -30,7 +30,6 @@ const MessagesPage = ({ route }) => {
     }, [])
   );
 
-  
   return (
     <LinearGradient
       colors={feedBackgroundColor}

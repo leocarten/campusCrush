@@ -18,6 +18,11 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const FilterPage = () => {
   const navigation = useNavigation();
+
+  const handleHowToEarnPoints = () => {
+    navigation.navigate("HowToEarnPoints");
+  }
+
   return (
     <LinearGradient
     colors={feedBackgroundColor}
@@ -33,7 +38,6 @@ const FilterPage = () => {
 
     
     <ScrollView style={{marginBottom: '10%'}}>
-
       <View style={styles.logoContainer}>
         <MovingIcon/>
         <GradientText colors={['#cc2b5e', '#753a88']} style={styles.campusCrush}>
@@ -44,22 +48,20 @@ const FilterPage = () => {
         <View style={styles.heading}>
           <Text style={styles.filter}>
             {/* &#128188; Redeem the points you've earned to earn CampusCrush features... */}
-            Redeem the points you've earned to recieve CampusCrush features...
+            Redeem the CampusCrush tokens you've earned to recieve CampusCrush features...
           </Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleHowToEarnPoints}>
                 <View>
                     <Text style={styles.info}><Ionicons name="ios-information-circle-outline" size={20} color="gray" /> Learn about how points are earned</Text>
                 </View>
             </TouchableOpacity>
         </View>
 
-        <StoreItem item={1} name={"2 hour Top Placement"} emoji={<Text><FontAwesome5 name="level-up-alt" size={60} color={iconColors} /></Text>} text={"Claim the top spot of everyones feed with our Profile Boost! "} points={"75"}/>
-        {/* <StoreItem name={"Match Making Roulette"} emoji={<Text>&#127920;</Text>} text={"Get paired with others who also want to make a random connection! This can be used to help create connections if you are having a hard time getting started!"} points={"150"}/> */}
-        <StoreItem item={2} name={"Go on a Blind Date"} emoji={<Text><FontAwesome name="low-vision" size={60} color={iconColors} /></Text>} text={"Be paired up, but only their Bitmoji is visible to you!"} points={"125"}/>
-        <StoreItem item={3} name={"Send 1 extra message"} emoji={<Text><MaterialCommunityIcons name="message-plus-outline" size={60} color={iconColors} /></Text>} text={"Earn an extra message with this item!"} points={"50"}/>
-        <StoreItem item={4} name={"Lottery spin"} emoji={<Text><MaterialCommunityIcons name="treasure-chest" size={60} color={iconColors} /></Text>} text={"For 50 tokens, you have a chance to win 30 to 200 tokens!"} points={"50"}/>
-        <StoreItem item={5} name={"Message Viewer"} emoji={<Text><FontAwesome5 name="search" size={57} color={iconColors}  /></Text>} text={"See when others read your message for the next 24hrs."} points={"75"}/>
-
+          <StoreItem item={1} name={"2 hour Top Placement"} emoji={<Text><FontAwesome5 name="level-up-alt" size={60} color={iconColors} /></Text>} text={"Claim the top spot of everyones feed with our Profile Boost! "} points={"75"}/>
+          <StoreItem item={2} name={"Go on a Blind Date"} emoji={<Text><FontAwesome name="low-vision" size={60} color={iconColors} /></Text>} text={"Be paired up, but only their Bitmoji is visible to you!"} points={"125"}/>
+          <StoreItem item={3} name={"Send 1 extra message"} emoji={<Text><MaterialCommunityIcons name="message-plus-outline" size={60} color={iconColors} /></Text>} text={"Earn an extra message with this item!"} points={"100"}/>
+          <StoreItem item={4} name={"Lottery spin"} emoji={<Text><MaterialCommunityIcons name="treasure-chest" size={60} color={iconColors} /></Text>} text={"For 50 tokens, you have a chance to win 30 to 200 tokens!"} points={"50"}/>
+          <StoreItem item={5} name={"Message Viewer"} emoji={<Text><FontAwesome5 name="search" size={57} color={iconColors}  /></Text>} text={"See when others read your message for the next 24hrs."} points={"75"}/>
 
     </ScrollView>
     
@@ -72,6 +74,7 @@ const FilterPage = () => {
 }
 
 const styles = StyleSheet.create({
+
   logoContainer:{
     flexDirection: 'row', 
     alignItems: 'center',
@@ -85,7 +88,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
     heading: {
-        marginTop: '1%',
+        // marginTop: '1%',
         marginBottom: '3%',
         marginLeft: '3%',
         marginRight: '3%',
@@ -108,7 +111,11 @@ const styles = StyleSheet.create({
       justifyContent: 'flex-start', 
     },
     filter: {
-        fontSize: 22
+      fontSize: 18,
+      lineHeight: 24,
+      marginBottom: '3%',
+      color: '#333',
+      fontWeight: '500'
     },
     campusCrush: {
       fontSize: 26,

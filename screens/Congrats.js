@@ -45,8 +45,8 @@ const Congrats = ({route}) => {
 
         <View style={{marginBottom: '40%'}}>
             <Text style={{textAlign: 'center', fontSize: 30, fontWeight: '600', marginBottom: '20%'}}>Congratulations!</Text>
-            <Text style={{textAlign: 'center', fontSize: 20, fontWeight: '400'}}>You won {spin['lotteryTokens']} tokens!</Text>
-            <Text style={{textAlign: 'center', fontSize: 20, fontWeight: '400'}}>Your new balance is {spin['newBalance']}.</Text>
+            <Text style={{textAlign: 'center', fontSize: 20, fontWeight: '400', color: '#333', marginLeft: '3%', marginRight: '3%'}}>{spin['message']}</Text>
+            <Text style={{textAlign: 'center', fontSize: 20, fontWeight: '400', color: '#333', marginTop: '3%'}}>Your new balance is {spin['newBalance']} tokens.</Text>
 
         </View>
         <View style={styles.buttonContainer}>

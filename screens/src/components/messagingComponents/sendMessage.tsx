@@ -14,6 +14,7 @@ import { sendAdditionalMessages } from '../../../../endpoints/sendAdditionalMess
 import { io } from 'socket.io-client'
 import { updateJoinedStatus } from '../../../globalVariables/Socket'
 import { joinedStatus } from '../../../globalVariables/Socket'
+import { useNavigation } from '@react-navigation/native';
 
 function generateUniqueId() {
   return Math.random().toString(36).substring(2, 6);
@@ -24,6 +25,7 @@ export function SendUserMessage( {isFirstMessage, recID, sendID, socket, convers
   const [messages, setMessages] = useState([]);
   console.log('in SendUserMessage, recID:',recID);
   console.log('in SendUserMessage, sendID:',sendID);
+  const navigation = useNavigation();
 
 
 
@@ -120,10 +122,21 @@ export function SendUserMessage( {isFirstMessage, recID, sendID, socket, convers
       console.log('recID: ',recID);
       console.log('sender id:',sendID);
       const sendingFirstMessage = await sendFirstMessage(recID, firstMessage);
-      setMessages(previousMessages =>
-        GiftedChat.append(previousMessages, messages),
-      )
-      console.log("Your first message has been sent :)")
+      console.log('here: ',sendingFirstMessage)
+      if (sendingFirstMessage == true){
+        setMessages(previousMessages =>
+          GiftedChat.append(previousMessages, messages),
+        )
+        console.log("Your first message has been sent :)")
+      }else if (sendingFirstMessage == -1){
+        // doesnt have extra messages
+        navigation.navigate('ErrorPage', { 
+          icon: 2,
+          body: "You're out of messages!",
+          message: "Uh oh, you ran out of messages. You are only allowed to start 3 new conversations every 24 hours. You can redeem an additional message from our store!",
+          page: 3 
+        });
+      }
     }
     else{
 

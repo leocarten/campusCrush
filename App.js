@@ -23,6 +23,8 @@ import EditProfilePage from './screens/EditUserProfile';
 import ViewProfilePage from './screens/ViewUserProfile';
 import MessagesBetweenUsers from './screens/UsersConversations';
 import Congrats from './screens/Congrats';
+import ChatSettingsPage from './screens/ChatSettings';
+import HowToEarnPoints from './screens/Learn/HowToEarnPoints';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -52,6 +54,8 @@ export default function App() {
         <Stack.Screen name="ViewProfilePage" component={ViewProfilePage} options={{ animation:'fade' }}/>
         <Stack.Screen name="MessagesBetweenUsers" component={MessagesBetweenUsers}/>
         <Stack.Screen name="Congrats" component={Congrats}/>
+        <Stack.Screen name="ChatSettingsPage" component={ChatSettingsPage}/>
+        <Stack.Screen name="HowToEarnPoints" component={HowToEarnPoints}/>
 
       </Stack.Navigator>
     </NavigationContainer>

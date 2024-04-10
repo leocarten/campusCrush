@@ -152,12 +152,12 @@ const styles = StyleSheet.create({
   },
   missionStatement: {
     marginTop: '5%',
-    fontSize: 26,
+    fontSize: 23,
     color: homePageColors.primary,
     marginHorizontal: '3%',
     marginBottom: '55%',
     maxWidth: '100%',
-    textAlign:"center" 
+    textAlign:"center",
   },
   supercharge: {
     // fontStyle: 'italic',

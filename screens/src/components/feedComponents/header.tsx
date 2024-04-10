@@ -22,7 +22,7 @@ interface HeaderProps {
   onFeedPage: int;
 }
 
-const Header: React.FC<HeaderProps> = ({ onFeedPage, name, socket }) => {
+const Header: React.FC<HeaderProps> = ({ onFeedPage, name, socket, conversationID, id1, id2, id3 }) => {
   const navigation = useNavigation();
 
   // const handleUpdateData = () => {
@@ -31,6 +31,21 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage, name, socket }) => {
   //   console.log(getVariablesFromUserUpdate());
   //   EditUserData()
   // }
+
+  const handleSettingsPress = async () => {
+    console.log(name);
+    console.log(conversationID);
+    console.log(id1);
+    console.log(id2);
+    console.log(id3);
+    navigation.navigate("ChatSettingsPage", {
+      name: name,
+      conversationID: conversationID,
+      id1: id1,
+      id2: id2,
+      id3: id3
+    });
+  }
 
   const goToFilter = () => {
     navigation.navigate("FilterPage");
@@ -292,7 +307,9 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage, name, socket }) => {
           {name}
         </Text>
       </View>
-      <Feather name="settings" size={24} color={expandedIconColor} />
+      <TouchableOpacity onPress={handleSettingsPress} style={{flexDirection: "row"}}>
+        <Feather name="settings" size={24} color={expandedIconColor}/>
+      </TouchableOpacity>
     </View>
 
     );
@@ -316,6 +333,23 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage, name, socket }) => {
         </Text>
       </View>
       <Feather name="settings" size={24} color={expandedIconColor} />
+    </View>
+
+    );
+  }
+
+  else if(onFeedPage === 12){ // the user is on learn how to earn points
+
+    return (
+      <View style={styles.headerView}>
+      <View style={styles.leftContainer}>
+        {/* <Text>CampusCrush</Text> */}
+        <TouchableOpacity onPress={goToStore}>
+          <GradientText colors={['#cc2b5e', '#753a88']} style={styles.campusCrush}>
+            <Ionicons name="chevron-back" size={30}  />
+          </GradientText>
+        </TouchableOpacity>
+      </View>
     </View>
 
     );

@@ -8,10 +8,21 @@ import { feedBackgroundColor } from '../src/styles/feedStyles/feedColors';
 import { feedHeadingBackground } from '../src/styles/feedStyles/feedColors';
 import { View, Text } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const ErrorPage = ({ route }) => {
   const navigation = useNavigation();
-  const { body, message, page } = route.params;
+  const { icon, body, message, page } = route.params;
+  let real_icon;
+  if(icon == 1){ // error with login
+    real_icon = <MaterialIcons name={'error-outline'} size={70} color='red'/>;
+  }else if(icon == 2){
+    real_icon = <MaterialCommunityIcons name="message-lock" size={70} color="black" />
+  }else if(icon == 3){
+    real_icon = <MaterialIcons name="money-off" size={70} color="black" />
+  }
+
+
   return (
     <LinearGradient
     colors={feedBackgroundColor}
@@ -25,7 +36,7 @@ const ErrorPage = ({ route }) => {
     <ScrollView>
         <View style={styles.errorMessage}>
             <Text style={styles.errorIcon}>
-                <MaterialIcons name="error-outline" size={70}/>
+                {real_icon}
             </Text>
             <Text style={styles.error}>
                 {body}

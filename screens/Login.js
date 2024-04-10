@@ -12,6 +12,7 @@ import { saveSecureValue } from '../authentication/saveValue';
 import { getItemsInFeed } from '../endpoints/GetItemsForFeed';
 import MovingIcon from './src/components/movingIcon';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -26,8 +27,9 @@ const Login = () => {
       navigation.navigate("Feed");
     }
     else {
-      navigation.navigate("ErrorPage",{body: "INVALID CREDENTIALS", message: "We could not locate your account in our records, did you use the correct username and password?", page: 6});
+      navigation.navigate("ErrorPage",{icon: 1, body: "INVALID CREDENTIALS", message: "We could not locate your account in our records, did you use the correct username and password?", page: 6});
     }
+
   };
 
   return (

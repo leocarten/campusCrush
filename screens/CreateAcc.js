@@ -51,7 +51,6 @@ function CreateAcc() {
     
   }
 
-  
   return (
     <LinearGradient
     colors={backgroundColor}
