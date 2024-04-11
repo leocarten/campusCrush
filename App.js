@@ -25,6 +25,7 @@ import MessagesBetweenUsers from './screens/UsersConversations';
 import Congrats from './screens/Congrats';
 import ChatSettingsPage from './screens/ChatSettings';
 import HowToEarnPoints from './screens/Learn/HowToEarnPoints';
+import UserSettingsPage from './screens/Settings';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -56,6 +57,8 @@ export default function App() {
         <Stack.Screen name="Congrats" component={Congrats}/>
         <Stack.Screen name="ChatSettingsPage" component={ChatSettingsPage}/>
         <Stack.Screen name="HowToEarnPoints" component={HowToEarnPoints}/>
+        <Stack.Screen name="UserSettingsPage" component={UserSettingsPage}/>
+
 
       </Stack.Navigator>
     </NavigationContainer>

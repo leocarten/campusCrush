@@ -24,6 +24,10 @@ const Footer = () => {
       navigation.navigate("Feed", { refresh: true });
     };
 
+    const handleSettings = async () => {
+      navigation.navigate("UserSettingsPage");
+    };
+
 
     return (
       <View style={styles.FooterView}>
@@ -41,7 +45,7 @@ const Footer = () => {
         </View>
 
         <View style={styles.iconStyle}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleSettings}>
                 <Text>
                   <MaterialCommunityIcons name="cog" size={35} color={iconColors} />
                 </Text>

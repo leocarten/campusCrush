@@ -54,16 +54,16 @@ const ChatSettingsPage = ({route}) => {
     start={{ x: 0, y: 0 }}
     end={{ x: 1, y: 1 }}>
     <SafeAreaView style={{backgroundColor: feedHeadingBackground}}>
-      <Header onFeedPage={9}/>
+      <Header onFeedPage={14}/>
     </SafeAreaView>
     <ScrollView>
 
     <View style={styles.innerContainer}>
 
-        <View style={styles.headingContainer}>
-          <Text style={styles.headingText}>
-            <Feather name="settings" size={24} color='black'/> Chat settings
-          </Text>
+        <View style={{marginBottom: '10%'}}></View>
+
+        <View style={styles.sectionType}>
+            <Text style={styles.sectionText}>CHAT ACTIONS</Text>
         </View>
 
         <TouchableOpacity style={styles.optionContainer}>
@@ -120,23 +120,39 @@ const styles = StyleSheet.create({
       fontSize: 22,
       fontWeight: 'bold',
       color: '#333',
+      textAlign: 'center'
     },
     optionContainer: {
-      backgroundColor: '#F5F5F5',
-      borderRadius: 10,
+      backgroundColor: '#E1E1E1',
+      borderRadius: 5,
       paddingVertical: 15,
       paddingHorizontal: 20,
-      marginBottom: 15, 
-      elevation: 3, 
+      marginBottom: 7, 
       shadowColor: 'black',
-      shadowOpacity: .4,
+      shadowOpacity: 0.2,
       shadowRadius: 3,
       shadowOffset: { width: 0, height: 2 },
+      borderBottomColor: '#A4A3A3',
+      borderBottomWidth: 1.5,
+      borderLeftColor: '#A4A3A3',
+      borderLeftWidth: 0.5,
+      borderRightColor: '#A4A3A3',
+      borderRightWidth: 0.5
     },
     optionText: {
       fontSize: 16,
       color: '#333',
     },
+    sectionType:{
+      marginBottom: '2%',
+      marginLeft: '1%',
+      marginTop: '5%'
+  },
+  sectionText:{
+      fontSize: 14,
+      color: '#333',
+      fontWeight: '600'
+  },
 
 })
 

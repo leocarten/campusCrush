@@ -355,6 +355,50 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage, name, socket, conversationI
     );
   }
 
+  else if(onFeedPage === 13){ // the user is in the messaging between 2 users page
+    // socket.disconnect();
+    return (
+    <View style={styles.headerView}>
+      <View style={styles.leftContainer}>
+        {/* <Text>CampusCrush</Text> */}
+        <TouchableOpacity onPress={backToFeed}>
+          <GradientText colors={['#cc2b5e', '#753a88']} style={styles.campusCrush}>
+            <Ionicons name="chevron-back" size={30}  />
+          </GradientText>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.name}>
+        <Text style={styles.nameText}>
+        <Feather name="settings" size={20} color={iconColors}/> USER SETTINGS
+        </Text>
+      </View>
+    </View>
+
+    );
+  }
+
+  else if(onFeedPage === 14){ // the user is in the messaging between 2 users page
+    // socket.disconnect();
+    return (
+    <View style={styles.headerView}>
+      <View style={styles.leftContainer}>
+        {/* <Text>CampusCrush</Text> */}
+        <TouchableOpacity onPress={goToMessages}>
+          <GradientText colors={['#cc2b5e', '#753a88']} style={styles.campusCrush}>
+            <Ionicons name="chevron-back" size={30}  />
+          </GradientText>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.name}>
+        <Text style={styles.nameText}>
+        <Feather name="settings" size={20} color={iconColors}/> CHAT SETTINGS
+        </Text>
+      </View>
+    </View>
+
+    );
+  }
+
 };
   
 const styles = StyleSheet.create({
@@ -364,7 +408,7 @@ const styles = StyleSheet.create({
   nameText:{
     textAlign: "center",
     color:iconColors,
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "700"
   },
   points: {
