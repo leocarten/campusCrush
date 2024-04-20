@@ -84,7 +84,7 @@ const ItemInFeed = ({userID, isVerified, Name, Age, Comp, Bio, Pictures, AppReas
         // console.log(name)
     }
 
-    console.log(Name,Age, userID);
+    // console.log(Name,Age, userID);
     
     totalConsumedWidth = 0;
     let userWants;

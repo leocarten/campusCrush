@@ -2,14 +2,16 @@ import * as SecureStore from 'expo-secure-store';
 import { saveSecureValue } from '../authentication/saveValue';
 import { getSecureValues } from '../authentication/getValue';
 
-const getItemsInFeed = async () => {
+const getItemsInFeed = async (offset_amount_) => {
     try {
       const apiUrl = 'http://18.188.112.190:5001/showItemsInFeed';
       const accessToken = await getSecureValues('access');
       const credentials = {
         type: 'access',
         tokenFromUser: accessToken,
+        offset_amount: offset_amount_
       };
+      // this is where we need to insert the amount of items we need to get
   
       const response = await fetch(apiUrl, {
         method: 'POST',

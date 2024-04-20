@@ -6,6 +6,7 @@ import { ActivityIndicator } from 'react-native';
 import NoItemsFoundInFeed from './src/components/feedComponents/noItemsFoundInFeed';
 import { Button } from 'react-native';
 import { RefreshControl } from 'react-native';
+import { Dimensions } from 'react-native';
 
 function calculateAge(birthdate) {
     const birthDateObject = new Date(birthdate);
@@ -24,26 +25,50 @@ function calculateAge(birthdate) {
 const DisplayItems = () => {
   const [feedItems, setFeedItems] = useState([]);
   const [loading, setLoading] = useState(true);
+
+
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const scrollViewRef = React.createRef();
+
+  const [refresh, setRefresh] = useState(true);
+
+  const [refreshCount, setRefreshCount] = useState(0);
+
+  const [stateMap, setStateMap] = useState([]);
+
+  const handleScroll = (event) => {
+    const position = event.nativeEvent.contentOffset.y;
+    setScrollPosition(position);
+    console.log('position: ', position);
+    console.log('height of device: ', Dimensions.get('window').height);
+    console.log('ratio: ', position / Dimensions.get('window').height);
+    var ratio = position / Dimensions.get('window').height;
+
+    if (Math.floor(ratio) % 3 === 0 && position > 0 && Math.floor(ratio) > 1 && refresh && !stateMap.includes(Math.floor(ratio))) {
+      console.log("NEED TO REFRESH");
+      setRefresh(false);
+      setRefreshCount(refreshCount + 1);
+      setStateMap(prevState => [...prevState, Math.floor(ratio)]);
+      handlePaginationUpdate(refreshCount + 1)
+    } 
+    
+    else if (Math.floor(ratio) % 3 !== 0 && position > 0 && Math.floor(ratio) > 1) {
+      setRefresh(true);
+    }
+
+    
+
+    console.log('refresh: ', refresh);
+    console.log('refresh counter: ',refreshCount)
+    console.log('state map: ',stateMap)
+
+  };
   
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const result = await getItemsInFeed();
-  //       setFeedItems(result);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
-
-  const fetchData = async () => {
+  const fetchData = async (amount) => {
     try {
-      const result = await getItemsInFeed();
+      // control pagination from a variable here
+      const result = await getItemsInFeed(amount);
       setFeedItems(result);
       setLoading(false);
     } catch (error) {
@@ -53,7 +78,7 @@ const DisplayItems = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    fetchData(0);
   }, []);
 
   const onRefresh = () => {
@@ -61,13 +86,30 @@ const DisplayItems = () => {
   }
 
   const handleRefresh = () => {
-    fetchData(); // Fetch items again when refreshing
+    fetchData(0); // Fetch items again when refreshing
+    setRefreshCount(0);
+    setStateMap([]);
   };
 
-  // const handleRefresh = () => {
-  //   setLoading(true); // Set loading state to true
-  //   fetchData(); // Fetch items again when the refresh button is clicked
+  // const handlePaginationUpdate = (counter) => {
+  //   // console.log(counter);
+  //   fetchData(counter); 
+  //   // setRefreshCount(0);
+  //   // setStateMap([]);
   // };
+
+  const handlePaginationUpdate = async (counter) => {
+    try {
+        // setLoading(true);
+        const result = await getItemsInFeed(counter);
+        setFeedItems(prevItems => [...prevItems, ...result]); // Append new items to existing items
+        // setLoading(false);
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        // setLoading(false);
+    }
+};
+
 
 
   if (loading) {
@@ -125,13 +167,17 @@ const DisplayItems = () => {
       }
 
     } 
-
+    
     
     return (
       <ScrollView
       refreshControl={
         <RefreshControl onRefresh={handleRefresh} />
       }
+      ref={scrollViewRef}
+      onScroll={handleScroll}
+      scrollEventThrottle={5} 
+      decelerationRate={0.99}
       >
       <View>
         {feedItems.map((item, index) => ( 
