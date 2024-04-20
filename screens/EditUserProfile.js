@@ -20,6 +20,12 @@ import { Entypo } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { getVariables } from './globalVariables/GlobalVariables';
+import { updateUserVariables } from './globalVariables/UpdateUserAccount';
+import { FontAwesome } from '@expo/vector-icons';
+import { Alert } from 'react-native';
+import * as ImagePicker from 'expo-image-picker'
+import * as ImageManipulator from 'expo-image-manipulator';
+
 
 const EditProfilePage = () => {
   const navigation = useNavigation();
@@ -29,9 +35,90 @@ const EditProfilePage = () => {
   };
 
   const handleViewProfilePress = async () => {
-    console.log("variables:\n",getVariables())
+    // console.log("variables:\n",getVariables())
     navigation.navigate("ViewProfilePage");
   };
+
+  const removeImage = async () => {
+    try{
+      await updateUserVariables('image_data', "");
+      Alert.alert('Photo has been removed.');
+    }
+    catch(e){
+
+    }
+  }
+
+  const uploadImage = async (mode) => {
+    try{
+      if(mode === 'gallery'){
+        await ImagePicker.requestMediaLibraryPermissionsAsync();
+        let result =  await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
+          // base64: true,
+          allowsEditing: true,
+          aspect: [1,1],
+          allowsMultipleSelection: false,
+          quality: 0.1
+        })
+        if(!result.canceled){
+          let resizedImage = await ImageManipulator.manipulateAsync(
+            result.assets[0].uri,
+            [{ resize: { width: 180, height: 180 } }],
+            { compress: 0.8, format: 'jpeg', base64: true }
+          );
+          
+          await saveImage(resizedImage.base64)
+        }
+      }
+
+
+      else{
+        await ImagePicker.requestCameraPermissionsAsync();
+        let result = await ImagePicker.launchCameraAsync({
+          cameraType: ImagePicker.CameraType.front,
+          allowsEditing: true,
+          aspect: [1,1],
+          quality: 0.1,
+          // base64: true
+        });
+        if(!result.canceled){
+          let resizedImage = await ImageManipulator.manipulateAsync(
+            result.assets[0].uri,
+            [{ resize: { width: 180, height: 180 } }],
+            { compress: 0.8, format: 'jpeg', base64: true }
+          );
+          await saveImage(resizedImage.base64)
+        }
+      }
+    }
+    catch(error){
+      Alert.alert(
+        "You need to give CampusCrush access to your camera roll."
+      )
+      console.log(error);
+    }
+
+  }
+
+  const saveImage = async (image_) => {
+    try{
+      // setImage(image_)
+
+      // console.log(image_.length)
+      updateUserVariables('image_data', image_)
+      
+      Alert.alert('Upload successful', 'Your image has been uploaded, but you still need to save your changes.', [
+        {
+          text: 'Ok',
+          style: 'cancel',
+        },
+      ]);
+    }
+    catch(e){
+      console.log(e)
+    }
+  }
 
   return (
     <LinearGradient
@@ -95,6 +182,35 @@ const EditProfilePage = () => {
         />
 
         <DropdownComponent initMessage="I'd prefer a ..." options={[{ label: 'Dog', value: '1' },{ label: 'Cat', value: '2' },{ label: "Fish", value: '3' },{ label: "Lizard", value: '4' },{ label: "Other", value: '5' }]} icon={<MaterialIcons name="pets" size={20} color="black" style={{ marginRight: 6 }} /> } field={"pet_preference"}/>
+
+        <Text style={{ marginLeft: '4%',fontSize: 16, marginTop: '5%', color: '#333', fontWeight: '400'}}>
+          Change your profile picture
+        </Text>
+        <View style={styles.imageSelector}>
+          <View style={styles.imageContainer}>
+            <TouchableOpacity onPress={() => uploadImage('camera')}>
+              {/* <FontAwesome5 name="camera" size={30} color="black" style={styles.imageIcon}/> */}
+                <MaterialIcons name="add-a-photo" size={30} color="rgba(0,0,0,0.8)" style={styles.imageIcon}/>
+                <Text style={styles.iconText}>Camera</Text>
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.imageContainer}>
+              <TouchableOpacity onPress={() => uploadImage('gallery')}>
+                <FontAwesome name="photo" size={30} color="rgba(0,0,0,0.8)" style={styles.imageIcon} />
+                <Text style={styles.iconText}>Photo Gallery</Text>
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.imageContainer}>
+              <TouchableOpacity onPress={removeImage}>
+                <Ionicons name="trash-bin" size={30} color="rgba(0,0,0,0.8)" style={styles.imageIcon} />
+                <Text style={styles.iconText}>Remove Image</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+
+
       </View>
     </ScrollView>
 
@@ -103,6 +219,37 @@ const EditProfilePage = () => {
 }
 
 const styles = StyleSheet.create({
+  iconText:{
+    fontSize: 12,
+    color: '#333',
+    fontWeight: '600'
+  },
+  imageIcon:{
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginBottom: '5%'
+  },
+  info: {
+    fontSize: 16,
+    marginLeft: '3%',
+    marginBottom: '2%'
+  },
+  imageContainer: { 
+    flex: 1, 
+    justifyContent: 'center', 
+    alignItems: 'center',
+    borderColor: 'rgba(0,0,0,0.4)',
+    borderWidth: 1,
+    marginLeft: '2%',
+    marginRight: '2%',
+    borderRadius: 8,
+    padding: 5,
+  },
+  imageSelector:{
+    flexDirection: 'row',
+    marginTop: '5%',
+    marginBottom: '1%'
+  },
     editProfileText: {
         fontSize: 20,
         color: 'black'

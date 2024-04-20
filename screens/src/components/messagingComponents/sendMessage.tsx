@@ -53,7 +53,7 @@ export function SendUserMessage( {isFirstMessage, recID, sendID, socket, convers
                 user: {
                     _id: userId, // Set user id based on condition
                     name: '{Name}', // Replace with actual name if available
-                    avatar: 'https://cdn-icons-png.freepik.com/512/145/145865.png',
+                    avatar: 'https://cdn-icons-png.flaticon.com/512/9218/9218712.png',
                 },
             };
         });

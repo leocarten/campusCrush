@@ -1,5 +1,14 @@
 {
   "expo": {
+    // "plugins": [
+    //   [
+    //     "expo-media-library",
+    //     {
+    //       "photosPermission": "Allow CampusCrush to access your photos.",
+    //       "savePhotosPermission": "Allow CampusCrush to save photos."
+    //     }
+    //   ]
+    // ],
     "name": "campusCrush",
     "slug": "campusCrush",
     "version": "1.0.0",
@@ -15,7 +24,14 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      // "infoPlist": {
+      //   "NSCameraUsageDescription": "CampusCrush would like to access your camera to upload your profile picture. Can we do so?",
+      //   "NSLocationWhenInUseUsageDescription": "CampusCrush would like to access your location to help you connect with people nearby. This enables us to match you with others who are close in proximity. Is that okay with you?",
+      //   "NSPhotoLibraryUsageDescription": "CampusCrush would like to access your photo gallery to update your profile picture. Is that ok?",
+      //   "NSLocationAlwaysAndWhenInUseUsageDescription": "CampusCrush would like to access your location to help you connect with people nearby. This enables us to match you with others who are close in proximity. Is that okay with you?"
+
+      // }
     },
     "android": {
       "adaptiveIcon": {

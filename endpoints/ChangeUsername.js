@@ -1,14 +1,15 @@
 import { getSecureValues } from '../authentication/getValue';
 
-const getUserInfo = async () => {
+const changeUsername_ = async (new_username) => {
 
     try {
-      const apiUrl = 'http://18.188.112.190:5001/getUserInfoForSettingsPage';
+      const apiUrl = 'http://18.188.112.190:5001/changeUsername';
       const accessToken = await getSecureValues('access');
       console.log(accessToken);
       const credentials = {
         type: 'access',
         tokenFromUser: accessToken,
+        new_username: new_username
       };
   
       const response = await fetch(apiUrl, {
@@ -22,24 +23,10 @@ const getUserInfo = async () => {
       if (response.ok) {
         const data = await response.json();
         console.log('data from request: ',data);
-        if (data['success'] === true){
-          if (data['results'] && data['results'].length > 0) {
-              var returnVal = data['results'][0];
-              if(returnVal['gender'] == null || returnVal['gender'] == ""){
-                returnVal['gender'] = 3;
-              }
-              if(returnVal['first_name'] == null || returnVal['first_name'] == ""){
-                returnVal['first_name'] = "Anonymous"
-              }
-              if(returnVal['dob'] == null || returnVal['dob'] == ""){
-                returnVal['dob'] = -1;
-              }
-              return returnVal;
-          } else {
-              return { gender: 3, first_name: "Anonymous", dob: -1 }; 
-          }
-      }
-      
+        if (data['results']['success'] === true){
+            // secure the tokens returned from the server!
+            return true;
+        }
         else{
           console.log("Fail")
           return false;
@@ -53,4 +40,4 @@ const getUserInfo = async () => {
     }
   };
   
-  export { getUserInfo }; 
+  export { changeUsername_ }; 

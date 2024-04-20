@@ -8,10 +8,11 @@ import { resetValues } from '../screens/globalVariables/UpdateUserAccount';
 import { expandedIconColor, iconColors } from '../screens/src/styles/feedStyles/feedColors';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { getSecureValues } from '../authentication/getValue';
+import { Alert } from 'react-native';
 
 const EditUserData = () => {
   const [isLoading, setIsLoading] = useState(false);
-  console.log(getVariablesFromUserUpdate())
+  // console.log(getVariablesFromUserUpdate())
 
   const fetchData = async () => {
     // Set isLoading to true before making the fetch request
@@ -20,7 +21,7 @@ const EditUserData = () => {
     try {
       const apiUrl = 'http://18.188.112.190:5001/updateUserProfile';
       const accessToken = await getSecureValues('access');
-      console.log('user access tokenn:\n',accessToken);
+      // console.log('user access tokenn:\n',accessToken);
       const credentials = {
         type: 'access',
         tokenFromUser: accessToken,
@@ -55,7 +56,7 @@ const EditUserData = () => {
       // Set isLoading to false after the fetch is complete (either success or error)
       resetValues();
       setIsLoading(false);
-      
+      Alert.alert('Success', 'Yay! Your changes were successfully saved.');
     }
   };
 
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
             width: 0,
             height: 3,
         },
-        shadowOpacity: 0.27,
+        shadowOpacity: 0.1,
         shadowRadius: 4.65,
 
         elevation: 6,

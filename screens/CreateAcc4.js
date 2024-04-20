@@ -29,6 +29,8 @@ import { Alert } from 'react-native';
 import { updateGlobalVariables } from './globalVariables/GlobalVariables';
 import MovingIcon from './src/components/movingIcon';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
+
 function CreateAcc() {
   const navigation = useNavigation();
 
@@ -79,7 +81,6 @@ function CreateAcc() {
     <ScrollView>
     <Steps count={6} directions={"Terms and Services"} style={{alignItems: 'left'}}/>
     <HorizontalIconLine count={6}  />
-
 
     <View style={styles.buttonContainer}>
       <TouchableOpacity style={styles.next} onPress={lastPage}>

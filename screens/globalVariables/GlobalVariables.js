@@ -20,7 +20,8 @@ const variables = {
   "communication_style":"",
   "ideal_first_meetup":"",
   "lat":0,
-  "long_":0
+  "long_":0,
+  "base64":""
 }
 
 export function updateGlobalVariables(field, newValue){

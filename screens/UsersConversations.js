@@ -15,7 +15,7 @@ import { connectAndJoinConversation } from '../sockets/socket';
 const MessagesBetweenUsers = ({ route }) => {
 
     const navigation = useNavigation();
-    const { conversationID, originSenderId, originRecId, name, page, isFirstMessage, recieverID } = route.params;
+    const { conversationID, originSenderId, originRecId, name, page, isFirstMessage, recieverID, avatar } = route.params;
 
  
     console.log(name);

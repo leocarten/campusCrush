@@ -16,7 +16,7 @@ import { iconColors } from "../src/styles/feedStyles/feedColors";
 import Header from "../src/components/feedComponents/header";
 import { lineColor } from "../src/styles/feedStyles/feedColors";
 
-function HowToEarnPoints() {
+function Rules() {
     return(
         <LinearGradient
         colors={['black']}
@@ -24,7 +24,7 @@ function HowToEarnPoints() {
         end={{ x: 1, y: 1 }}>
         {/* <SafeAreaView> */}
         <View style={{marginTop:'8%'}}>
-            <Header onFeedPage={12}/>
+            <Header onFeedPage={15}/>
         </View>
         {/* </SafeAreaView> */}
         <ScrollView>
@@ -36,34 +36,32 @@ function HowToEarnPoints() {
                             CampusCrush
                         </GradientText>  
                     </View>                     
-                    <Text style={styles.firstSectionHeading}>What are CampusCrush tokens?</Text>
+                    <Text style={styles.firstSectionHeading}>What are the CampusCrush Rules?</Text>
                     <Text style={styles.body}>
-                        CampusCrush tokens are your ticket to supercharge your in-app experience! With these tokens, you're not just a user, you're an integral part of the app's vibrant community. Use tokens to customize your experience, from rising to the top of other users' feeds, going on in-app blind dates, to unlocking exclusive perks and features. CampusCrush tokens can only be redeemed in-app, so get ready to ignite the fun! 
+                    At CampusCrush, our mission is to foster a safe and welcoming community where all users can connect and have fun. We want everyone to enjoy their experience on our platform. To ensure this, we ask all users to adhere to the following guidelines:                    </Text>
+                    <Text style={styles.bulletPoint}>
+                        <Text style={{fontWeight: '700', color: '#C7C7C7' }}>1. Respect Others: </Text>Treat fellow users with kindness and respect. Harassment, hate speech, bullying, or any form of discriminatory behavior will not be tolerated.
+                    </Text>
+                    <Text style={styles.bulletPoint}>
+                        <Text style={{fontWeight: '700', color: '#C7C7C7' }}>2. Keep it Clean: </Text> Help us maintain a friendly environment by refraining from posting inappropriate content, including but not limited to nudity, violence, or graphic imagery.
+                    </Text>
+                    <Text style={styles.bulletPoint}>
+                        <Text style={{fontWeight: '700', color: '#C7C7C7' }}>3. Be Honest: </Text> Represent yourself truthfully and accurately. Do not impersonate others or engage in deceptive practices.
+                    </Text>
+                    <Text style={styles.bulletPoint}>
+                        <Text style={{fontWeight: '700', color: '#C7C7C7' }}>4. Respect Privacy: </Text> Protect the privacy of yourself and others. Do not share personal information.
+                    </Text>
+                    <Text style={styles.bulletPoint}>
+                        <Text style={{fontWeight: '700', color: '#C7C7C7' }}>5. Report Concerns: </Text> If you encounter any behavior that violates our guidelines or makes you feel uncomfortable, please report it to us immediately.
+                    </Text>
+
+                    <Text style={styles.sectionHeading}>What if I break CampusCrush rules?</Text>
+                    <Text style={styles.body}>
+                    At CampusCrush, we prioritize the safety and well-being of our community members. Violating our app guidelines undermines this commitment and can result in account termination and/or account banishment.                    
                     </Text>
 
                 </View>
 
-                <View style={styles.section}>                    
-                    <Text style={styles.sectionHeading}>How can I earn CampusCrush tokens?</Text>
-                    <Text style={styles.body}>
-                    CampusCrush tokens are acquired through your engagement with the app and reaching specific milestones in your CampusCrush journey. For instance:
-                    </Text>
-                    <Text style={styles.bulletPoint}>
-                        1. Starting your first conversation with someone <Text style={{fontWeight: '700', color: '#C7C7C7' }}>(+10 tokens)</Text>
-                    </Text>
-                    <Text style={styles.bulletPoint}>
-                        2. Becoming a verified user <Text style={{fontWeight: '700', color: '#C7C7C7' }}>(+50 tokens)</Text>
-                    </Text>
-                    <Text style={styles.bulletPoint}>
-                        3. Fill in 100% of your profile <Text style={{fontWeight: '700', color: '#C7C7C7' }}>(+100 tokens)</Text>
-                    </Text>
-                    <Text style={styles.bulletPoint}>
-                        4. Start a new conversation with a new user each day for 7 days straight <Text style={{fontWeight: '700', color: '#C7C7C7' }}>(+100 tokens)</Text>
-                    </Text>
-                    <Text style={styles.body}>
-                        There are many other ways to earn CampusCrush tokens, but discovering them is part of the fun!
-                    </Text>
-                </View>
 
 
             </View>
@@ -138,4 +136,4 @@ const styles = StyleSheet.create({
       }
 })
 
-export default HowToEarnPoints;
+export default Rules;

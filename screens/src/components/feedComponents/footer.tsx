@@ -9,6 +9,7 @@ import { TouchableOpacity } from "react-native";
 import { useRef } from "react";
 import { useNavigation } from '@react-navigation/native'
 import io from 'socket.io-client';
+import { ScrollView } from "react-native";
 // import UseSocket from "../../../../sockets/testSocket";'
 
 const Footer = () => {
@@ -33,8 +34,8 @@ const Footer = () => {
       <View style={styles.FooterView}>
 
         <View style={styles.leftContainer}>
-            <TouchableOpacity onPress={handleRefresh}>
-                <Text><Ionicons name="refresh-circle" size={35} color={iconColors} /></Text>
+            <TouchableOpacity>
+                <Text><Ionicons name="refresh-circle" size={35} color='transparent' /></Text>
             </TouchableOpacity>
         </View>
 

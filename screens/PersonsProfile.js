@@ -27,6 +27,7 @@ import Section3 from './src/components/personsProfile/Section3';
 import { bigIconInSectionColor } from './src/styles/feedStyles/feedColors';
 import { Feather } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import { Image } from 'react-native';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -59,7 +60,7 @@ function renderMusicText(music, index, lengthOfArray) {
 const PersonsProfile = () => {
   const navigation = useNavigation();
   const route = useRoute();
-  const { personName, personAge, personGoals, personBio, personJob, verified, interests, music, job, KeyToHeart, BucketList, has_tattoos, workout, sleep_schedule, Communication_style, Ideal_first_meetup} = route.params;
+  const { personName, personAge, personGoals, personBio, personJob, verified, interests, music, job, KeyToHeart, BucketList, has_tattoos, workout, sleep_schedule, Communication_style, Ideal_first_meetup, Image_Data} = route.params;
   let verifiedIcon;
   let bioSpace;
   let userWants;
@@ -349,7 +350,10 @@ const PersonsProfile = () => {
             <View style={styles.profileContainer}>
 
                 <View style={styles.pictureContainer}>
-                    <Text></Text>
+                <Image
+                    source={{ uri: `data:image/png;base64,${Image_Data}`}}
+                    style={{width: '100%',height: '100%', marginTop:'auto',marginBottom:'auto',marginLeft:'auto',marginRight:'auto'}}
+                    />
                 </View>
 
                 <View style={styles.moreInformationContainer}>
@@ -596,7 +600,7 @@ const styles = StyleSheet.create({
       justifyContent: 'flex-start', 
     },
     pictureContainer: {
-        backgroundColor: lineColor,
+        // backgroundColor: lineColor,
         width: '100%',
         height: pictureHeight,
         alignSelf: 'center', // Center horizontally

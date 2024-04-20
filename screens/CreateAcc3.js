@@ -1,5 +1,5 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import { StyleSheet } from 'react-native';
+import { Alert, StyleSheet } from 'react-native';
 import { Text, View, ScrollView, TextInput } from 'react-native';
 import React from 'react';
 import GradientText from './src/styles/gradientText';
@@ -22,16 +22,119 @@ import UserInputAccCreation from './src/components/userInputAccountCreation';
 import { backgroundColor } from './src/styles/backgroundColors';
 import MovingIcon from './src/components/movingIcon';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import * as ImagePicker from 'expo-image-picker'
+import { Modal } from 'react-native';
+import { Button } from 'react-native';
+import { updateGlobalVariables } from './globalVariables/GlobalVariables';
+import { getVariables } from './globalVariables/GlobalVariables';
+import * as ImageManipulator from 'expo-image-manipulator';
+
 function CreateAcc() {
+
   const navigation = useNavigation();
+  const [image, setImage] = useState();
+
   const lastPage = () => {
     navigation.navigate('CreateAcc2');
   };
   const nextPage = () => {
-    navigation.navigate('CreateAcc4');
+    // console.log(image)
+    const attributes = getVariables();
+    if(attributes.base64 != '' && attributes.base64 != undefined && attributes.base64 != null){
+      navigation.navigate('CreateAcc4');
+    }
+    else{
+      Alert.alert('Picture required', 'CampusCrush requires a picture to be uploaded. Show the world what you look like!', [
+        {
+          text: 'Ok',
+          style: 'cancel',
+        },
+      ]);
+    }
   };
 
-  const [username, setUsername] = useState('');
+  const removeImage = async () => {
+    try{
+      await updateGlobalVariables('base64', '');
+      Alert.alert('Photo has been removed.');
+    }
+    catch(e){
+
+    }
+  }
+
+  const uploadImage = async (mode) => {
+    try{
+      if(mode === 'gallery'){
+        await ImagePicker.requestMediaLibraryPermissionsAsync();
+        let result =  await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
+          // base64: true,
+          allowsEditing: true,
+          aspect: [1,1],
+          allowsMultipleSelection: false,
+          quality: 0.1
+        })
+        if(!result.canceled){
+          let resizedImage = await ImageManipulator.manipulateAsync(
+            result.assets[0].uri,
+            [{ resize: { width: 180, height: 180 } }],
+            { compress: 0.8, format: 'jpeg', base64: true }
+          );
+          
+          await saveImage(resizedImage.base64)
+        }
+      }
+
+
+      else{
+        await ImagePicker.requestCameraPermissionsAsync();
+        let result = await ImagePicker.launchCameraAsync({
+          cameraType: ImagePicker.CameraType.front,
+          allowsEditing: true,
+          aspect: [1,1],
+          quality: 0.1,
+          // base64: true
+        });
+        if(!result.canceled){
+          let resizedImage = await ImageManipulator.manipulateAsync(
+            result.assets[0].uri,
+            [{ resize: { width: 180, height: 180 } }],
+            { compress: 0.8, format: 'jpeg', base64: true }
+          );
+          await saveImage(resizedImage.base64)
+        }
+      }
+    }
+    catch(error){
+      Alert.alert(
+        "You need to give CampusCrush access to your camera roll."
+      )
+      console.log(error);
+    }
+
+  }
+
+  const saveImage = async (image_) => {
+    try{
+      // setImage(image_)
+
+      // console.log(image_.length)
+      updateGlobalVariables('base64', image_)
+      
+      Alert.alert('Upload successful', 'Your image has been uploaded!', [
+        {
+          text: 'Ok',
+          style: 'cancel',
+        },
+      ]);
+    }
+    catch(e){
+      console.log(e)
+    }
+  }
+
+
 
   return (
     <LinearGradient
@@ -52,6 +155,30 @@ function CreateAcc() {
       <Text style={styles.info}><Ionicons name="ios-information-circle-outline" size={20} color="black" /> Learn how to become a verified user</Text>
     </View>
 
+  <View style={styles.imageSelector}>
+    <View style={styles.imageContainer}>
+      <TouchableOpacity onPress={() => uploadImage('camera')}>
+        {/* <FontAwesome5 name="camera" size={30} color="black" style={styles.imageIcon}/> */}
+          <MaterialIcons name="add-a-photo" size={30} color="rgba(0,0,0,0.8)" style={styles.imageIcon}/>
+          <Text style={styles.iconText}>Camera</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.imageContainer}>
+        <TouchableOpacity onPress={() => uploadImage('gallery')}>
+          <FontAwesome name="photo" size={30} color="rgba(0,0,0,0.8)" style={styles.imageIcon} />
+          <Text style={styles.iconText}>Photo Gallery</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.imageContainer}>
+        <TouchableOpacity onPress={removeImage}>
+          <Ionicons name="trash-bin" size={30} color="rgba(0,0,0,0.8)" style={styles.imageIcon} />
+          <Text style={styles.iconText}>Remove Image</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+
 
     <View style={styles.buttonContainer}>
       <TouchableOpacity style={styles.next} onPress={lastPage}>
@@ -59,6 +186,7 @@ function CreateAcc() {
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.next} onPress={nextPage}>
+
         <Text style={styles.buttonFont}>Next <Entypo name="arrow-with-circle-right" size={24} color="black" /></Text>
       </TouchableOpacity>
     </View>
@@ -72,16 +200,42 @@ function CreateAcc() {
 }
 
 const styles = StyleSheet.create({
+  iconText:{
+    fontSize: 12,
+    color: '#333',
+    fontWeight: '600'
+  },
+  imageIcon:{
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginBottom: '5%'
+  },
   info: {
     fontSize: 16,
     marginLeft: '3%',
     marginBottom: '2%'
   },
+  imageContainer: { 
+    flex: 1, 
+    justifyContent: 'center', 
+    alignItems: 'center',
+    borderColor: 'rgba(0,0,0,0.4)',
+    borderWidth: 1,
+    marginLeft: '2%',
+    marginRight: '2%',
+    borderRadius: 8,
+    padding: 5,
+  },
+  imageSelector:{
+    flexDirection: 'row',
+    marginTop: '10%',
+    marginBottom: '10%'
+  },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between', 
-    marginTop: 20, 
-    marginBottom: 60, 
+    marginTop: '75%', 
+    marginBottom: '10%', 
     marginLeft: '10%',
     marginRight: '10%'
   },

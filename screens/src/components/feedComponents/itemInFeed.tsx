@@ -8,6 +8,8 @@ import { expandedIconColor } from "../../styles/feedStyles/feedColors";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { feedHeadingBackground } from "../../styles/feedStyles/feedColors";
 import { FontAwesome5 } from '@expo/vector-icons';
+import { Image } from 'react-native';
+
 
 
 let windowHeightPercentage;
@@ -74,7 +76,7 @@ function renderMusicText(music, index, lengthOfArray) {
 }
 
 
-const ItemInFeed = ({userID, isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Interests, Music, Job, KeyToHeart, BucketList, has_tattoos, workout, sleep_schedule, Communication_style, Ideal_first_meetup, Distance}) => {
+const ItemInFeed = ({userID, isVerified, Name, Age, Comp, Bio, Pictures, AppReason, Interests, Music, Job, KeyToHeart, BucketList, has_tattoos, workout, sleep_schedule, Communication_style, Ideal_first_meetup, Distance, Base64}) => {
     const navigate = useNavigation();
     const sendFirstMessage = ({name}) => {
         // const navigate = useNavigation();
@@ -95,6 +97,7 @@ const ItemInFeed = ({userID, isVerified, Name, Age, Comp, Bio, Pictures, AppReas
         roundedDistance = 1;
         distanceUnit = "mile"
     }
+
 
     // console.log("Interests:",Interests)
     if(Music[0] != ""){
@@ -152,7 +155,7 @@ const ItemInFeed = ({userID, isVerified, Name, Age, Comp, Bio, Pictures, AppReas
     const navigation = useNavigation();
 
     const handleExpandPress = () => {
-        navigation.navigate("PersonsProfile", { personName: Name, personAge: Age, personGoals: AppReason, personBio: Bio, verified: isVerified, interests: Interests, music: Music, job: Job, KeyToHeart: KeyToHeart, BucketList: BucketList, has_tattoos: has_tattoos, workout: workout, sleep_schedule: sleep_schedule, Communication_style, Ideal_first_meetup});
+        navigation.navigate("PersonsProfile", { personName: Name, personAge: Age, personGoals: AppReason, personBio: Bio, verified: isVerified, interests: Interests, music: Music, job: Job, KeyToHeart: KeyToHeart, BucketList: BucketList, has_tattoos: has_tattoos, workout: workout, sleep_schedule: sleep_schedule, Communication_style, Ideal_first_meetup, Image_Data: Base64});
     };
 
     return(
@@ -166,7 +169,10 @@ const ItemInFeed = ({userID, isVerified, Name, Age, Comp, Bio, Pictures, AppReas
 
                 {/* Pictures */}
                 <View style={styles.pictureContainer}>
-                    <Text></Text>
+                <Image
+                    source={{ uri: `data:image/png;base64,${Base64}`}}
+                    style={{width: '100%',height: '100%', marginTop:'auto',marginBottom:'auto',marginLeft:'auto',marginRight:'auto'}}
+                    />
                 </View>
 
                 {/* Expand */}
@@ -387,14 +393,25 @@ const styles = StyleSheet.create({
         height: windowHeightPercentage
       },
       pictureContainer: {
-        backgroundColor: lineColor,
+        // backgroundColor: lineColor,
         width: pictureWidth,
         height: pictureHeightPercentage,
         alignSelf: 'center', // Center horizontally
         marginTop: 10,
         marginBottom: '3%',
         borderColor: lineColor,
+
         borderWidth: 1,
+
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+
+        elevation: 4,
     }
 });
 

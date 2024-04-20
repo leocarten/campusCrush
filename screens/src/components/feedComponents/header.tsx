@@ -47,6 +47,10 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage, name, socket, conversationI
     });
   }
 
+  const goToUserSettings = () => {
+    navigation.navigate("UserSettingsPage")
+  }
+
   const goToFilter = () => {
     navigation.navigate("FilterPage");
   };
@@ -186,7 +190,7 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage, name, socket, conversationI
 
         <View>
           <Text style={styles.points}>
-            <Ionicons name="person-sharp" size={26} color={iconColors} />
+            <MaterialIcons name="person" size={28} color={iconColors} />
             <Text> <PointsComponent/></Text>
           </Text>
         </View>
@@ -355,6 +359,7 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage, name, socket, conversationI
     );
   }
 
+
   else if(onFeedPage === 13){ // the user is in the messaging between 2 users page
     // socket.disconnect();
     return (
@@ -399,6 +404,23 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage, name, socket, conversationI
     );
   }
 
+  else if(onFeedPage === 15){ // the user is on learn how to earn points
+
+    return (
+      <View style={styles.headerView}>
+      <View style={styles.leftContainer}>
+        {/* <Text>CampusCrush</Text> */}
+        <TouchableOpacity onPress={goToUserSettings}>
+          <GradientText colors={['#cc2b5e', '#753a88']} style={styles.campusCrush}>
+            <Ionicons name="chevron-back" size={30}  />
+          </GradientText>
+        </TouchableOpacity>
+      </View>
+    </View>
+
+    );
+  }
+
 };
   
 const styles = StyleSheet.create({
@@ -415,7 +437,6 @@ const styles = StyleSheet.create({
     color: iconColors,
     alignSelf: "center",
     fontSize: 17,
-    
   },
     iconStyle: {
       marginRight: '3.5%',

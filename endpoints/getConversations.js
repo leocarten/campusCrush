@@ -75,6 +75,7 @@ const DisplayConvoComponent = () => {
             recID={conversation.originalRecieverID}
             reqID={conversation.requesterID}
             IdOfPersonWhoSentLastMessage={conversation.IdOfPersonWhoSentLastMessage}
+            image_data={conversation.image_data}
             // wasReceived={conversation.wasReceived}
           />
         ))

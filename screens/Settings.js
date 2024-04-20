@@ -25,33 +25,39 @@ import { getCurrentMode } from './globalVariables/Lightmode';
 import { getUserInfo } from '../endpoints/GetSettingsPageInfo';
 import { useEffect } from 'react';
 import { changePassword_ } from '../endpoints/ChangePassword';
-
+import { changeUsername_ } from '../endpoints/ChangeUsername';
 
 
 
 function calculateAge(birthDateString) {
-  const birthDate = new Date(birthDateString);
-  const currentDate = new Date();
-  
-  // Get the difference in years
-  let age = currentDate.getFullYear() - birthDate.getFullYear();
-
-  // Adjust age if the current date has not reached the birth month and day yet
-  if (
-      currentDate.getMonth() < birthDate.getMonth() ||
-      (currentDate.getMonth() === birthDate.getMonth() && currentDate.getDate() < birthDate.getDate())
-  ) {
-      age--;
+  if(birthDateString == -1){
+    return 'Unknown';
   }
+  else{
+    const birthDate = new Date(birthDateString);
+    const currentDate = new Date();
+    
+    // Get the difference in years
+    let age = currentDate.getFullYear() - birthDate.getFullYear();
 
-  return age;
+    // Adjust age if the current date has not reached the birth month and day yet
+    if (
+        currentDate.getMonth() < birthDate.getMonth() ||
+        (currentDate.getMonth() === birthDate.getMonth() && currentDate.getDate() < birthDate.getDate())
+    ) {
+        age--;
+    }
+    return age;
+  }
 }
 
 
 const UserSettingsPage = () => {
 
     const [userInfo, setUserInfo] = useState(null);
-    const [loading, setLoading] = useState(true); // Add loading state
+    const [loading, setLoading] = useState(true); 
+    const navigation = useNavigation();
+
 
     useEffect(() => {
         const getUserInfo_ = async () => {
@@ -73,7 +79,7 @@ const UserSettingsPage = () => {
     // delete account
     const handleDeleteAccount = async () => {
       Alert.alert(
-        "Warning",
+        "Delete Account",
         `This action will delete this account permanently.\n\nAre you sure you want to permanently delete your account?`,
         [
           {
@@ -115,8 +121,110 @@ const UserSettingsPage = () => {
       );
     }
 
-    // change password
+        // change username
+        const changeUsername = async () => {
+          Alert.alert(
+            "Change Username",
+            `Are you sure you'd like to change your current username?`,
+            [
+              {
+                text: "Cancel",
+                onPress: () => console.log("Cancel Pressed"),
+                style: "cancel"
+              },
+              { 
+                text: "Yes, change username.", 
+                onPress: async () => {
+                  Alert.prompt(
+                    'Enter Username',
+                    'Username must be at least 8 characters long, contain a capital letter, and contain a number.',
+                    [
+                      {
+                        text: 'Cancel',
+                        onPress: () => console.log('Cancel Pressed'),
+                        style: 'cancel',
+                      },
+                      {
+                        text: 'OK',
+                        onPress: async (Username) => {
+                          const regex = /[!@#$%^&*()\-+={}[\]:;"'<>,.?\/|\\]/;
+                          const regex2 = /[A-Z]/;
+                          if(Username.length >= 8 && (regex.test(Username)) && (regex2.test(Username)) ){
+                            Alert.prompt(
+                              'Username confirmation',
+                              'Please re-type your Username.',
+                              [
+                                {
+                                  text: 'Cancel',
+                                  onPress: () => console.log('Cancel Pressed'),
+                                  style: 'cancel',
+                                },
+                                {
+                                  text: 'OK',
+                                  onPress: async (Username_confirmation) => {
+                                    if(Username === Username_confirmation){
+                                      const isChanged = await changeUsername_(Username_confirmation);
+                                      if(isChanged){
+                                        Alert.alert(
+                                          "Username updated! \u2713",
+                                          `Your username has been updated. Please make sure you keep track of your username change in a secure way!`,
+                                          [
+                                            {
+                                              text: "OK",
+                                              onPress: () => console.log("Cancel Pressed"),
+                                              style: "cancel"
+                                            },
+                                          ],
+                                          { cancelable: false }
+                                        );
+                                    }
+                                    }else{
+                                      Alert.alert(
+                                        "Usernames didn't match",
+                                        `Uh-oh, your Usernames didn't match each other. Please try again.`,
+                                        [
+                                          {
+                                            text: "OK",
+                                            onPress: () => console.log("Cancel Pressed"),
+                                            style: "cancel"
+                                          },
+                                        ],
+                                        { cancelable: false }
+                                      );
+                                    }
+                                  }
+                                },
+                              ],
+                              'secure-text',
+                            );
+                          }else{
+                            Alert.alert(
+                              "Username didn't contain required characters.",
+                              `Username must be at least 8 characters long, contain a capital letter, and contain a number.`,
+                              [
+                                {
+                                  text: "OK",
+                                  onPress: () => console.log("Cancel Pressed"),
+                                  style: "cancel"
+                                },
+                              ],
+                              { cancelable: false }
+                            );
+                          }
+                        }
+                      },
+                    ],
+                    'secure-text',
+                  );
+                }
+              }
+            ],
+            { cancelable: false }
+          );
+        };
 
+
+    // change password
     const changePassword = async () => {
       Alert.alert(
         "Change password",
@@ -161,8 +269,8 @@ const UserSettingsPage = () => {
                                   const isChanged = await changePassword_(password_confirmation);
                                   if(isChanged){
                                     Alert.alert(
-                                      "Password updated!",
-                                      `Your password has been updated. Please make sure you keep track of your password change in a secure way.`,
+                                      "Password updated! \u2713",
+                                      `Your password has been updated. Please make sure you keep track of your password change in a secure way!`,
                                       [
                                         {
                                           text: "OK",
@@ -218,6 +326,15 @@ const UserSettingsPage = () => {
       );
     };
 
+    // view rules
+    const viewRules = async () => {
+      navigation.navigate("Rules");
+    }
+
+    // view TOS
+    const viewTOS = async () => {
+      navigation.navigate("TOS");
+    }
 
   return (
     <LinearGradient
@@ -283,9 +400,9 @@ const UserSettingsPage = () => {
         </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.optionContainer}>
+      <TouchableOpacity style={styles.optionContainer} onPress={changeUsername}>
         <Text style={styles.optionText}>
-        <FontAwesome5 name="user-edit" size={18} color="#474747" /> Change username 
+        <FontAwesome5 name="user-edit" size={18} color="#474747"/> Change username 
         </Text>
       </TouchableOpacity>
 
@@ -313,13 +430,13 @@ const UserSettingsPage = () => {
           <Text style={styles.sectionText}>POLICY INFORMATION</Text>
       </View>
 
-      <TouchableOpacity style={styles.optionContainer}>
+      <TouchableOpacity style={styles.optionContainer} onPress={viewTOS}>
         <Text style={styles.optionText}>
           <MaterialIcons name="policy" size={20} color="#474747" /> Terms of service
         </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.optionContainer}>
+      <TouchableOpacity style={styles.optionContainer} onPress={viewRules}>
         <Text style={styles.optionText}>
           <MaterialIcons name="rule" size={20} color="#474747" /> Rules
         </Text>

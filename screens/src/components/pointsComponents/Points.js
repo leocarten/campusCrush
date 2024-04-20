@@ -30,7 +30,7 @@ const PointsComponent = () => {
       ) : (
         <View style={{alignSelf: 'center'}}>
           {data[0]['points'] ? (
-            <Text style={{color: iconColors, fontSize: 17, flexDirection: 'row'}}>{data[0]['points']} points</Text>
+            <Text style={{color: iconColors, fontSize: 16, flexDirection: 'row'}}>{data[0]['points']} points</Text>
           ) : (
             <Text>0 points</Text>
           )}

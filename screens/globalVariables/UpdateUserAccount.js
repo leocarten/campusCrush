@@ -13,7 +13,8 @@ const variables = {
     "job":"",
     "workout":"",
     "communication_style":"",
-    "ideal_first_meetup":""
+    "ideal_first_meetup":"",
+    "image_data":""
   }
   
   export function updateUserVariables(field, newValue){
@@ -39,4 +40,5 @@ const variables = {
     variables["workout"] = "";
     variables["communication_style"] = "";
     variables["ideal_first_meetup"] = "";
+    variables["image_data"] = "";
   }

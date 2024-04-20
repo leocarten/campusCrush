@@ -26,6 +26,8 @@ import Congrats from './screens/Congrats';
 import ChatSettingsPage from './screens/ChatSettings';
 import HowToEarnPoints from './screens/Learn/HowToEarnPoints';
 import UserSettingsPage from './screens/Settings';
+import Rules from './screens/Learn/Rules';
+import TOS from './screens/Learn/TOS';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -58,6 +60,8 @@ export default function App() {
         <Stack.Screen name="ChatSettingsPage" component={ChatSettingsPage}/>
         <Stack.Screen name="HowToEarnPoints" component={HowToEarnPoints}/>
         <Stack.Screen name="UserSettingsPage" component={UserSettingsPage}/>
+        <Stack.Screen name="Rules" component={Rules}/>
+        <Stack.Screen name="TOS" component={TOS}/>
 
 
       </Stack.Navigator>
