@@ -52,7 +52,7 @@ export function SendUserMessage( {isFirstMessage, recID, sendID, socket, convers
                 createdAt: message.timestamp,
                 user: {
                     _id: userId, // Set user id based on condition
-                    name: '{Name}', // Replace with actual name if available
+                    name: '{Name}', 
                     avatar: 'https://cdn-icons-png.flaticon.com/512/9218/9218712.png',
                 },
             };
@@ -143,84 +143,7 @@ export function SendUserMessage( {isFirstMessage, recID, sendID, socket, convers
       // should we create the websocket here?
       console.log("Might also need to emit the message here in sendMessage.tsx in messagingComponents.");
       const newMessage = messages[0]['text'];
-
-      // const WebSocketServerURL = 'http://18.188.112.190:5002';
-      // const socket_ = io.connect(WebSocketServerURL);
-      // socket_.emit("join_conversation", conversationID);
-
-      // const userJWT = await getSecureValues('access');
-      // console.log("Emit send message");
-
-      // socket_.emit('send_message', {
-      //   jwt: userJWT,
-      //   convoID: conversationID,
-      //   id1: originSenderId,
-      //   id2: originRecId,
-      //   messageContent: newMessage,
-      //   typeOfVerification: "access"
-      // });
-
-      // let isMessageListenerSet = false; 
-
-      // if (!isMessageListenerSet) {
-      //     socket_.on('new_message', (data) => {
-      //         console.log("Other person just said:", data.message, hold);
-      //         const newMessage = {
-      //             _id: generateUniqueId(),
-      //             text: data.message,
-      //             createdAt: new Date(),
-      //             user: {
-      //                 _id: 1, 
-      //                 name: '{Name}', 
-      //                 avatar: 'https://cdn-icons-png.freepik.com/512/145/145865.png',
-      //             },
-      //         };
-      //         setMessages(previousMessages =>
-      //             GiftedChat.append(previousMessages, [newMessage]), // Append single message array
-      //         );
-      //     });
-
-      //     isMessageListenerSet = true;
-      // }
-
-      // const userJWT = await getSecureValues('access');
-      // console.log("Emit send message");
-
-      // socket.emit('send_message', {
-      //   jwt: userJWT,
-      //   convoID: conversationID,
-      //   id1: originSenderId,
-      //   id2: originRecId,
-      //   messageContent: newMessage,
-      //   typeOfVerification: "access"
-      // });
-
-      // let isMessageListenerSet = false; 
- 
-      // if (!isMessageListenerSet) {
-      //     socket.on('new_message', (data) => {
-      //         console.log("Other person just said:", data.message, hold);
-      //         const newMessage = {
-      //             _id: generateUniqueId(),
-      //             text: data.message,
-      //             createdAt: new Date(),
-      //             user: {
-      //                 _id: 1, 
-      //                 name: '{Name}', 
-      //                 avatar: 'https://cdn-icons-png.freepik.com/512/145/145865.png',
-      //             },
-      //         };
-      //         setMessages(previousMessages =>
-      //             GiftedChat.append(previousMessages, [newMessage]), // Append single message array
-      //         );
-      //     });
-
-      //     isMessageListenerSet = true;
-      // }
-
-
       
-  
 
       console.log("NOT first message");
       const sendNewMessage = await sendAdditionalMessages(recID, sendID, newMessage);

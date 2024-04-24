@@ -446,14 +446,14 @@ const styles = StyleSheet.create({
         marginLeft: '2%',
         marginRight: '2%',
         flexDirection: 'row',
-        alignItems: 'center', // Center items vertically
+        alignItems: 'center', 
         justifyContent: 'center', 
         // borderBottomWidth: 1.5,
         borderColor: lineColor,
         paddingBottom: '3%',
     },
     leftContainer: {
-      marginRight: 'auto', // Takes 2/5 of the available space
+      marginRight: 'auto', 
       },
       campusCrush: {
         fontSize: 29,
@@ -464,7 +464,7 @@ const styles = StyleSheet.create({
         // marginRight: '2%'
       },
       rightContainer: {
-        marginLeft: 'auto', // Pushes EditUserData component to the left
+        marginLeft: 'auto', 
       },
 });
 

@@ -49,8 +49,8 @@ const UserInputSlider = ({ type })  => {
           step={10}
           values={range}
           onValueChange={handleSliderChange}
-          minMarkerOverlapDistance={40} // Adjust as needed
-          minMarkerOverlapStepDistance={20} // Adjust as needed
+          minMarkerOverlapDistance={40} 
+          minMarkerOverlapStepDistance={20} 
           minimumTrackTintColor="rgba(0, 0, 40, 0.6)"
           maximumTrackTintColor="rgba(0, 0, 0, 0.2)"
           thumbTintColor="white"

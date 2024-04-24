@@ -86,7 +86,7 @@ const DisplayItems = () => {
   }
 
   const handleRefresh = () => {
-    fetchData(0); // Fetch items again when refreshing
+    fetchData(0); 
     setRefreshCount(0);
     setStateMap([]);
   };

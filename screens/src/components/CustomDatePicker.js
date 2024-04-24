@@ -41,7 +41,7 @@ export default function CustomDatePicker() {
               }}
               weekDaysContainerStyle={{
                 padding: 5,
-                borderBottomColor: 'black', // Change this to the desired color for the line under the days
+                borderBottomColor: 'black', //
                 borderBottomWidth: 1, //
               }}
               weekDaysTextStyle={{
@@ -50,7 +50,7 @@ export default function CustomDatePicker() {
                 fontSize: 16,
               }}
               dayContainerStyle={{
-                backgroundColor: 'transparent', // Change this to the desired background color for each day
+                backgroundColor: 'transparent', // 
                 borderRadius: 10,
                 borderColor: 'black',
                 borderWidth: 1

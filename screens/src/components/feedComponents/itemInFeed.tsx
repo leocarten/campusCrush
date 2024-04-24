@@ -226,9 +226,9 @@ const ItemInFeed = ({userID, isVerified, Name, Age, Comp, Bio, Pictures, AppReas
 
 const styles = StyleSheet.create({
     nearbyText: {
-        fontSize: 14, // Increased font size for emphasis
-        fontWeight: 'bold', // Added bold font weight for better visibility
-        color: expandedIconColor, // Changed text color for better contrast
+        fontSize: 14, 
+        fontWeight: 'bold', 
+        color: expandedIconColor, 
     },
     locationContainer: {
         borderColor: iconColors,

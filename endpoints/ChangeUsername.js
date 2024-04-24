@@ -1,4 +1,6 @@
 import { getSecureValues } from '../authentication/getValue';
+import { deleteKey } from '../authentication/deleteValue';
+import { saveSecureValue } from '../authentication/saveValue';
 
 const changeUsername_ = async (new_username) => {
 
@@ -28,8 +30,59 @@ const changeUsername_ = async (new_username) => {
             return true;
         }
         else{
-          console.log("Fail")
-          return false;
+          if(data['message'] == -1){
+
+            try {
+              const apiUrl = 'http://18.188.112.190:5001/changeUsername';
+              const refreshToken = await getSecureValues('refresh');
+              console.log(refreshToken);
+              const credentials = {
+                type: 'refresh',
+                tokenFromUser: refreshToken,
+                new_username: new_username
+              };
+          
+              const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(credentials),
+              });
+          
+              if (response.ok) {
+                const data_ = await response.json();
+                const newAccess = data_['newAccess'];
+                const newRefresh = data_['newRefresh'];
+                await deleteKey('access')
+                await deleteKey('refresh')
+                await saveSecureValue('access', newAccess);
+                await saveSecureValue('refresh', newRefresh);
+                console.log("Keys updated.")
+                console.log('data_ from request: ',data_);
+
+
+
+                if (data_['results']['success'] === true){
+                    // secure the tokens returned from the server!
+                    return true;
+                }
+                else{
+                  if(data_['message'] == -1){
+        
+                    
+        
+                  }
+                }
+              } else {
+                console.error('Items failed:', response.status, await response.text());
+              }
+            } catch (error) {
+              console.error('Error during item retrieval:', error);
+              return false;
+            }
+
+          }
         }
       } else {
         console.error('Items failed:', response.status, await response.text());

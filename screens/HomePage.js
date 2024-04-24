@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   input: {
     width: '80%',
     height: 40,
-    backgroundColor: 'transparent', // Slightly transparent white background
+    backgroundColor: 'transparent', 
     borderRadius: 10,
     marginBottom: 20,
     paddingLeft: 10,

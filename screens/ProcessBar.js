@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flexDirection: 'column',
-    marginRight: 10, // Adjust the margin as needed
+    marginRight: 10, 
   },
   text: {
     fontSize: 16,

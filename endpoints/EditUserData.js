@@ -8,6 +8,8 @@ import { resetValues } from '../screens/globalVariables/UpdateUserAccount';
 import { expandedIconColor, iconColors } from '../screens/src/styles/feedStyles/feedColors';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { getSecureValues } from '../authentication/getValue';
+import { deleteKey } from '../authentication/deleteValue';
+import { saveSecureValue } from '../authentication/saveValue';
 import { Alert } from 'react-native';
 
 const EditUserData = () => {
@@ -15,7 +17,6 @@ const EditUserData = () => {
   // console.log(getVariablesFromUserUpdate())
 
   const fetchData = async () => {
-    // Set isLoading to true before making the fetch request
     setIsLoading(true);
 
     try {
@@ -40,9 +41,59 @@ const EditUserData = () => {
         body: JSON.stringify(combinedData),
       });
 
-      // Check if the response status is okay (status code 200-299)
+      // check if the response status is okay (status code 200-299)
       if (response.ok) {
         const data = await response.json();
+        if(data['message'] == -1){
+
+          try {
+            const apiUrl = 'http://18.188.112.190:5001/updateUserProfile';
+            const refreshToken = await getSecureValues('refresh');
+            // console.log('user refresh tokenn:\n',refreshToken);
+            const credentials = {
+              type: 'refresh',
+              tokenFromUser: refreshToken,
+            };
+            const combinedData = {
+              ...credentials,
+              ...getVariablesFromUserUpdate()
+            };
+      
+            const response = await fetch(apiUrl, {
+              method: 'POST',
+              headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(combinedData),
+            });
+      
+            // check if the response status is okay (status code 200-299)
+            if (response.ok) {
+              const data_ = await response.json();
+
+              const newAccess = data_['newAccess'];
+              const newRefresh = data_['newRefresh'];
+              await deleteKey('access')
+              await deleteKey('refresh')
+              await saveSecureValue('access', newAccess);
+              await saveSecureValue('refresh', newRefresh);
+
+              console.log(data_);
+            } else {
+              console.error('Internal server error.');
+            }
+      
+          } catch (error) {
+            console.error('Error fetching data on attempt 2 in endpoint/editUSerData.js');
+          }
+          finally {
+            resetValues();
+            setIsLoading(false);
+            Alert.alert('Success', 'Yay! Your changes were successfully saved.');
+          }
+
+        }
         console.log(data);
       } else {
         console.error('Internal server error.');
@@ -50,10 +101,8 @@ const EditUserData = () => {
 
     } catch (error) {
       console.error('Error fetching data');
-      // Handle other errors
 
     } finally {
-      // Set isLoading to false after the fetch is complete (either success or error)
       resetValues();
       setIsLoading(false);
       Alert.alert('Success', 'Yay! Your changes were successfully saved.');

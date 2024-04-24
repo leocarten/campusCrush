@@ -32,7 +32,7 @@ const MovingIcon = () => {
 
   const translateY = animatedValue.interpolate({
     inputRange: [0, 1],
-    outputRange: [0, 1], // Adjust the range as needed
+    outputRange: [0, 1], 
   });
 
   return (

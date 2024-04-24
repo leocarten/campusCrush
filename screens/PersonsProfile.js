@@ -603,7 +603,7 @@ const styles = StyleSheet.create({
         // backgroundColor: lineColor,
         width: '100%',
         height: pictureHeight,
-        alignSelf: 'center', // Center horizontally
+        alignSelf: 'center',
         marginBottom: '3%',
         borderColor: lineColor,
         borderWidth: 1,
