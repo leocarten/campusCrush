@@ -35,7 +35,7 @@ function CreateAcc1a() {
   const nextPage = () => {
     const attributes = getVariables();
     if(attributes.app_purpose != '' && attributes.wants_to_be_shown != ''){
-      navigation.navigate('CreateAcc2');
+      navigation.navigate('CreateAcc3');
     }
     else{
       Alert.alert('Required fields not filled in', 'CampusCrush requires both of these fields to be filled in, you can change your settings afterwards!', [

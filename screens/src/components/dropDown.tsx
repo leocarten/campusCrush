@@ -9,6 +9,8 @@ import { Entypo } from '@expo/vector-icons';
 import { updateGlobalVariables } from '../../globalVariables/GlobalVariables';
 import { getVariables } from '../../globalVariables/GlobalVariables';
 import { updateUserVariables } from '../../globalVariables/UpdateUserAccount';
+import { updateFilterVariables } from '../../globalVariables/FilterVariables';
+import { getFilterVariables } from '../../globalVariables/FilterVariables';
 
 const DropdownComponent = ({ initMessage, options, icon, field, typeOfChange }) => {
     if(typeOfChange == 'creation'){
@@ -40,6 +42,37 @@ const DropdownComponent = ({ initMessage, options, icon, field, typeOfChange }) 
         />
       );
     }
+
+    else if(typeOfChange == 'filter'){
+      const [value, setValue] = useState(null);
+      return (
+        <Dropdown
+          style={styles.dropdown}
+          placeholderStyle={styles.placeholderStyle}
+          selectedTextStyle={styles.selectedTextStyle}
+          inputSearchStyle={styles.inputSearchStyle}
+          iconStyle={{ ...styles.iconStyle, marginRight: 8 }}
+          data={options}
+          maxHeight={300}
+          labelField="label"
+          valueField="value"
+          placeholder={initMessage}
+          activeColor='#D1D1D1'
+          value={value}
+          onChange={(item) => {
+            setValue(item.value);
+            updateFilterVariables(field, parseInt(item.value, 10));
+          }}
+          renderLeftIcon={() => (
+            icon
+          )}
+          renderRightIcon={() => (
+            <Entypo name="chevron-small-down" size={24} color="black" style={{ marginRight: 10 }} />
+          )}
+        />
+      );
+    }
+
     else{
       const [value, setValue] = useState(null);
       return (

@@ -16,6 +16,7 @@ import EditUserData from "../../../../endpoints/EditUserData";
 import MovingIcon from "../movingIcon";
 import { Feather } from '@expo/vector-icons';
 import PointsComponent from "../pointsComponents/Points";
+import FilterChangeEdit from "../../../../endpoints/FilterEdit";
 
 
 interface HeaderProps {
@@ -130,17 +131,7 @@ const Header: React.FC<HeaderProps> = ({ onFeedPage, name, socket, conversationI
           </TouchableOpacity>
         </View>
 
-        {/* <View style={styles.iconStyle}>
-          <TouchableOpacity>
-            <Text><MaterialCommunityIcons name="restart" size={30} color={iconColors} /></Text>
-            </TouchableOpacity>
-        </View>
-
-        <View style={styles.iconStyle}>
-          <TouchableOpacity>
-            <Text><AntDesign name="checkcircle" size={28} color='#29900B' /></Text>
-            </TouchableOpacity>
-        </View> */}
+        <FilterChangeEdit/>
         
     </View>
     );

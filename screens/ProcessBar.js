@@ -6,7 +6,7 @@ import { Octicons } from '@expo/vector-icons';
 const HorizontalIconLine = ({ count, directions }) => {
   const renderIcons = () => {
     const icons = [];
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 5; i++) {
         if ((i + 1) === count) {
             icons.push(
                 // <Octicons key={i} name="git-commit" size={33} color="rgba(0,0,0,0.5)" />

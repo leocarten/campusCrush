@@ -58,7 +58,7 @@ const FilterPage = () => {
         </View>
 
           <StoreItem item={1} name={"2 hour Top Placement"} emoji={<Text><FontAwesome5 name="level-up-alt" size={60} color={iconColors} /></Text>} text={"Claim the top spot of everyones feed with our Profile Boost! "} points={"75"}/>
-          <StoreItem item={2} name={"Go on a Blind Date"} emoji={<Text><FontAwesome name="low-vision" size={60} color={iconColors} /></Text>} text={"Be paired up, but only their Bitmoji is visible to you!"} points={"125"}/>
+          {/* <StoreItem item={2} name={"Go on a Blind Date"} emoji={<Text><FontAwesome name="low-vision" size={60} color={iconColors} /></Text>} text={"Be paired up, but only their Bitmoji is visible to you!"} points={"125"}/> */}
           <StoreItem item={3} name={"Send 1 extra message"} emoji={<Text><MaterialCommunityIcons name="message-plus-outline" size={60} color={iconColors} /></Text>} text={"Earn an extra message with this item!"} points={"100"}/>
           <StoreItem item={4} name={"Lottery spin"} emoji={<Text><MaterialCommunityIcons name="treasure-chest" size={60} color={iconColors} /></Text>} text={"For 50 tokens, you have a chance to win 30 to 200 tokens!"} points={"50"}/>
           <StoreItem item={5} name={"Message Viewer"} emoji={<Text><FontAwesome5 name="search" size={57} color={iconColors}  /></Text>} text={"See when others read your message for the next 24hrs."} points={"75"}/>

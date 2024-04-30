@@ -35,7 +35,7 @@ function CreateAcc() {
   const [image, setImage] = useState();
 
   const lastPage = () => {
-    navigation.navigate('CreateAcc2');
+    navigation.navigate('CreateAcc1a');
   };
   const nextPage = () => {
     // console.log(image)
@@ -147,8 +147,8 @@ function CreateAcc() {
       <MovingIcon/>
     </View>
     <ScrollView>
-    <Steps count={5} directions={"Upload Pictures"} style={{alignItems: 'left'}}/>
-    <HorizontalIconLine count={5}  />
+    <Steps count={4} directions={"Upload Pictures"} style={{alignItems: 'left'}}/>
+    <HorizontalIconLine count={4}  />
 
 
     <View>

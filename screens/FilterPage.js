@@ -40,23 +40,33 @@ const FilterPage = () => {
                 {/* &#127919; Filter your feed to see what <Text style={{fontStyle: 'italic', fontWeight: 'bold'}}>you</Text> want to see */}
                 Filter your feed to see what <Text style={{fontWeight: 'bold'}}>you</Text> want to see...
               </Text>
-              <Text style={styles.info}><Ionicons name="ios-information-circle-outline" size={20} color="gray" /> Free account can only select a maximum of 2 filter options</Text>
+              {/* <Text style={styles.info}><Ionicons name="ios-information-circle-outline" size={20} color="gray" /> Free account can only select a maximum of 2 filter options</Text> */}
 
           </View>
 
-          <DropdownComponent initMessage="I want to see people who are ..." options={[{ label: 'Looking for a long-term relationship', value: '1' },{ label: 'Looking for a short-term relationship', value: '2' },{ label: 'Looking to meet new people', value: '3' },]} icon={<Ionicons name="person" size={20} color="black" style={{ marginRight: 5 }}/>} />
+          <Text>
+            Change both of these!
+          </Text>
 
-          <DropdownComponent initMessage="Show me verified users only" options={[{ label: 'Yes', value: '1' },{ label: 'No', value: '2' },]} icon={<FontAwesome5 name="user-check" size={18} color="black" style={{ marginRight: 5 }}/>} />
-
-          <DropdownComponent initMessage="Has a bio" options={[{ label: 'Yes', value: '1' },{ label: 'No', value: '2' },]} icon={<MaterialCommunityIcons name="comment-quote" size={20} color="black" style={{ marginRight: 5 }}/>} />
-        
-          <DropdownComponent initMessage="Has at least 1 common interest" options={[{ label: 'Yes', value: '1' },{ label: 'No', value: '2' },]} icon={<FontAwesome5 name="people-arrows" size={20} color="black" style={{ marginRight: 5 }}/>} />
-
-          <DropdownComponent initMessage="Has a high match rate" options={[{ label: 'Yes', value: '1' },{ label: 'No', value: '2' },]} icon={<MaterialCommunityIcons name="handshake" size={24} color="black" style={{ marginRight: 5 }} />}/>
-
+          
           <UserInputSlider type={"Age"}/>
 
           <UserInputSlider/>
+
+
+
+          <Text style={{marginTop:'10%'}}>
+            But you can only choose on of these.
+          </Text>
+          <DropdownComponent initMessage="I want to see people who are ..." options={[{ label: 'Looking for a long-term relationship', value: '1' },{ label: 'Looking for a short-term relationship', value: '2' },{ label: 'Looking to meet new people', value: '3' },]} icon={<Ionicons name="person" size={20} color="black" style={{ marginRight: 5 }}/>} field={'appPurpose'} typeOfChange={'filter'} />
+
+          <DropdownComponent initMessage="Show me verified users only" options={[{ label: 'Yes', value: '1' },{ label: 'No', value: '2' },]} icon={<FontAwesome5 name="user-check" size={18} color="black" style={{ marginRight: 5 }}/>} field={'isVerified'} typeOfChange={'filter'}/>
+
+          <DropdownComponent initMessage="Has a bio" options={[{ label: 'Yes', value: '1' },{ label: 'No', value: '2' },]} icon={<MaterialCommunityIcons name="comment-quote" size={20} color="black" style={{ marginRight: 5 }}/>} field={'has_a_bio'} typeOfChange={'filter'}/>
+        
+          {/* <DropdownComponent initMessage="Has at least 1 common interest" options={[{ label: 'Yes', value: '1' },{ label: 'No', value: '2' },]} icon={<FontAwesome5 name="people-arrows" size={20} color="black" style={{ marginRight: 5 }}/>} /> */}
+
+          {/* <DropdownComponent initMessage="Has a high match rate" options={[{ label: 'Yes', value: '1' },{ label: 'No', value: '2' },]} icon={<MaterialCommunityIcons name="handshake" size={24} color="black" style={{ marginRight: 5 }} />}/> */}
                     
         </View>
 
@@ -91,7 +101,7 @@ const styles = StyleSheet.create({
       padding: 8,
       // borderRadius: 5,
       borderColor: '#ABABAB',
-      borderBottomWidth: 1,
+      borderBottomWidth: 0,
       shadowColor: "#000",
       shadowOffset: {
         width: 0,

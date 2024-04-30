@@ -38,7 +38,7 @@ const Feed = ({route}) => {
       <Header onFeedPage={1}/>
     </SafeAreaView>
 
-      <DisplayItems />
+      {/* <DisplayItems /> */}
 
     
     <View style={styles.footer}>

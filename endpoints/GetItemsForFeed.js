@@ -30,7 +30,7 @@ const getItemsInFeed = async (offset_amount_) => {
         }
         else{
           if(data['message'] == -1){
-
+            console.log("NEW REQUEST")
             try {
               const apiUrl = 'http://18.188.112.190:5001/showItemsInFeed';
               const refreshToken = await getSecureValues('refresh');
@@ -51,7 +51,7 @@ const getItemsInFeed = async (offset_amount_) => {
           
               if (response.ok) {
                 const data_ = await response.json();
-
+                console.log("NEW DATA:",data_)
                 const newAccess = data_['newAccess'];
                 const newRefresh = data_['newRefresh'];
                 await deleteKey('access')

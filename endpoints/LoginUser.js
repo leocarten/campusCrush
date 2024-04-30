@@ -1,4 +1,6 @@
 import * as SecureStore from 'expo-secure-store';
+import { getSecureValues } from '../authentication/getValue';
+import { deleteKey } from '../authentication/deleteValue';
 import { saveSecureValue } from '../authentication/saveValue';
 
 const handleLogin = async (usernameInput, passwordInput) => {

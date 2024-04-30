@@ -408,7 +408,7 @@ const UserSettingsPage = () => {
 
 
       {/* FEEDBACK */}
-      <View style={styles.sectionType}>
+      {/*<View style={styles.sectionType}>
           <Text style={styles.sectionText}>FEEDBACK</Text>
       </View>
 
@@ -422,7 +422,7 @@ const UserSettingsPage = () => {
         <Text style={styles.optionText}>
         <FontAwesome name="exclamation-triangle" size={19} color="#474747" /> I have a safety concern
         </Text>
-      </TouchableOpacity>
+              </TouchableOpacity> */}
 
 
       {/* POLICY INFORMATION */}
